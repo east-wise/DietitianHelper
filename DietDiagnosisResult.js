@@ -348,10 +348,22 @@ function PrintAnalysisResult() {
             $('#EastimateEnergy').append(
                 Math.round(DietNutrient.EastimateEnergy)
                 + "kcal"
-                + "<br>(-"
-                + Math.round(DietNutrient.LossEnergy)
-                + "kcal 추천)"
+                + "<br>("
             );
+            if (Math.round(DietNutrient.LossEnergy) < 0) {
+                $('#EastimateEnergy').append(
+                    "+"
+                    + (-1) * Math.round(DietNutrient.LossEnergy)
+                    + "kcal 추천)"
+                );
+            }
+            else {
+                $('#EastimateEnergy').append(
+                    "-"
+                    + Math.round(DietNutrient.LossEnergy)
+                    + "kcal 추천)"
+                );
+            }
         }
     }
     else if(catchPatientInfo.KidneyCondition > 2){
