@@ -1,0 +1,52 @@
+@import url('style.css');
+
+.qh {
+  line-height: 2.5rem;
+  font-weight: bold;
+}
+
+/* section styles */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+
+input[type=radio] {
+  background-color: #FFFF;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin-left: 16px;
+  margin-right: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.26);
+  width: 14px;
+  height: 14px;
+  border-radius: 100%;
+}
+
+input[type=radio]:checked {
+  background-color: rgb(25, 118, 248);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin-left: 16px;
+  margin-right: 5px;
+  border: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 100%;
+}
+
+
+button {
+  margin: 20px;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+
+@media (min-width: 1000px){
+  .placequestion{
+    padding-left: 200px;
+  }
+}

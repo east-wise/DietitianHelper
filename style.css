@@ -1,0 +1,56 @@
+html {
+    font-size: 1rem;
+}
+
+body {
+    background-color: #5a2f27;
+    background-size: cover;
+}
+
+/* header styles */
+
+h1,
+h2 {
+  font-family: 'Faster One', 'Jua', sans-serif, cursive;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+    font-size: 3.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+/* section styles */
+.container {
+    font-family: 'Poor Story', cursive;
+    background: beige;
+    border-radius: 20px;
+    font-size: large;
+}
+button{
+    background-color: steelblue;
+    color: white;
+}
+button:hover{
+    background-color: #21603f;
+    color: white;
+}
+
+table {
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  th,
+  td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+    text-align: center;
+  }

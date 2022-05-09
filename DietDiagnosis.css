@@ -1,0 +1,111 @@
+@import url('style.css');
+
+h2 {
+  font-size: 1.5rem;
+}
+
+/* section styles */
+.container {
+  display: grid;
+  border-radius: 20px;
+}
+
+h1 {
+  grid-area: header;
+}
+
+h2 {
+  grid-area: header2;
+}
+
+.main1 {
+  grid-area: main1;
+}
+
+.main2 {
+  grid-area: main2;
+}
+
+.side {
+  grid-area: side;
+}
+
+.resume {
+  grid-area: resume;
+  text-align: right;
+  padding-right: 70px;
+  padding-top: 50px;
+}
+
+.main1,
+.main2 {
+  line-height: 2.1rem;
+}
+
+button {
+  padding: 0px 10px;
+  border-radius: 10px;
+}
+
+
+input {
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: medium;
+  width: 70px;
+  height: 22px;
+}
+
+input[type=radio] {
+  width: 18px;
+  height: 18px;
+  position: relative;
+  top: 3px;
+}
+
+input[type=radio]:checked {
+  width: 18px;
+  height: 18px;
+  position: relative;
+  top: 3px;
+}
+
+@media (min-width: 1000px) {
+  .side {padding-right: 70px;}
+  .container {
+    height: 800px;
+    grid-template-columns: 20% 40% 40%;
+    grid-template-rows: 50px 50px 200px 450px;
+    grid-gap: 20px;
+    grid-template-areas:
+      "header header header"
+      "header2 header2 header2"
+      "main1 side main2"
+      "none resume main2"
+  }
+}
+
+@media (max-width: 1000px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 30px 270px 200px 600px 50px;
+    height: 1500px;
+    grid-gap: 20px;
+    grid-template-areas:
+      "header"
+      "header2"
+      "main1"
+      "side"
+      "main2"
+      "resume"
+  }
+}
+
+/* table styles */
+
+table {
+  width: 100%;
+}
+
+#ObesityState {
+  font-weight: bold;
+}

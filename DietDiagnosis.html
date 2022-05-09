@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영양진단 (Diet Diagnosis)</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com"> 
+    <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="DietDiagnosis.css"> 
+</head>
+<body>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.js" 
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" 
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+    crossorigin="anonymous"></script>
+    <script src="DietDiagnosis.js"></script>
+
+    <div class="container">
+        <h1>영양진단</h1>
+        <h2>필요한 정보를 입력해주세요</h2>
+        <div class="main1">
+            <div>이름: <input type="text" id="Name" /> </div>
+            <div>만 나이: <input type="number" id="Age" /> </div>
+            <div class="rowSex">
+                <label>성별: </label>
+                <input type="radio" id="healthy_gender_male" name="healthy_gender" value="male" />
+                <label for="healthy_gender_male">남자</label>
+                <input type="radio" id="healthy_gender_female" name="healthy_gender" value="female" />
+                <label for="healthy_gender_female">여자</label>
+            </div>
+            <div>키 (신장): <input type="number" id="Height" /> (cm)</div>
+            <div>몸무게 (체중): <input type="number" id="Weight" /> (kg) </div>
+            <button type="button" onclick="ObesityJudgement();">키, 체중 입력 !</button>
+            <div><br>활동량: <input type="number" id="ActivityIndex" /> </div>
+        </div>
+        <div class="main2">
+            <div class="rowDM">
+                <label>당뇨여부: </label>
+                <input type="radio" id="diabetesY" name="diabetes" value="y" />
+                <label for="diabetesY">있음</label>
+                <input type="radio" id="diabetesN" name="diabetes" value="n" />
+                <label for="diabetesN">없음</label>
+            </div>
+            <div class="rowHD">
+                <label>투석여부: </label>
+                <input type="radio" id="isDialysisY" name="isDialysis" value="y" />
+                <label for="isDialysisY">투석함</label>
+                <input type="radio" id="isDialysisN" name="isDialysis" value="n" />
+                <label for="isDialysisN">투석안함</label>
+            </div>
+            <div>수축기 혈압: <input type="number" id="SBP" /> </div>
+            <div>이완기 혈압: <input type="number" id="DBP" /> </div>
+            <div>eGFR-Cr: <input type="number" id="glomerular" /> </div>
+            <div>공복 혈당: <input type="number" id="FBS" /> </div>
+            <div>식후 2시간 후 혈당: <input type="number" id="PP2" /> </div>
+            <div>당화혈색소 (HbA1c): <input type="number" id="HbA1c" /> </div>
+            <div>간수치 AST (GOT): <input type="number" id="AST" /> </div>
+            <div>간수치 ALT (GPT): <input type="number" id="ALT" /> </div>
+            <div>혈중 칼륨 농도: <input type="number" id="Potassium" /> </div>
+            <div>혈중 나트륨 농도: <input type="number" id="Sodium" /> </div>
+            <div>혈중 인 농도: <input type="number" id="Phosphorous" /> </div>
+            <div>혈중 염화이온 농도: <input type="number" id="Chloride" /> </div>
+            <div>혈중 중성지방 농도: <input type="number" id="TG" /> </div>
+            <div>혈중 총콜레스테롤 농도: <input type="number" id="TChol" /> </div>
+            <div>혈중 LDL 농도: <input type="number" id="LDL" /> </div>
+            <div>혈중 HDL 농도: <input type="number" id="HDL" /> </div>
+            
+        </div>
+        <div class="side">
+            <table id="physicalActivity">
+                <thead>
+                    <tr>
+                        <td id="ObesityState" name="physicalActivityNarration"></td>
+                        <td name="physicalActivityValue">활동량</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td name="physicalActivityNarration">운동을 따로 하지 않음</td>
+                        <td id="LightActivity" name="physicalActivityValue"></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td name="physicalActivityNarration">가벼운 운동을 자주 함</td>
+                        <td id="ModerateActivity" name="physicalActivityValue"></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td name="physicalActivityNarration">강도있는 운동을 자주 함</td>
+                        <td id="SevereActivity" name="physicalActivityValue"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="resume">
+            <button type="button" onclick="Examination();" id="resumebutton">혈액수치 입력완료!</button>
+            <button onclick="OpenResultPage();" id="resulturl">분석결과창 확인하기</button>
+        </div>
+    </div>
+    
+    
+    <script>
+        $("#resulturl").hide();
+        $("#resumebutton").hide();
+        $("#physicalActivity").hide();
+        var IdealBodyWeight=0;
+        var Patient={};
+        var PCondition={
+            PIBWCondition:"정상",
+            BMICondition:"정상",
+            diabetesCondition:"정상",
+            BPCondition:["정상","정상"],
+            ElectricCondition:{
+                Sodium:"정상",
+                Potassium:"정상",
+                Chloride:"정상"
+            },
+            KidneyCondition:0,
+            LipidCondition:{
+                Cholesterol:"정상",
+                Triglyceride:"정상",
+                Phosphorous:"정상",
+                Warning:""
+            }
+        };
+    </script>
+</body>
+</html>

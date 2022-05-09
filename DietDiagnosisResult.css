@@ -1,0 +1,52 @@
+@import url('style.css');
+
+
+/* section styles */
+.container {
+  font-size: larger;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 50px 20px 1fr 1fr 1fr;
+  grid-gap: 20px;
+  grid-template-areas:
+    "header1 header1 "
+    "header2 header2 "
+    "main1 main2"
+    "RNT RNT"
+    "RDT RDT"
+}
+
+h1 {grid-area: header1;}
+h2 {grid-area: header2;}
+.main1 {
+  grid-area: main1;
+  margin-left: auto;
+}
+.main2 {grid-area: main2;}
+
+#guideParagraph {
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#recommendNutrientTable {
+  grid-area: RNT;
+}
+
+#recommendDietTable {
+  grid-area: RDT;
+}
+
+table caption {
+  font-weight: bolder;
+  caption-side: top;
+  text-align: center;
+}
+
+
+#recommendDiet td,
+#recommendDiet2 td {
+  font-size: larger;
+}
