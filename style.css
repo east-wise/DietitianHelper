@@ -32,6 +32,11 @@ h2 {
     border-radius: 20px;
     font-size: large;
 }
+footer{
+    text-align: center;
+    background-color: aquamarine;
+    border-radius: 10px
+}
 button{
     background-color: steelblue;
     color: white;
