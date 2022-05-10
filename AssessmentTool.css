@@ -47,6 +47,7 @@ button {
 
 @media (min-width: 1000px){
   .placequestion{
-    padding-left: 200px;
+    padding-left: 150px;
+    padding-right: 150px;
   }
 }
