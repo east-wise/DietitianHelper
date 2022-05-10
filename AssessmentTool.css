@@ -1,6 +1,6 @@
 @import url('style.css');
 
-.qh {
+.qh, .instruction {
   line-height: 2.5rem;
   font-weight: bold;
 }
