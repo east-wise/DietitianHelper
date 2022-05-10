@@ -21,11 +21,18 @@
         <h1> 칼슘 섭취량 조사 간편 설문지 </h1>
         <h2> KCAT (Korean Calcium Assessment Tool)</h2>
         <div class="placequestion">
+            <div class="instruction"> ✡ 설문지 설명!</div>
+            <div>
+                다음 페이지의 식품군을 보고 평소 섭취 빈도를 체크해주시면 되는데, 만약 섭취하지 않는 식품군이면 체크하지 마시고 넘어가시면 됩니다.<br>
+                만약 1회 기준분량과 다르게 섭취하신다면 섭취빈도에 반영하여 표기해주시면 됩니다.<br>
+                ex) 매일 한번에 우유를 2컵(400ml)씩 드시면 하루 2회로 체크하시면 됩니다.<br>
+                ex) 채소류를 '0.5 종이컵' 씩 "일주일에 1번" 섭취하시면, 채소류 기준분량이 '1 종이컵' 이므로 "한 달 2번" 으로 표기하시면 됩니다.<br>
+            </div>
             <div class="qusetion" id="q1">
                 <div class="qh">1. 밥류 (백미밥, 현미밥, 잡곡밥, 김밥)의 섭취 횟수를 체크해주세요. [기본단위: 1 공기]</div>
             </div>
             <div class="qusetion" id="q2">
-                <div class="qh">2. 떡류 (백설기, 시루떡, 인절미, 절편)의 섭취 횟수를 체크해주세요. [기본단위: 백설기,시루떡 1개=인절미,절편 6개]</div>
+                <div class="qh">2. 떡류 (백설기, 시루떡, 인절미, 절편)의 섭취 횟수를 체크해주세요. [기본단위: 백설기, 시루떡 1개 = 인절미, 절편 6개]</div>
             </div>
             <div class="qusetion" id="q3">
                 <div class="qh">3. 고구마의 섭취 횟수를 체크해주세요. [기본단위: 1 개]</div>
@@ -55,7 +62,7 @@
                 <div class="qh">11. 소간의 섭취 횟수를 체크해주세요. [기본단위: 1 조각]</div>
             </div>
             <div class="qusetion" id="q12">
-                <div class="qh">12. 난류 (달걀, 메추리알)의 섭취 횟수를 체크해주세요. [기본단위: 달걀 1 개=메추리알 6 개] </div>
+                <div class="qh">12. 난류 (달걀, 메추리알)의 섭취 횟수를 체크해주세요. [기본단위: 달걀 1 개 = 메추리알 6 개] </div>
             </div>
             <div class="qusetion" id="q13">
                 <div class="qh">13. 어묵, 맛살의 섭취 횟수를 체크해주세요. [기본단위: 1 종이컵] </div>
@@ -133,7 +140,7 @@
                 <div class="qh">37. 김의 섭취 횟수를 체크해주세요. [기본단위: 큰 김 1 장 = 작은 김 8 장] </div>
             </div>
             <div class="qusetion" id="q38">
-                <div class="qh">38. 해조류 (다시마, 미역 등 / 미역국 포함, 김 제외)의 섭취 횟수를 체크해주세요. [기본단위: 미역 1 종이컵=미역국 1 그릇]</div>
+                <div class="qh">38. 해조류 (다시마, 미역 등 / 미역국 포함, 김 제외)의 섭취 횟수를 체크해주세요. [기본단위: 미역 1 종이컵 = 미역국 1 그릇]</div>
             </div>
             <div class="qusetion" id="q39">
                 <div class="qh">39. 목이버섯의 섭취 횟수를 체크해주세요. [기본단위: 1 종이컵]</div>
@@ -168,7 +175,13 @@
         </div>
 
         <button class="calculate" onclick="calculateCalssiumIntake();">나의 칼슘 섭취량은?</button>
+        <footer>
+            made by 임상영양학 석사 김동현<br>
+            Copyright © Donghyun Kim. All rights reserved.
+        </footer>
+        
     </div>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
