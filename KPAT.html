@@ -16,6 +16,13 @@
         <h1> 단백질 섭취량 조사 간편 설문지 </h1>
         <h2> KPAT (Korean Protein Assessment Tool)</h2>
         <div class="placequestion">
+            <div class="instruction"> ✡ 설문지 설명!</div>
+            <div>
+                다음 페이지의 식품군을 보고 평소 섭취 빈도를 체크해주시면 되는데, 만약 섭취하지 않는 식품군이면 체크하지 마시고 넘어가시면 됩니다.<br>
+                만약 1회 기준분량과 다르게 섭취하신다면 섭취빈도에 반영하여 표기해주시면 됩니다.<br>
+                ex) 매일 한번에 우유를 2컵(400ml)씩 드시면 하루 2회로 체크하시면 됩니다.<br>
+                ex) 채소류를 '0.5 종이컵' 씩 "일주일에 1번" 섭취하시면, 채소류 기준분량이 '1 종이컵' 이므로 "한 달 2번" 으로 표기하시면 됩니다.<br>
+            </div>
             <div class="qusetion" id="q1">
                 <div class="qh">1. 밥류(쌀밥 ,김밥 ,볶음밥, 덮밥, 비빔밥)의 섭취 횟수를 체크해주세요. [기본단위: 1 공기] </div>
             </div>
@@ -137,6 +144,10 @@
         </div>
 
         <button class="calculate" onclick="calculateProteinIntake();">나의 단백질 섭취량은?</button>
+        <footer>
+            made by 임상영양학 석사 김동현<br>
+            Copyright © Donghyun Kim. All rights reserved.
+        </footer>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.js" 
     integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" 
