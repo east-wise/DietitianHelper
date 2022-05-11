@@ -299,7 +299,7 @@ function PrintAnalysisResult() {
     const goalProtein = Math.round(DietNutrient.Protein / 10)*10;
     
     $('#calorie').append(goalEnergy + "kcal");
-    $('#protein').append(DietNutrient.Protein + "g");
+    $('#protein').append(Math.round(DietNutrient.Protein * 10) / 10 + "g");
     $('#potassium').append(DietNutrient.Potassium + "mg");
     $('#phosphorous').append(DietNutrient.Phosphorous + "mg");
 
