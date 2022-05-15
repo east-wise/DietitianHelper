@@ -1,25 +1,25 @@
 function PrintAnalysisResult() {
     const growthDietA = [
-            ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"],
-            { "Calorie": "1000", "ExUn": [3, 1.5, 3, 3, 2, 1] },
-            { "Calorie": "1100", "ExUn": [4.5, 1.5, 3, 3, 2, 1] },
-            { "Calorie": "1200", "ExUn": [4.5, 2, 4, 3, 2, 1] },
-            { "Calorie": "1300", "ExUn": [4.5, 2, 4.5, 4, 2, 1] },
-            { "Calorie": "1400", "ExUn": [6, 2, 4.5, 4, 2, 1] },
-            { "Calorie": "1500", "ExUn": [6, 2.5, 4.5, 5, 2, 1] },
-            { "Calorie": "1600", "ExUn": [7.5, 2.5, 4.5, 5, 2, 1] },
-            { "Calorie": "1700", "ExUn": [7.5, 3, 4.5, 5, 2, 1] },
-            { "Calorie": "1800", "ExUn": [9, 3, 4.5, 5, 2, 1] },
-            { "Calorie": "1900", "ExUn": [9, 3.5, 5, 5, 2, 1] },
-            { "Calorie": "2000", "ExUn": [9, 3.5, 5, 6, 2, 2] },
-            { "Calorie": "2100", "ExUn": [9, 4, 6, 6, 2, 2] },
-            { "Calorie": "2200", "ExUn": [10.5, 4, 6, 6, 2, 2] },
-            { "Calorie": "2300", "ExUn": [10.5, 5, 6, 6, 2, 2] },
-            { "Calorie": "2400", "ExUn": [10.5, 5, 6, 6, 2, 3] },
-            { "Calorie": "2500", "ExUn": [10.5, 5.5, 6, 7, 2, 3] },
-            { "Calorie": "2600", "ExUn": [10.5, 5.5, 6, 8, 2, 4] },
-            { "Calorie": "2700", "ExUn": [12, 5.5, 6, 8, 2, 4] },
-            { "Calorie": "2800", "ExUn": [12, 6, 6, 8, 2, 4] }],
+        ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"],
+        { "Calorie": "1000", "ExUn": [3, 1.5, 3, 3, 2, 1] },
+        { "Calorie": "1100", "ExUn": [4.5, 1.5, 3, 3, 2, 1] },
+        { "Calorie": "1200", "ExUn": [4.5, 2, 4, 3, 2, 1] },
+        { "Calorie": "1300", "ExUn": [4.5, 2, 4.5, 4, 2, 1] },
+        { "Calorie": "1400", "ExUn": [6, 2, 4.5, 4, 2, 1] },
+        { "Calorie": "1500", "ExUn": [6, 2.5, 4.5, 5, 2, 1] },
+        { "Calorie": "1600", "ExUn": [7.5, 2.5, 4.5, 5, 2, 1] },
+        { "Calorie": "1700", "ExUn": [7.5, 3, 4.5, 5, 2, 1] },
+        { "Calorie": "1800", "ExUn": [9, 3, 4.5, 5, 2, 1] },
+        { "Calorie": "1900", "ExUn": [9, 3.5, 5, 5, 2, 1] },
+        { "Calorie": "2000", "ExUn": [9, 3.5, 5, 6, 2, 2] },
+        { "Calorie": "2100", "ExUn": [9, 4, 6, 6, 2, 2] },
+        { "Calorie": "2200", "ExUn": [10.5, 4, 6, 6, 2, 2] },
+        { "Calorie": "2300", "ExUn": [10.5, 5, 6, 6, 2, 2] },
+        { "Calorie": "2400", "ExUn": [10.5, 5, 6, 6, 2, 3] },
+        { "Calorie": "2500", "ExUn": [10.5, 5.5, 6, 7, 2, 3] },
+        { "Calorie": "2600", "ExUn": [10.5, 5.5, 6, 8, 2, 4] },
+        { "Calorie": "2700", "ExUn": [12, 5.5, 6, 8, 2, 4] },
+        { "Calorie": "2800", "ExUn": [12, 6, 6, 8, 2, 4] }],
         growthDietB = [
             ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"],
             { "Calorie": "1000", "ExUn": [4.5, 1.5, 4, 2, 1, 1] },
@@ -189,42 +189,46 @@ function PrintAnalysisResult() {
         Potassium: 0,
         Phosphorous: 0
     }
-    let putativeDiagnosis=[];
+    let putativeDiagnosis = [];
 
-//----영양소 계산 시작----//
+    //----영양소 계산 시작----//
     if (catchPatientInfo.KidneyCondition == 99) {
         DietNutrient.Energy
             = catchPatientInfo.weight * catchPatientInfo.BMIactivity;
         DietNutrient.Protein = catchPatientInfo.weight * 1.2;
-        if (catchPatientInfo.ElectricCondition.Potassium == "고칼륨혈증"){
+        if (catchPatientInfo.ElectricCondition.Potassium == "고칼륨혈증") {
             DietNutrient.Potassium = 1500;
         }
         else DietNutrient.Potassium = 2000;
-        if (catchPatientInfo.LipidCondition.Phosphorous == "고인산혈증"){
+        if (catchPatientInfo.LipidCondition.Phosphorous == "고인산혈증") {
             DietNutrient.Phosphorous = catchPatientInfo.weight * 12;
         }
         else DietNutrient.Phosphorous = catchPatientInfo.weight * 15;
+        $('#normalBodyWeightRange').append(catchPatientInfo.BMICondition);
+        putativeDiagnosis.push("혈액투석");
     }
     else if (catchPatientInfo.KidneyCondition > 2) {
         DietNutrient.Energy
             = catchPatientInfo.weight * catchPatientInfo.activityindex;
-        if (catchPatientInfo.diabetesCondition == "당뇨"){
+        if (catchPatientInfo.diabetesCondition == "당뇨") {
             DietNutrient.Protein = catchPatientInfo.weight * 0.8;
         }
         else DietNutrient.Protein = catchPatientInfo.weight * 0.6;
-        if (catchPatientInfo.ElectricCondition.Potassium == "고칼륨혈증"){
+        if (catchPatientInfo.ElectricCondition.Potassium == "고칼륨혈증") {
             DietNutrient.Potassium = 2000;
         }
         else DietNutrient.Potassium = 3500;
-        if (catchPatientInfo.LipidCondition.Phosphorous == "고인산혈증"){
+        if (catchPatientInfo.LipidCondition.Phosphorous == "고인산혈증") {
             DietNutrient.Phosphorous = catchPatientInfo.weight * 12;
         }
         else DietNutrient.Phosphorous = catchPatientInfo.weight * 15;
+        $('#normalBodyWeightRange').append(catchPatientInfo.BMICondition);
+        putativeDiagnosis.push("만성콩팥병");
     }
     else if (catchPatientInfo.KidneyCondition <= 2) {
         if (catchPatientInfo.PIBWCondition == "비만" ||
             catchPatientInfo.PIBWCondition == "고도비만") {
-            if (catchPatientInfo.LiverCondition !="정상") {
+            if (catchPatientInfo.LiverCondition != "정상") {
                 DietNutrient.Targht6mWeight = catchPatientInfo.weight * 0.9;
             }
             else if (catchPatientInfo.LiverCondition == "정상")
@@ -233,7 +237,7 @@ function PrintAnalysisResult() {
                     + (catchPatientInfo.weight - catchPatientInfo.IdealBodyWeight)
                     * 0.25;
         }
-        else if (catchPatientInfo.PIBWCondition == "과체중"){
+        else if (catchPatientInfo.PIBWCondition == "과체중") {
             DietNutrient.Targht6mWeight = catchPatientInfo.weight * 0.9;
         }
         else DietNutrient.Targht6mWeight = catchPatientInfo.IdealBodyWeight;
@@ -243,22 +247,25 @@ function PrintAnalysisResult() {
             catchPatientInfo.weight * catchPatientInfo.activityindex;
         DietNutrient.Energy =
             DietNutrient.EastimateEnergy - DietNutrient.LossEnergy;
-        if (catchPatientInfo.diabetesCondition == "당뇨"){
+        if (catchPatientInfo.diabetesCondition == "당뇨") {
             DietNutrient.Protein = catchPatientInfo.weight * 1.2;
         }
         else DietNutrient.Protein = catchPatientInfo.weight * 1.0;
-        if (catchPatientInfo.ElectricCondition.Potassium == "고칼륨혈증"){
+        if (catchPatientInfo.ElectricCondition.Potassium == "고칼륨혈증") {
             DietNutrient.Potassium = 1500;
         }
         else DietNutrient.Potassium = 2000;
-        if (catchPatientInfo.LipidCondition.Phosphorous == "고인산혈증"){
+        if (catchPatientInfo.LipidCondition.Phosphorous == "고인산혈증") {
             DietNutrient.Phosphorous = catchPatientInfo.weight * 12;
         }
         else DietNutrient.Phosphorous = catchPatientInfo.weight * 15;
+        $('#normalBodyWeightRange').append(catchPatientInfo.PIBWCondition);
+        if (catchPatientInfo.PIBWCondition != "정상")
+            putativeDiagnosis.push(catchPatientInfo.PIBWCondition);
     }
 
 
-//----계산한 영양소 출력하기----//
+    //----계산한 영양소 출력하기----//
     $('#recommendDiet2').hide();
     $('.weightModify').hide();
     $('#Targht6mWeight').hide();
@@ -276,64 +283,71 @@ function PrintAnalysisResult() {
         + Math.round(catchPatientInfo.IdealBodyWeight * 1.09)
         + "kg, "
     );
-    if (catchPatientInfo.KidneyCondition == 99){
-        $('#normalBodyWeightRange').append(catchPatientInfo.BMICondition);
-        putativeDiagnosis.push("혈액투석");
-    }
-    else if (catchPatientInfo.KidneyCondition > 2){
-        $('#normalBodyWeightRange').append(catchPatientInfo.BMICondition);
-        putativeDiagnosis.push("만성콩팥병");
-    }
-    else if (catchPatientInfo.KidneyCondition <= 2){
-        $('#normalBodyWeightRange').append(catchPatientInfo.PIBWCondition);
-        if (catchPatientInfo.PIBWCondition != "정상")
-            putativeDiagnosis.push(catchPatientInfo.PIBWCondition);
-    }
 
 
 
 
-//----권장 영양소 섭취량 출력----//
+    //----권장 영양소 섭취량 출력----//
     const CKDProteinIndex = Math.round(DietNutrient.Protein / 10) - 2;
     const goalEnergy = Math.round(DietNutrient.Energy / 100) * 100;
-    const goalProtein = Math.round(DietNutrient.Protein / 10)*10;
-    
+    const goalProtein = Math.round(DietNutrient.Protein / 10) * 10;
+
     $('#calorie').append(goalEnergy + "kcal");
     $('#protein').append(Math.round(DietNutrient.Protein * 10) / 10 + "g");
     $('#potassium').append(DietNutrient.Potassium + "mg");
     $('#phosphorous').append(DietNutrient.Phosphorous + "mg");
 
 
-//----권장 식품교환단위 계산----//
-    let recommendExUnit = [,,]; 
+    //----권장 식품교환단위 계산----//
+    let recommendExUnit = [, ,];
     if (catchPatientInfo.KidneyCondition <= 2) {
         if (catchPatientInfo.age > 19 || catchPatientInfo.age == 0) {
             recommendExUnit[0] = DMDiet[0];
             recommendExUnit[1] = searchExUnit(DMDiet, goalEnergy);
             for (let i = 0; i < recommendExUnit[0].length; i++) {
                 let row_2_data = document.createElement('td');
-                row_2_data.innerHTML = recommendExUnit[0][i];
-                $('#recommendDietName').append(row_2_data);
                 let row_3_data = document.createElement('td');
+                let row_4_data = document.createElement('td');
+                let row_5_data = document.createElement('td');
+                let row_6_data = document.createElement('td');
+                row_2_data.innerHTML = recommendExUnit[0][i];
                 row_3_data.innerHTML = recommendExUnit[1].ExUn[i];
+                let BLD = divide3part(recommendExUnit[1].ExUn[i]);
+                row_4_data.innerHTML = BLD[1];
+                row_5_data.innerHTML = BLD[0];
+                row_6_data.innerHTML = BLD[2];
+                $('#recommendDietName').append(row_2_data);
                 $('#recommendDiet').append(row_3_data);
+                $('#rDB').append(row_4_data);
+                $('#rDL').append(row_5_data);
+                $('#rDD').append(row_6_data);
             }
         }
-        else if(catchPatientInfo.age<20){
+        else if (catchPatientInfo.age < 20) {
             $('#recommendDiet2').show();
             recommendExUnit[0] = growthDietA[0];
             recommendExUnit[1] = searchExUnit(growthDietA, goalEnergy);
             recommendExUnit[2] = searchExUnit(growthDietB, goalEnergy);
             for (let i = 0; i < recommendExUnit[0].length; i++) {
                 let row_2_data = document.createElement('td');
-                row_2_data.innerHTML = recommendExUnit[0][i];
-                $('#recommendDietName').append(row_2_data);
                 let row_3_data = document.createElement('td');
-                row_3_data.innerHTML = recommendExUnit[1].ExUn[i];
-                $('#recommendDiet').append(row_3_data);
                 let row_4_data = document.createElement('td');
-                row_4_data.innerHTML = recommendExUnit[2].ExUn[i];
-                $('#recommendDiet2').append(row_4_data);
+                let row_5_data = document.createElement('td');
+                let row_6_data = document.createElement('td');
+                let row_7_data = document.createElement('td');
+                row_2_data.innerHTML = recommendExUnit[0][i];
+                row_7_data.innerHTML = recommendExUnit[2].ExUn[i];
+                row_3_data.innerHTML = recommendExUnit[1].ExUn[i];
+                let BLD = divide3part(recommendExUnit[1].ExUn[i]);
+                row_4_data.innerHTML = BLD[1];
+                row_5_data.innerHTML = BLD[0];
+                row_6_data.innerHTML = BLD[2];
+                $('#recommendDietName').append(row_2_data);
+                $('#recommendDiet').append(row_3_data);
+                $('#recommendDiet2').append(row_7_data);
+                $('#rDB').append(row_4_data);
+                $('#rDL').append(row_5_data);
+                $('#rDD').append(row_6_data);
             }
         }
         if (catchPatientInfo.PIBWCondition != "정상") {
@@ -366,57 +380,76 @@ function PrintAnalysisResult() {
             }
         }
     }
-    else if(catchPatientInfo.KidneyCondition > 2){
+    else if (catchPatientInfo.KidneyCondition > 2) {
         recommendExUnit[0] = proteinControledDiet[0];
         recommendExUnit[1] = searchExUnit(proteinControledDiet[CKDProteinIndex], goalEnergy);
         for (let i = 0; i < recommendExUnit[0].length; i++) {
             let row_2_data = document.createElement('td');
-            row_2_data.innerHTML = recommendExUnit[0][i];
-            $('#recommendDietName').append(row_2_data);
             let row_3_data = document.createElement('td');
+            let row_4_data = document.createElement('td');
+            let row_5_data = document.createElement('td');
+            let row_6_data = document.createElement('td');
+            row_2_data.innerHTML = recommendExUnit[0][i];
             row_3_data.innerHTML = recommendExUnit[1].ExUn[i];
+            let BLD = divide3part(recommendExUnit[1].ExUn[i]);
+            row_4_data.innerHTML = BLD[1];
+            row_5_data.innerHTML = BLD[0];
+            row_6_data.innerHTML = BLD[2];
+            $('#recommendDietName').append(row_2_data);
             $('#recommendDiet').append(row_3_data);
+            $('#rDB').append(row_4_data);
+            $('#rDL').append(row_5_data);
+            $('#rDD').append(row_6_data);
         }
     }
     console.log(recommendExUnit);
+    function divide3part(dummy) {
+        let BLD = [0, 0, 0];
+        if (dummy % 1.5 === 0) {
+            BLD[0] = dummy / 3;
+            BLD[1] = BLD[0];
+            BLD[2] = BLD[0];
+        }
+        else {
+            BLD[0] = Math.round(dummy / 3);
+            BLD[1] = dummy - 2 * BLD[0];
+            BLD[2] = BLD[0];
+            BLD.sort(function (a, b) { return b - a; });
+        }
+        return BLD;
+    }
 
     function searchExUnit(dietDB, value) {
         return dietDB.filter(function (object) {
             return object["Calorie"] == value;
         })[0];
     }
-    
+
     //----추정진단명 찾아보기----//
+    $('#PDGuide').append(catchPatientInfo.name + "님의 추정 진단:");
     if (catchPatientInfo.diabetesCondition != "정상")
         putativeDiagnosis.push(catchPatientInfo.diabetesCondition);
-    if (catchPatientInfo.BPCondition[0] != "정상")
-        putativeDiagnosis.push(catchPatientInfo.BPCondition[0]);
-    if (catchPatientInfo.BPCondition.length==2)
-        putativeDiagnosis.push(catchPatientInfo.BPCondition[1]);
+    if (catchPatientInfo.BPCondition != "정상")
+        putativeDiagnosis.push(catchPatientInfo.BPCondition);
     if (catchPatientInfo.ElectricCondition.Sodium != "정상")
         putativeDiagnosis.push(catchPatientInfo.ElectricCondition.Sodium);
     if (catchPatientInfo.ElectricCondition.Potassium != "정상")
         putativeDiagnosis.push(catchPatientInfo.ElectricCondition.Potassium);
     if (catchPatientInfo.ElectricCondition.Chloride != "정상")
         putativeDiagnosis.push(catchPatientInfo.ElectricCondition.Chloride);
-    if (catchPatientInfo.LipidCondition.Cholesterol != "정상")
-        putativeDiagnosis.push(catchPatientInfo.LipidCondition.Cholesterol);
-    if (catchPatientInfo.LipidCondition.Warning != "")
-        putativeDiagnosis.push(catchPatientInfo.LipidCondition.Warning);
-    if (catchPatientInfo.LipidCondition.Triglyceride != "정상")
-        putativeDiagnosis.push(catchPatientInfo.LipidCondition.Triglyceride);
-    if (catchPatientInfo.LipidCondition.Phosphorous != "정상")
-        putativeDiagnosis.push(catchPatientInfo.LipidCondition.Phosphorous);
-    if (catchPatientInfo.LiverCondition != "정상")
-        putativeDiagnosis.push(catchPatientInfo.LiverCondition);
-    if(putativeDiagnosis.length==0){
-        putativeDiagnosis=["정상"];
+    if (catchPatientInfo.ElectricCondition.Phosphorous != "정상")
+        putativeDiagnosis.push(catchPatientInfo.ElectricCondition.Phosphorous);
+    if (catchPatientInfo.LipidCondition[0] != "정상")
+        putativeDiagnosis.push(...catchPatientInfo.LipidCondition);
+    if (catchPatientInfo.LiverCondition[0] != "정상")
+        putativeDiagnosis.push(...catchPatientInfo.LiverCondition);
+    if (catchPatientInfo.gout != "정상")
+        putativeDiagnosis.push(catchPatientInfo.gout);
+    if (putativeDiagnosis.length == 0) {
+        putativeDiagnosis = ["정상"];
     }
-    $('#PDGuide').append(catchPatientInfo.name+ "님의 추정 진단:");
-    
-    
-    for(let i=0;i<putativeDiagnosis.length;i++){
-        if(i>0){
+    for (let i = 0; i < putativeDiagnosis.length; i++) {
+        if (i > 0) {
             $('#putativeDiagnosis').append(", ");
         }
         $('#putativeDiagnosis').append(putativeDiagnosis[i]);
