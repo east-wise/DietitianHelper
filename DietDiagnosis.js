@@ -1,6 +1,86 @@
+document.addEventListener("DOMContentLoaded", function () {
+    $("#resulturl").hide();
+    $("#resumebutton").hide();
+    $("#resetPage").hide();
+    $("#physicalActivity").hide();
+    $(".electroBattery").hide();
+    $(".bloodGlucoseTest").hide();
+    $(".bloodPresure").hide();
+    $(".liverFunctionTest").hide();
+    $(".lipidBattery").hide();
+    $(".uricAcid").hide();
+
+    $('input[type=radio][name=diabetes]').change(function () {
+        let radioSeletion = $('input[name=diabetes]:checked').val();
+        if (radioSeletion == "c") {
+            $(".bloodGlucoseTest").show();
+        }
+        else {
+            $(".bloodGlucoseTest").hide();
+        }
+    });
+    $('input[type=radio][name=hypertention]').change(function () {
+        let radioSeletion = $('input[name=hypertention]:checked').val();
+        if (radioSeletion == "c") {
+            $(".bloodPresure").show();
+        }
+        else {
+            $(".bloodPresure").hide();
+        }
+    });
+    $('input[type=radio][name=fattyLiver]').change(function () {
+        let radioSeletion = $('input[name=fattyLiver]:checked').val();
+        if (radioSeletion == "c") {
+            $(".liverFunctionTest").show();
+        }
+        else {
+            $(".liverFunctionTest").hide();
+        }
+    });
+    $('input[type=radio][name=dislipidemia]').change(function () {
+        let radioSeletion = $('input[name=dislipidemia]:checked').val();
+        if (radioSeletion == "c") {
+            $(".lipidBattery").show();
+        }
+        else {
+            $(".lipidBattery").hide();
+        }
+    });
+    $('input[type=radio][name=gout]').change(function () {
+        let radioSeletion = $('input[name=gout]:checked').val();
+        if (radioSeletion == "c") {
+            $(".uricAcid").show();
+        }
+        else {
+            $(".uricAcid").hide();
+        }
+    });
+    $('input[type=radio][name=isDialysis]').change(function () {
+        let radioSeletion = $('input[name=isDialysis]:checked').val();
+        let glomerular = String($('#glomerular').val());
+        if (radioSeletion == "y" || glomerular <= 60 && glomerular > 0) {
+            $(".electroBattery").show();
+        }
+        else {
+            $(".electroBattery").hide();
+        }
+    });
+});
+function diagKidneyFunction() {
+    let glomerular = String($('#glomerular').val());
+    if (glomerular <= 60 && glomerular > 0) {
+        $(".electroBattery").show();
+    }
+    else {
+        $(".electroBattery").hide();
+    }
+}
+
+
 function ObesityJudgement() {
     $("#physicalActivity").show();
     $("#resumebutton").show();
+    $("#resetPage").show();
     let height = $("#Height").val() / 100;
     let weight = $("#Weight").val();
     Patient.sex = $('input[name=healthy_gender]:checked').val();
@@ -29,12 +109,17 @@ function Examination() {
     Patient.activityindex = String($('#ActivityIndex').val());
     Patient.diabetes = $('input[name=diabetes]:checked').val();
     Patient.isDialysis = $('input[name=isDialysis]:checked').val();
+    Patient.hypertention = $('input[name=hypertention]:checked').val();
+    Patient.fattyLiver = $('input[name=fattyLiver]:checked').val();
+    Patient.dislipidemia = $('input[name=dislipidemia]:checked').val();
+    Patient.gout = $('input[name=gout]:checked').val();
     Patient.SBP = String($('#SBP').val());
     Patient.DBP = String($('#DBP').val());
     Patient.glomerular = String($('#glomerular').val());
     Patient.FBS = String($('#FBS').val());
     Patient.PP2 = String($('#PP2').val());
     Patient.HbA1c = String($('#HbA1c').val());
+    Patient.glucatedAlbumin = String($('#glucatedAlbumin').val());
     Patient.Potassium = String($('#Potassium').val());
     Patient.Sodium = String($('#Sodium').val());
     Patient.Phosphorous = String($('#Phosphorous').val());
@@ -45,6 +130,10 @@ function Examination() {
     Patient.HDL = String($('#HDL').val());
     Patient.AST = String($('#AST').val());
     Patient.ALT = String($('#ALT').val());
+    Patient.ALP = String($('#ALP').val());
+    Patient.GGT = String($('#GGT').val());
+    Patient.totalBilirubin = String($('#totalBilirubin').val());
+    Patient.uricAcid = String($('#uricAcid').val());
     // console.log(Patient);
     if (Patient.sex == "male") {
         IdealBodyWeight = Patient.height * Patient.height * 22 / 10000;
@@ -64,19 +153,45 @@ function Examination() {
     PCondition.BMIactivity = dummy[0];
     PCondition.KidneyCondition = CKDgrade(Patient.glomerular);
     if (Patient.isDialysis == "y") PCondition.KidneyCondition = 99;
-    PCondition.diabetesCondition =
-        diabetesJudgement(Patient.diabetes, Patient.FBS, Patient.PP2, Patient.HbA1c);
-    PCondition.BPCondition = HTNJudgement(Patient.SBP, Patient.DBP);
-    PCondition.ElectricCondition =
-        ElectricBattery(Patient.Sodium, Patient.Potassium, Patient.Chloride);
-    PCondition.LipidCondition =
-        LipidBattery(
-            Patient.TG,
-            Patient.LDL,
-            Patient.Tchol,
-            Patient.HDL,
-            Patient.Phosphorous);
-    PCondition.LiverCondition = LiverDiseaseDig(Patient.AST, Patient.ALT);
+    PCondition.diabetesCondition = diabetesJudgement(
+        Patient.diabetes,
+        Patient.FBS,
+        Patient.PP2,
+        Patient.HbA1c,
+        Patient.glucatedAlbumin
+    );
+    PCondition.BPCondition = HTNJudgement(
+        Patient.hypertention,
+        Patient.SBP,
+        Patient.DBP
+    );
+    PCondition.ElectricCondition = ElectricBattery(
+        Patient.Sodium,
+        Patient.Potassium,
+        Patient.Chloride,
+        Patient.Phosphorous
+    );
+    PCondition.LipidCondition = LipidBattery(
+        Patient.dislipidemia,
+        Patient.TG,
+        Patient.LDL,
+        Patient.Tchol,
+        Patient.HDL
+    );
+    PCondition.LiverCondition = LiverDiseaseDig(
+        Patient.sex,
+        Patient.age,
+        Patient.fattyLiver,
+        Patient.AST,
+        Patient.ALT,
+        Patient.ALP,
+        Patient.GGT,
+        Patient.totalBilirubin
+    );
+    PCondition.gout = diagGout(
+        Patient.gout,
+        Patient.uricAcid
+    )
     // console.log(PCondition);
     // console.log(DietNutrient);
     $("#resulturl").show();
@@ -157,61 +272,68 @@ function CKDgrade(glomerular) {
     else if (glomerular > 90) judge = 1;
     return judge;
 }
-function diabetesJudgement(Hxdiabetes, FBS, PP2, HbA1c) {
+function diabetesJudgement(Hxdiabetes, FBS, PP2, HbA1c, glucatedAlbumin) {
     let judge = "정상";
     if (Hxdiabetes == "y" || FBS >= 126 || PP2 >= 200 || HbA1c >= 6.5) judge = "당뇨";
     else if (FBS <= 70 && FBS > 0 || PP2 <= 70 && PP2 > 0) judge = "저혈당";
     return judge;
 }
-function HTNJudgement(SBP, DBP) {
+function HTNJudgement(HxHTN, SBP, DBP) {
     // 대한고혈압학회 분류 2018년
-    let judge = [,];
-    if (SBP >= 90 && SBP < 120 || DBP >= 60 && DBP < 80) judge[0] = "정상";
-    else if (SBP == 0 || DBP == 0) judge[0] = "정상";
-    else if (SBP >= 120 && SBP < 130 && DBP < 80) judge[0] = "주의혈압";
-    else if (SBP >= 130 && SBP < 140 || DBP >= 80 && DBP < 90) judge[0] = "고혈압전단계";
-    else if (SBP >= 140 && SBP < 160 || DBP >= 90 && DBP < 100) judge[0] = "고혈압 1기";
-    else if (SBP >= 160 || DBP >= 100) judge[0] = "고혈압 2기";
-    else if (SBP < 90 && DBP < 60) judge[0] = "저혈압";
-    else if (SBP >= 140 && DBP < 90) judge[1] = "수축기단독고혈압";
-    return judge;
-}
-function LipidBattery(TG, LDL, Tchol, HDL, Phosphorous) {
-    let judge = {
-        Cholesterol: "정상",
-        Triglyceride: "정상",
-        Phosphorous: "정상",
-        Warning: ""
-    };
-    // LDL Cholesterol 계산 (Friedewald 공식)
-    if (LDL == 0) {
-        if (TG < 400) LDL = TG - (TG / 5 + HDL);
-        else if (TG >= 400) judge.Warning = "TG>400 !! LDL 직접 측정 요망";
+    let judge = "정상";
+    if (HxHTN == "y") {
+        judge = "고혈압";
     }
-    if (TG > 150) judge.Triglyceride = "고중성지방혈증";
-    else if (TG <= 150 && TG > 30) judge.Triglyceride = "정상";
-    else if (TG <= 30 && TG > 0) judge.Triglyceride = "저중성지방혈증";
-    if (Tchol > 200 || LDL > 130) judge.Cholesterol = "고콜레스테롤혈증";
-    else if (
-        Tchol <= 200 &&
-        Tchol > 115 &&
-        LDL <= 130 &&
-        LDL > 50) judge.Cholesterol = "정상";
-    else if (
-        Tchol <= 115 && Tchol > 0 ||
-        LDL <= 50 && LDL > 0) judge.Cholesterol = "저콜레스체롤혈증";
-    if (
-        Phosphorous == 0 ||
-        Phosphorous >= 3 && Phosphorous <= 5) judge.Phosphorous = "정상";
-    else if (Phosphorous < 3) judge.Phosphorous = "저인산혈증";
-    else if (Phosphorous > 5) judge.Phosphorous = "고인산혈증";
+    else {
+        if (SBP >= 90 && SBP < 120 || DBP >= 60 && DBP < 80) judge = "정상";
+        else if (SBP == 0 || DBP == 0) judge = "정상";
+        else if (SBP >= 120 && SBP < 130 && DBP < 80) judge = "주의혈압";
+        else if (SBP >= 130 && SBP < 140 || DBP >= 80 && DBP < 90) judge = "고혈압전단계";
+        else if (SBP >= 140 && SBP < 160 || DBP >= 90 && DBP < 100) judge = "고혈압 1기";
+        else if (SBP >= 160 || DBP >= 100) judge = "고혈압 2기";
+        else if (SBP < 90 && DBP < 60) judge = "저혈압";
+    }
     return judge;
 }
-function ElectricBattery(Sodium, Potassium, Chloride) {
+function LipidBattery(HxHLP, TG, LDL, Tchol, HDL) {
+    let judge = [];
+    if (HxHLP == "y") {
+        judge.push("고지혈증");
+    }
+    else {
+        // LDL Cholesterol 계산 (Friedewald 공식)
+        if (LDL == 0) {
+            if (TG < 400) LDL = TG - (TG / 5 + HDL);
+            else if (TG >= 400) judge.push("TG>400 !! LDL 직접 측정 요망");
+        }
+        let dummy = [];
+        if (TG > 150) dummy.push("고중성지방혈증");
+        else if (TG <= 150 && TG > 30 || TG == 0) dummy.push("정상");
+        else if (TG <= 30 && TG > 0) dummy.push("저중성지방혈증");
+        if (Tchol > 200 || LDL > 130) dummy.push("고콜레스테롤혈증");
+        else if (
+            Tchol <= 200 && Tchol > 115 && LDL <= 130 && LDL > 50
+            || Tchol == 0 && LDL == 0
+        ) dummy.push("정상");
+        else if (
+            Tchol <= 115 && Tchol > 0 ||
+            LDL <= 50 && LDL > 0
+        ) dummy.push("저콜레스체롤혈증");
+        if (dummy[0] == "정상" && dummy[1] == "정상") judge.push("정상");
+        else {
+            for (let i = 0; i < 2; i++) {
+                if (dummy[i] != "정상") judge.push(dummy[i]);
+            }
+        }
+    }
+    return judge;
+}
+function ElectricBattery(Sodium, Potassium, Chloride, Phosphorous) {
     let judge = {
         Sodium: "정상",
         Potassium: "정상",
-        Chloride: "정상"
+        Chloride: "정상",
+        Phosphorous: "정상"
     };
     if (Sodium == 0 || Sodium >= 135 && Sodium <= 145) judge.Sodium = "정상";
     else if (Sodium < 135) judge.Sodium = "저나트륨혈증";
@@ -222,13 +344,49 @@ function ElectricBattery(Sodium, Potassium, Chloride) {
     if (Chloride == 0 || Chloride >= 98 && Chloride <= 110) judge.Chloride = "정상";
     else if (Chloride < 98) judge.Chloride = "저클로린혈증";
     else if (Chloride > 110) judge.Chloride = "고클로린혈증";
+    if (Phosphorous == 0 || Phosphorous >= 3 && Phosphorous <= 5) judge.Phosphorous = "정상";
+    else if (Phosphorous < 3) judge.Phosphorous = "저인산혈증";
+    else if (Phosphorous > 5) judge.Phosphorous = "고인산혈증";
     return judge;
 }
-function LiverDiseaseDig(AST, ALT) {
-    let judge = "정상";
-    if (AST > 31 || ALT > 31) {
-        if(AST<ALT) judge = "급성간손상 또는 지방간 의심";
-        else judge = "만성간손상 또는 지방간 의심";
+function LiverDiseaseDig(sex, age, HxFLD, AST, ALT, ALP, GGT, TBili) {
+    let judge = [];
+    if (HxFLD == "y") judge.push("지방간");
+    else {
+        if (sex == "female") {
+            if (AST > 31 || ALT > 31) {
+                if (AST < ALT) judge.push("급성간손상");
+                else if (AST >= ALT) judge.push("만성간손상");
+                if (GGT >= 42) {
+                    judge.push("음주");
+                    if (age >= 20 && ALP > 104) judge.push("간염 의심");
+                }
+                judge.push("지방간 의심");
+            }
+            else if (ALP >= 312 && age >= 20 && GGT > 42 && TBili >= 1.2) judge.push("쓸개즙 분비장애 의심");
+            else if (ALP > 208 && ALP < 312 && age >= 20 && GGT < 42) judge.push("임신, 뼈질환 의심");
+            else judge.push("정상");
+        }
+        else if (sex == "male") {
+            if (AST > 37 || ALT > 41) {
+                if (AST < ALT) judge.push("급성간손상");
+                else if (AST >= ALT) judge.push("만성간손상");
+                if (GGT >= 71) {
+                    judge.push("음주");
+                    if (age >= 20 && ALP > 129) judge.push("간염 의심");
+                }
+                judge.push("지방간 의심");
+            }
+            else if (ALP >= 390 && age >= 20 && GGT > 71 && TBili >= 1.2) judge.push("쓸개즙 분비장애 의심");
+            else if (ALP > 260 && ALP < 390 && age >= 20 && GGT < 71) judge.push("뼈질환 의심");
+            else judge.push("정상");
+        }
     }
+    return judge;
+}
+function diagGout(Hxgout, uricAcid){
+    let judge="정상";
+    if(Hxgout=="y") judge="통풍 의심";
+    else if (uricAcid>7) judge="통풍 의심";
     return judge;
 }
