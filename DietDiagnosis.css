@@ -22,8 +22,12 @@ h2 {
   grid-area: main1;
 }
 
-.main2 {
-  grid-area: main2;
+.main2selection {
+  grid-area: main2R;
+}
+
+.main2BloodTest {
+  grid-area: main2N;
 }
 
 .side {
@@ -38,13 +42,18 @@ h2 {
 }
 
 .main1,
-.main2 {
+.main2selection,
+.main2BloodTest {
   line-height: 2.1rem;
 }
 
 button {
   padding: 0px 10px;
   border-radius: 10px;
+}
+
+.resume button {
+  margin-bottom: 20px;
 }
 
 
@@ -70,32 +79,32 @@ input[type=radio]:checked {
 }
 
 @media (min-width: 1000px) {
-  .side {padding-right: 70px;}
   .container {
-    height: 800px;
-    grid-template-columns: 20% 40% 40%;
-    grid-template-rows: 50px 50px 200px 450px;
+    height: 100%;
+    grid-template-columns: 30% 30% 40%;
+    grid-template-rows: 50px 50px 300px 450px;
     grid-gap: 20px;
     grid-template-areas:
       "header header header"
       "header2 header2 header2"
-      "main1 side main2"
-      "none resume main2"
+      "main1 main2R main2N"
+      "side resume main2N"
   }
 }
 
 @media (max-width: 1000px) {
   .container {
     grid-template-columns: 1fr;
-    grid-template-rows: 50px 30px 270px 200px 600px 50px;
-    height: 1500px;
+    grid-template-rows: 50px 30px 270px 230px 200px 650px 50px;
+    height: 1700px;
     grid-gap: 20px;
     grid-template-areas:
       "header"
       "header2"
       "main1"
       "side"
-      "main2"
+      "main2R"
+      "main2N"
       "resume"
   }
 }
