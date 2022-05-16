@@ -204,7 +204,6 @@ function PrintAnalysisResult() {
             DietNutrient.Phosphorous = catchPatientInfo.weight * 12;
         }
         else DietNutrient.Phosphorous = catchPatientInfo.weight * 15;
-        $('#normalBodyWeightRange').append(catchPatientInfo.BMICondition);
         putativeDiagnosis.push("혈액투석");
     }
     else if (catchPatientInfo.KidneyCondition > 2) {
@@ -222,7 +221,6 @@ function PrintAnalysisResult() {
             DietNutrient.Phosphorous = catchPatientInfo.weight * 12;
         }
         else DietNutrient.Phosphorous = catchPatientInfo.weight * 15;
-        $('#normalBodyWeightRange').append(catchPatientInfo.BMICondition);
         putativeDiagnosis.push("만성콩팥병");
     }
     else if (catchPatientInfo.KidneyCondition <= 2) {
@@ -259,7 +257,6 @@ function PrintAnalysisResult() {
             DietNutrient.Phosphorous = catchPatientInfo.weight * 12;
         }
         else DietNutrient.Phosphorous = catchPatientInfo.weight * 15;
-        $('#normalBodyWeightRange').append(catchPatientInfo.PIBWCondition);
         if (catchPatientInfo.PIBWCondition != "정상")
             putativeDiagnosis.push(catchPatientInfo.PIBWCondition);
     }
@@ -283,7 +280,10 @@ function PrintAnalysisResult() {
         + Math.round(catchPatientInfo.IdealBodyWeight * 1.09)
         + "kg, "
     );
-
+    if (catchPatientInfo.KidneyCondition > 2)
+        $('#normalBodyWeightRange').append(catchPatientInfo.BMICondition);
+    else if (catchPatientInfo.KidneyCondition <= 2)
+        $('#normalBodyWeightRange').append(catchPatientInfo.PIBWCondition);
 
 
 
