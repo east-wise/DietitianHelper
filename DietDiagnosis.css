@@ -36,24 +36,21 @@ h2 {
 
 .resume {
   grid-area: resume;
-  text-align: right;
-  padding-right: 70px;
-  padding-top: 50px;
+  text-align: center;
+}
+#resetPage {
+  margin-right: 50px;
 }
 
 .main1,
 .main2selection,
 .main2BloodTest {
-  line-height: 2.1rem;
+  line-height: 2.1;
 }
 
 button {
   padding: 0px 10px;
   border-radius: 10px;
-}
-
-.resume button {
-  margin-bottom: 20px;
 }
 
 
@@ -82,7 +79,7 @@ input[type=radio]:checked {
   .container {
     height: 100%;
     grid-template-columns: 30% 30% 40%;
-    grid-template-rows: 50px 50px 300px 450px;
+    grid-template-rows: 50px 50px 340px 450px;
     grid-gap: 20px;
     grid-template-areas:
       "header header header"
@@ -90,23 +87,36 @@ input[type=radio]:checked {
       "main1 main2R main2N"
       "side resume main2N"
   }
+  
 }
 
 @media (max-width: 1000px) {
   .container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 50px 30px 270px 230px 200px 650px 50px;
-    height: 1700px;
-    grid-gap: 20px;
-    grid-template-areas:
-      "header"
-      "header2"
-      "main1"
-      "side"
-      "main2R"
-      "main2N"
-      "resume"
+    display: flex;
+    flex-direction: column;
+    align-items: left;
   }
+  h3{
+    font-weight: bold;
+    text-align: center;
+  }
+  .main1{
+    margin-bottom: 20px;
+  }
+  .side{
+    margin-bottom: 20px;
+  }
+  .main2selection{
+    margin-bottom: 20px;
+  }
+  .main2BloodTest{
+    margin-bottom: 20px;
+  }
+  .resume button{
+  margin-top: 50px;
+  margin-bottom: 20px;
+  }
+
 }
 
 /* table styles */
