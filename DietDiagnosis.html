@@ -28,6 +28,7 @@
         <h1>영양진단</h1>
         <h2>필요한 정보를 입력해주세요</h2>
         <div class="main1">
+            <h3>기본정보</h3>
             <div>이름: <input type="text" id="Name" /> </div>
             <div>만 나이: <input type="number" id="Age" /> </div>
             <div class="rowSex">
@@ -39,10 +40,39 @@
             </div>
             <div>키 (신장): <input type="number" id="Height" />cm</div>
             <div>몸무게 (체중): <input type="number" id="Weight" />kg</div>
-            <button type="button" onclick="ObesityJudgement();">키, 체중 입력 !</button>
+            <button type="button" onclick="ObesityJudgement();">키, 체중 입력!</button>
             <div><br>활동량: <input type="number" id="ActivityIndex" /> </div>
         </div>
+        <div class="side">
+            <table id="physicalActivity">
+                <thead>
+                    <tr>
+                        <td id="ObesityState" name="physicalActivityNarration"></td>
+                        <td name="physicalActivityValue">활동량</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td name="physicalActivityNarration">운동을 따로 하지 않음</td>
+                        <td id="LightActivity" name="physicalActivityValue"></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td name="physicalActivityNarration">가벼운 운동을 자주 함</td>
+                        <td id="ModerateActivity" name="physicalActivityValue"></td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td name="physicalActivityNarration">강도있는 운동을 자주 함<br>또는 소모성 질환이 있음</td>
+                        <td id="SevereActivity" name="physicalActivityValue"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div class="main2selection">
+            <h3 id="Hx">과거병력 또는 현병력</h3>
             <div class="rowDM">
                 <label>당뇨여부: </label>
                 <input type="radio" id="diabetesY" name="diabetes" value="y" />
@@ -97,6 +127,7 @@
             </div>
         </div>
         <div class="main2BloodTest">
+            <h3>혈액 수치 입력</h3>
             <div>eGFR-Cr: <input type="number" id="glomerular" onkeyup="diagKidneyFunction();" /> </div>
             <div class="electroBattery">
                 <div>혈중 칼륨 농도: <input type="number" id="Potassium" /> </div>
@@ -133,38 +164,10 @@
                 <div>혈중 요산 농도: <input type="number" id="uricAcid" /> </div>
             </div>
         </div>
-        <div class="side">
-            <table id="physicalActivity">
-                <thead>
-                    <tr>
-                        <td id="ObesityState" name="physicalActivityNarration"></td>
-                        <td name="physicalActivityValue">활동량</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td name="physicalActivityNarration">운동을 따로 하지 않음</td>
-                        <td id="LightActivity" name="physicalActivityValue"></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td name="physicalActivityNarration">가벼운 운동을 자주 함</td>
-                        <td id="ModerateActivity" name="physicalActivityValue"></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td name="physicalActivityNarration">강도있는 운동을 자주 함<br>또는 소모성 질환이 있음</td>
-                        <td id="SevereActivity" name="physicalActivityValue"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+
         <div class="resume">
-            <button type="button" onclick="Examination();" id="resumebutton">혈액수치 입력완료!</button>
-            <button type="button" onclick="OpenResultPage();" id="resulturl">분석결과창 확인하기</button>
             <button type="button" onclick="location.reload();" id="resetPage">리셋!</button>
+            <button type="button" onclick="Examination();" id="resumebutton">입력완료!</button>
         </div>
     </div>
 
