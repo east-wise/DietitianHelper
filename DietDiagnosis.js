@@ -182,14 +182,10 @@ function Examination() {
   PCondition.gout = diagGout(Patient.gout, Patient.uricAcid);
   // console.log(PCondition);
   // console.log(DietNutrient);
-  $("#resulturl").show();
-}
-function OpenResultPage() {
   const patientInfo = { ...Patient, ...PCondition };
   console.log(patientInfo);
   localStorage.setItem("patient-info", JSON.stringify(patientInfo));
   window.open("DietDiagnosisResult.html");
-  $("#resulturl").hide();
 }
 
 function PIBWObesity(PIBW) {
