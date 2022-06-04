@@ -159,4 +159,10 @@ footer{
         margin-left: auto;
         text-align: center;
     }
+    .resultBasicInfo {
+        font-size: 1.1rem;
+    }
+    h3{
+        margin: 0px;
+    }
 }
