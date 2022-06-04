@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영양지수 분석 결과지</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="NQresult.css">
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <div class="paper">
+        <div class="content">
+            <h1>영양지수 분석 결과지</h1>
+            <ul class="resultBasicInfo">
+                <li class="item center">
+                    이름:
+                    <p id="name"></p>
+                </li>
+                <li class="item center">
+                    나이:
+                    <p id="age"></p>
+                </li>
+                <li class="item center">
+                    성별:
+                    <p id="sex"></p>
+                </li>
+                <li class="item center">
+                    키:
+                    <p id="height"></p>
+                </li>
+                <li class="item center">
+                    체중:
+                    <p id="weight"></p>
+                </li>
+            </ul>
+            <div class="NQgraph">
+                <canvas id="radar-chart"></canvas>
+            </div>
+
+        </div>
+    </div>
+    <div class="paper">
+        <div class="content">
+            <div class="obesity"></div>
+            <dl class="comment">
+                <div class="itemBox">
+                    <dt class="item">
+                        <p id="totalGrade" class="emphasize">총점: </p>
+                    </dt>
+                    <dd class="item">
+                        <p class="total"></p>
+                    </dd>
+                </div>
+                <hr />
+                <div class="itemBox">
+                    <dt class="item">
+                        <p id="balanceGrade" class="emphasize">균형영역: </p>
+                    </dt>
+                    <dd class="item">
+                        <p class="balance"></p>
+                    </dd>
+                </div>
+
+                <div class="itemBox">
+                    <dt class="item">
+                        <p id="moderationGrade" class="emphasize">절제영역: </p>
+                    </dt>
+                    <dd class="item">
+                        <p class="moderation"></p>
+                    </dd>
+                </div>
+
+                <div class="itemBox">
+                    <dt class="item">
+                        <p id="practiceGrade" class="emphasize">실천영역: </p>
+                    </dt>
+                    <dd class="item ">
+                        <p class="practice"></p>
+                    </dd>
+                </div>
+
+            </dl>
+            <table class="NQvideoURL">
+                <caption>영역별 참고영상</caption>
+            </table>
+            <div class="additionalQuestion">
+                <p>추가문항 답변</p>
+            </div>
+            <h3>더 자세한 내용을 원하시면 임상영양사와 상담을 하시길 바랍니다.</h3>
+            <footer>
+                &copy; Copyright 2022. Donghyun Kim All rights reserved.
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        const NQresult = {
+            adult: {
+                total: {
+                    middle: 68.483,
+                    low: 52.738
+                },
+                balance: {
+                    middle: 55.8,
+                    low: 30.863,
+                    url: 'https://youtu.be/OXwFi-hOzJI',
+                    qrcode: 'NQQRcode/adult_balance.png'
+                },
+                moderation: {
+                    middle: 85.3,
+                    low: 66.123,
+                    url: 'https://youtu.be/EceIDhOveJU',
+                    qrcode: 'NQQRcode/adult_moderation.png'
+                },
+                practice: {
+                    middle: 74.495,
+                    low: 51.805,
+                    url: 'https://youtu.be/Ub0Zo7W8W1g',
+                    qrcode: 'NQQRcode/adult_practice.png'
+
+                }
+            },
+            elder: {
+                total: {
+                    middle: 58.546,
+                    low: 44.723
+                },
+                balance: {
+                    middle: 54.650,
+                    low: 34.188,
+                    url: 'https://youtu.be/Umm7GGk8w5o',
+                    qrcode: 'NQQRcode/elder_balance.png'
+                },
+                moderation: {
+                    middle: 75,
+                    low: 30.8,
+                    url: 'https://youtu.be/opuroPjMiQk',
+                    qrcode: 'NQQRcode/elder_moderation.png'
+                },
+                practice: {
+                    middle: 71.255,
+                    low: 53.524,
+                    url: 'https://youtu.be/YFgqyAm2PAA',
+                    qrcode: 'NQQRcode/elder_practice.png'
+                }
+            },
+            child: {
+                total: {
+                    middle: 58.594,
+                    low: 44.007
+                },
+                balance: {
+                    middle: 50.225,
+                    low: 32.338,
+                    url: 'https://youtu.be/CpYOhu2SDw4',
+                    qrcode: 'NQQRcode/child_balance.png'
+                },
+                moderation: {
+                    middle: 64.363,
+                    low: 47.313,
+                    url: 'https://youtu.be/dsbOEI_FV9M',
+                    qrcode: 'NQQRcode/child_moderation.png'
+                },
+                practice: {
+                    middle: 62,
+                    low: 41.574,
+                    url: 'https://youtu.be/4Bsjf9o1S18',
+                    qrcode: 'NQQRcode/child_practice.png'
+                }
+            },
+            comment: {
+                total: {
+                    high: "좋은 식습관과 식생활을 유지하고 있습니다.<br> 앞으로도 계속 유지해주세요.",
+                    middle: "식습관과 식생활에 부족한 점이 있습니다.<br> 아래의 내용을 읽어보시고 안내사항에 따르시길 바랍니다.",
+                    low: "현재 식습관과 식행동에 문제가 있습니다.<br> 아래의 내용을 읽어보시고 안내사항에 따르시길 바랍니다."
+                },
+                balance: {
+                    high: "현재 균형 잡힌 식사를 하고 있습니다.<br> 매일 잡곡밥, 과일, 흰우유, 콩제품, 달걀 등 여러 종류의 식품을 골고루 섭취하고 있습니다.",
+                    middle: "균형 잡힌 식사를 위해 조금 더 노력해주세요.<br> 매일 잡곡밥, 과일, 흰우유, 콩제품, 달걀 등 여러 종류의 식품을 골고루 섭취할 수 있도록 노력하십시오.",
+                    low: "현재 균형 잡힌 식사를 하고 있지 않습니다.<br> 매일 잡곡밥, 과일, 흰우유, 콩제품, 달걀 등 여러 종류의 식품을 골고루 섭취하고 편식하지 마십시오."
+                },
+                moderation: {
+                    high: "현재 에너지를 적절히 섭취하고 있습니다.<br> 과자, 패스트푸드, 탄산음료, 튀김과 같은 음식들은 열량이 높습니다.",
+                    middle: "에너지를 많이 섭취하고 있습니다.<br> 과자, 패스트푸드, 탄산음료, 튀김과 같이 열량이 높은 음식의 섭취를 줄이도록 노력하십시오.",
+                    low: "에너지를 너무 많이 섭취하고 있습니다.<br> 과자, 패스트푸드, 탄산음료, 튀김과 같이 열량이 높은 음식의 섭취를 줄이도록 노력하십시오."
+                },
+                practice: {
+                    high: "현재 올바른 식생활을 실천하고 있습니다.<br> 음식을 먹기 전에 손 씻기, 꼭꼭 십어 먹기, 영양표시를 확인하기 등의 식습관을 계속 유지해주세요.",
+                    middle: "올바른 식생활을 위해 조금 더 노력해주세요.<br> 음식을 먹기 전에 손 씻기, 꼭꼭 씹어 먹기, 영양표시를 확인하기 등의 식습관을 실천하십시오.",
+                    low: "현재 올바른 식생활의 실천이 부족합니다.<br> 음식을 먹기 전에 손 씻기, 꼭꼭 씹어 먹기, 영양표시를 확인하기 등의 식습관을 실천하십시오. "
+                }
+            }
+        }
+        const clientInfo = JSON.parse(localStorage.getItem("client-info"));
+        localStorage.removeItem("client-info");
+        // console.log(clientInfo);
+        // let clientInfo = {
+        //     age: 50,
+        //     name: '김필립',
+        //     sex: 'male',
+        //     height: 170,
+        //     weight: 80,
+        //     total: 60,
+        //     balance: 20,
+        //     moderation: 70.3,
+        //     practice: 20,
+        //     additional: [['귀하는 가당음료(탄산음료, 믹스커피, 유자차 등)를 얼마나 자주 마십니까?', '일주일에 1~3번'],['귀하는 30분 이상 숨이 찰 정도의 운동을 얼마나 자주 하십니까?', '일주일에 5~6번']]
+        // };
+        $("#name").append(clientInfo.name);
+        $("#age").append(clientInfo.age + "세");
+        if (clientInfo.sex == "male") {
+            $("#sex").append("남성");
+        } else if (clientInfo.sex == "female") {
+            $("#sex").append("여성");
+        }
+        $("#height").append(clientInfo.height + "cm");
+        $("#weight").append(clientInfo.weight + "kg");
+
+        //추가 질문 문항 답변-----------
+        let ol = document.createElement("ol");
+        for (let i = 0; i < clientInfo.additional.length; i++) {
+            let li = document.createElement("li");
+            li.append(clientInfo.additional[i][0]);
+            let ul = document.createElement("ul");
+            let li2 = document.createElement("li");
+            li2.setAttribute("list-style-type", "circle");
+            li2.append(clientInfo.additional[i][1]);
+            ul.appendChild(li2);
+            li.appendChild(ul);
+            ol.appendChild(li);
+        }
+        $(".additionalQuestion").append(ol);
+
+        if (clientInfo.age >= 20 && clientInfo.age < 65) {
+            drowChart(NQresult.adult);
+            dietGrading(NQresult.adult);
+        } else if (clientInfo.age >= 65) {
+            drowChart(NQresult.elder);
+        } else if (clientInfo.age < 20) {
+            drowChart(NQresult.child);
+        }
+        function drowChart(ageArea) {
+            let middle = [
+                ageArea.total.middle,
+                ageArea.balance.middle,
+                ageArea.moderation.middle,
+                ageArea.practice.middle,
+            ];
+            let low = [
+                ageArea.total.low,
+                ageArea.balance.low,
+                ageArea.moderation.low,
+                ageArea.practice.low,
+            ];
+            let currentMyGrade = [
+                Math.round(clientInfo.total),
+                Math.round(clientInfo.balance),
+                Math.round(clientInfo.moderation),
+                Math.round(clientInfo.practice),
+            ];
+            new Chart(document.getElementById("radar-chart"), {
+                type: "radar",
+                data: {
+                    labels: ["총점", "균형", "절제", "실천"],
+                    datasets: [
+                        {
+                            label: "현재 점수",
+                            fill: true,
+                            backgroundColor: "rgba(102,051,255,0.2)",
+                            borderColor: "rgba(102,051,255,1)",
+                            pointBorderColor: "#fff",
+                            pointBackgroundColor: "rgba(102,051,255,1)",
+                            data: currentMyGrade,
+                        },
+                        {
+                            label: "상위권",
+                            fill: true,
+                            backgroundColor: "rgba(0,255,102,0)",
+                            borderColor: "rgba(0,255,102,1)",
+                            pointBorderColor: "#fff",
+                            pointBackgroundColor: "rgba(0,255,102,1)",
+                            data: [100, 100, 100, 100],
+                        },
+                        {
+                            label: "중위권",
+                            fill: true,
+                            backgroundColor: "rgba(255,215,0,0.2)",
+                            borderColor: "rgba(255,215,0,1)",
+                            pointBorderColor: "#fff",
+                            pointBackgroundColor: "rgba(255,215,0,1)",
+                            data: middle,
+                        },
+                        {
+                            label: "하위권",
+                            fill: true,
+                            backgroundColor: "rgba(255,99,132,0.2)",
+                            borderColor: "rgba(255,99,132,1)",
+                            pointBorderColor: "#fff",
+                            pointBackgroundColor: "rgba(255,99,132,1)",
+                            data: low,
+                        },
+                        {
+                            label: "0",
+                            fill: true,
+                            backgroundColor: "rgba(179,181,198,0.2)",
+                            borderColor: "rgba(179,181,198,1)",
+                            pointBorderColor: "#fff",
+                            pointBackgroundColor: "rgba(179,181,198,1)",
+                            data: [0, 0, 0, 0],
+                        },
+                    ],
+                },
+                options: {
+                    responsive: false,
+                    title: {
+                        display: true,
+                        text: "영양지수 영역분포",
+                        fontSize: 20,
+                    },
+                    scale: {
+                        pointLabels: {
+                            fontfamily: "'Poor Story', cursive",
+                            fontSize: 20 /* must be a number it translates to pixels */,
+                        },
+                        ticks: {
+                            fontSize: 13,
+                        },
+                    },
+                },
+            });
+        }
+        function dietGrading(ageArea) {
+            printGrade(clientInfo.total, ageArea.total, NQresult.comment.total, "total");
+            printGrade(
+                clientInfo.balance,
+                ageArea.balance,
+                NQresult.comment.balance,
+                "balance"
+            );
+            printGrade(
+                clientInfo.moderation,
+                ageArea.moderation,
+                NQresult.comment.moderation,
+                "moderation"
+            );
+            printGrade(
+                clientInfo.practice,
+                ageArea.practice,
+                NQresult.comment.practice,
+                "practice"
+            );
+
+            // 영역별 강의 영상 링크 출력---------------------------------
+            let th1 = document.createElement("th");
+            let th2 = document.createElement("th");
+            let th3 = document.createElement("th");
+            let exec1 = document.createElement("a");
+            let exec2 = document.createElement("a");
+            let exec3 = document.createElement("a");
+            exec1.setAttribute("href", ageArea.balance.url);
+            exec2.setAttribute("href", ageArea.moderation.url);
+            exec3.setAttribute("href", ageArea.practice.url);
+            exec1.append("균형편");
+            exec2.append("절제편");
+            exec3.append("실천편");
+            th1.appendChild(exec1);
+            th2.appendChild(exec2);
+            th3.appendChild(exec3);
+            $(".NQvideoURL").append(th1);
+            $(".NQvideoURL").append(th2);
+            $(".NQvideoURL").append(th3);
+            // 영역별 강의 QR코드 출력--------------------------------------
+            let tr = document.createElement("tr");
+            tr.setAttribute("class", "NQvideoQRcode");
+            let td1 = document.createElement("td");
+            let td2 = document.createElement("td");
+            let td3 = document.createElement("td");
+            var img1 = document.createElement("IMG");
+            var img2 = document.createElement("IMG");
+            var img3 = document.createElement("IMG");
+            img1.setAttribute("src", ageArea.balance.qrcode);
+            img2.setAttribute("src", ageArea.moderation.qrcode);
+            img3.setAttribute("src", ageArea.practice.qrcode);
+            img1.setAttribute("class", "QRcode");
+            img2.setAttribute("class", "QRcode");
+            img3.setAttribute("class", "QRcode");
+            img1.setAttribute("alt", "균형편");
+            img2.setAttribute("alt", "절제편");
+            img3.setAttribute("alt", "실천편");
+            td1.appendChild(img1);
+            td2.appendChild(img2);
+            td3.appendChild(img3);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            $(".NQvideoURL").append(tr);
+        }
+
+        function printGrade(score, standard, comment, location) {
+            if (score < standard.low) {
+                $("." + location).append(comment.low);
+                $("#" + location + "Grade").append("하");
+            } else if (score < standard.middle) {
+                $("." + location).append(comment.middle);
+                $("#" + location + "Grade").append("중");
+            } else if (score >= standard.middle) {
+                $("." + location).append(comment.high);
+                $("#" + location + "Grade").append("상");
+            }
+        }
+
+    </script>
+</body>
+
+</html>

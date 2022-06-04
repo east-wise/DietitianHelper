@@ -1,0 +1,162 @@
+@import url('style.css');
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #ddd;
+}
+
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.paper {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm;
+    /* set contents area */
+    margin: 10mm auto;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+    font-family: 'Poor Story', cursive;
+    font-size: 1rem;
+    padding: 0;
+    border: 1px #888 ridge;
+    height: 257mm;
+}
+
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+
+    html,
+    body {
+        width: 210mm;
+        height: 297mm;
+        background: #fff;
+    }
+
+    .paper {
+        margin: 0;
+        border: initial;
+        border-radius: initial;
+        width: initial;
+        min-height: initial;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+    }
+
+    /* .resultBasicInfo{
+        font-size: 0.5rem;
+    } */
+}
+
+
+
+
+.comment ul,
+.comment li {
+    list-style: none;
+}
+
+
+.content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+}
+
+.comment {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.NQgraph #radar-chart {
+    height: 600px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.resultBasicInfo {
+    display: flex;
+    justify-content: space-around;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px 20px;
+    text-align: left;
+    font-size: 1.3rem;
+}
+
+.resultBasicInfo .center {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+table caption {
+    font-weight: bolder;
+    caption-side: top;
+    text-align: center;
+}
+
+.emphasize {
+    font-weight: bold;
+}
+
+h3 {
+    text-align: center;
+}
+
+a {
+    text-decoration-line: none;
+    color: black;
+    /*   text-decoration-line: underline; */
+    /*   text-decoration-line: overline; */
+    /*   text-decoration-line: line-through; */
+    /*   text-decoration-line: underline line-through overline; */
+}
+
+.additionalQuestion{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.QRcode{
+    width: 100px;
+    height: 100px;
+}
+footer{
+    margin-top: auto;
+}
+
+@media (max-width: 500px) {
+    .paper {
+        background-color: #5a2f27;
+    }
+
+    .content {
+        font-family: 'Poor Story', cursive;
+        background: beige;
+        border-radius: 20px;
+        font-size: large;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+    }
+}

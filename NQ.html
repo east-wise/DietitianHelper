@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영양지수(Nutrition Quotients)</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="AssessmentTool.css">
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script> -->
+
+    <div class="container">
+        <h1>영양지수(NQ)</h1>
+        <div class="basicInfo">
+            <ul class="basicInfoBox">
+                <li class="item center">
+                    이름
+                </li>
+                <li class="item">
+                    <input type="text" name="name" id="name" class="inputBox">
+                </li>
+            <!-- </ul>
+            <ul class="basicInfoBox"> -->
+                <li class="item center">
+                    만 나이
+                </li>
+                <li class="item">
+                    <input type="number" name="age" class="inputBox" id="age" onchange="chackAge();" required>
+                </li>
+            </ul>
+            <ul class="basicInfoBox">
+                <li class="item center">
+                    성별
+                </li>
+                <li class="item radio">
+                    <div>
+                        <input type="radio" id="healthy_gender_male" name="gender" value="male" />
+                        <label for="healthy_gender_male">남자</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="healthy_gender_female" name="gender" value="female" />
+                        <label for="healthy_gender_female">여자</label>
+                    </div>
+                </li>
+                <li class="item center">
+                </li>
+                <li class="item">
+                </li>
+            </ul>
+            <ul class="basicInfoBox">
+                <li class="item center">
+                    신장(키)
+                </li>
+                <li class="item">
+                    <input type="number" name="height" class="inputBox" id="height">
+                </li>
+            <!-- </ul>
+            <ul class="basicInfoBox"> -->
+                <li class="item center">
+                    체중(몸무게)
+                </li>
+                <li class="item">
+                    <input type="number" name="weight" class="inputBox" id="weight">
+                </li>
+            </ul>
+        </div>
+        <form action="">
+            <h3 class="questionComment">
+                본 조사는 귀하의 영양상태와 식행동을 간단하게 평가하기 위한 영양지수 계산에 사용될 것입니다.<br>
+                가정에서는 물론, 단체급식이나 외식에서 드시는 것도 모두 포함해서 답해주시기 바랍니다.
+            </h3>
+            <div class="mainQuestion">
+                <div class="NQquestion">
+                    <ol id="NQadult">
+                        <!-- <li>
+                    <p class="question" id='q1'>귀하는 한 번 식사할 때 김치를 제외한 채소류를 몇 가지나 드십니까? </p>
+                    <input type="radio" id="q1s1" name="q1" value="0" />
+                    <label for="q1s1"> 거의 먹지 않는다</label>
+                </li> -->
+
+                    </ol>
+                    <ol id="NQelder">
+                        <!-- <li>
+                    <p class="question" id='q1'>귀하는 한 번 식사할 때 김치를 제외한 채소류를 몇 가지나 드십니까? </p>
+                    <input type="radio" id="q1s1" name="q1" value="1" />
+                    <label for="q1s1"> 거의 먹지 않는다</label>
+                </li> -->
+                    </ol>
+                    <ol id="NQchild">
+                        <!-- <li>
+                    <p class="question" id='q1'>귀하는 한 번 식사할 때 김치를 제외한 채소류를 몇 가지나 드십니까? </p>
+                    <input type="radio" id="q1s1" name="q1" value="1" />
+                    <label for="q1s1"> 거의 먹지 않는다</label>
+                </li> -->
+                    </ol>
+                </div>
+                <button type="submit" class="calculate" onclick="analysisQuestionaryResult();">
+                    <p>나의 영양지수는?</p>
+                </button>
+            </div>
+        </form>
+        <footer>
+            &copy; Copyright 2022. Donghyun Kim All rights reserved.
+        </footer>
+    </div>
+
+
+    <script>
+
+        const nqaq = [
+            [
+                "귀하는 한 번 식사할 때 김치를 제외한 채소류 를 몇 가지나 드십니까?",
+                ["거의 먹지 않는다", "1가지", "2가지", "3가지", "4가지 이상"],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.126],
+            ],
+            [
+                "귀하는 과일을 얼마나 자주 드십니까?",
+                [
+                    "2주일에 1번 이하",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번",
+                    "하루에 2번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.148],
+            ],
+            [
+                "귀하는 우유 또는 유제품을 얼마나 자주 드십니까?",
+                [
+                    "2주일에 1번 이하",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번",
+                    "하루에 2번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.068],
+            ],
+            [
+                "귀하는 생선류를 얼마나 자주 드십니까?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.089],
+            ],
+            [
+                "귀하는 콩이나 두부를 얼마나 자주 드십니까?",
+                [
+                    "2주일에 1번 이하",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번",
+                    "하루에 2번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.097],
+            ],
+            [
+                "귀하는 견과류를 얼마나 자주 드십니까?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.146],
+            ],
+            [
+                "귀하는 전곡이나 잡곡류(현미밥, 잡곡밥, 통밀 빵 등)를 얼마나 자주 드십니까?",
+                [
+                    "거의 먹지 않는다",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번",
+                    "하루에 2번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.16],
+            ],
+            [
+                "귀하는 기름진 빵(꽈배기, 생크림빵 등)이나 스낵 과자류(감자칩, 고구마칩 등)를 얼마나 자주 드십니까?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [100, 75, 50, 25, 0],
+                ["절제", 0.142],
+            ],
+            [
+                "귀하는 피자, 햄버거, 프라이드치킨 등의 패스트푸드를 얼마나 자주 드십니까?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [100, 75, 50, 25, 0],
+                ["절제", 0.189],
+            ],
+            [
+                "귀하는 맵고 짠 국물음식(라면, 찌개류, 탕류, 국물 떡볶이 등)을 얼마나 자주 드십니까?",
+                [
+                    "2주일에 1번 이하",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번",
+                    "하루에 2번 이상",
+                ],
+                [100, 75, 50, 25, 0],
+                ["절제", 0.076],
+            ],
+            [
+                "귀하는 쇠고기, 돼지고기 같은 붉은색 고기를 얼마나 자주 드십니까?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [100, 75, 50, 25, 0],
+                ["절제", 0.148],
+            ],
+            [
+                "귀하는 평소에 햄, 소시지, 베이컨 등의 가공 육을 얼마나 자주 드십니까?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [100, 75, 50, 25, 0],
+                ["절제", 0.222],
+            ],
+            [
+                "귀하는 일주일 동안 아침 식사를 얼마나 자주 하십니까?",
+                [
+                    "거의 먹지 않는다",
+                    "일주일에 1~2번",
+                    "일주일에 3~4번",
+                    "일주일에 5~6번",
+                    "매일",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.166],
+            ],
+            [
+                "귀하는 과식이나 폭식을 얼마나 자주 하십니까?",
+                [
+                    "거의 하지 않는다",
+                    "한달에 1번",
+                    "일주일에 1번",
+                    "일주일에 1번",
+                    "일주일에 3~4번",
+                    "하루에 1번 이상",
+                ],
+                [100, 80, 60, 40, 20, 0],
+                ["절제", 0.223],
+            ],
+            [
+                "귀하는 평소에 건강에 좋은 식생활을 하려고 노력하십니까?",
+                [
+                    "전혀 노력하지 않는다",
+                    "노력하지 않는 편이다",
+                    "보통이다",
+                    "노력하는 편이다",
+                    "매우 노력한다",
+                ],
+                [0, 25, 50, 75, 100],
+                ["실천", 0.411],
+            ],
+            [
+                "귀하는 외식 시 또는 가공식품을 구입할 때 영양표시를 확인하십니까?",
+                [
+                    "전혀 확인하지 않는다",
+                    "확인하지 않는 편이다",
+                    "보통이다",
+                    "확인하는 편이다",
+                    "항상 확인한다",
+                ],
+                [0, 25, 50, 75, 100],
+                ["실천", 0.203],
+            ],
+            [
+                "귀하는 음식을 먹기 전에 손을 씻으십니까?",
+                [
+                    "전혀 씻지 않는다",
+                    "씻지 않는 편이다",
+                    "보통이다",
+                    "씻는 편이다",
+                    "항상 씻는다",
+                ],
+                [0, 25, 50, 75, 100],
+                ["실천", 0.179],
+            ],
+            [
+                "귀하는 남자의 경우 7잔(또는 맥주 5캔 정도), 여자의 경우 5잔(또는 맥주 3캔 정도) 이상의 술을 얼마나 자주 드십니까?",
+                [
+                    "최근 1년간 전혀 마시지 않았다",
+                    "한달에 1번 미만",
+                    "한달에 1번 정도",
+                    "한달에 2~4번",
+                    "일주일에 2~3번 정도",
+                    "일주일에 4번 이상",
+                ],
+                [100, 80, 60, 40, 20, 0],
+                ["실천", 0.207],
+            ],
+            [
+                "귀하는 가당음료(탄산음료, 믹스커피, 유자차 등)를 얼마나 자주 마십니까?",
+                [
+                    "2주일에 1번 이하",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1~2번",
+                    "하루에 3번 이상",
+                ],
+                [1, 2, 3, 4, 5],
+                ["상담용", 0],
+            ],
+            [
+                "귀하는 30분 이상 숨이 찰 정도의 운동을 얼마나 자주 하십니까?",
+                [
+                    "거의 하지 않는다",
+                    "일주일에 1~2번",
+                    "일주일에 3~4번",
+                    "일주일에 5~6번",
+                    "매일",
+                ],
+                [1, 2, 3, 4, 5],
+                ["상담용", 0],
+            ],
+        ];
+        const nqeq = [
+            [
+                "귀하는 과일을 얼마나 자주 드십니까?",
+                [
+                    "2주일에 1번 이하",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번",
+                    "하루에 2번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.187],
+            ],
+            [
+                "귀하는 우유 또는 유제품(치즈, 요구르트 등)을 얼 마나 자주 드십니까?",
+                [
+                    "2주일에 1번 이하",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번",
+                    "하루에 2번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.133],
+            ],
+            [
+                "귀하는 생선이나 조개류(오징어, 굴, 새우 등 포함) 를 얼마나 자주 드십니까?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.111],
+            ],
+            [
+                "귀하는 달걀(메추리알 등)을 얼마나 자주 드십니까?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.104],
+            ],
+            [
+                "귀하는 콩이나 두부(두유 포함)를 얼마나 자주 드십니까?",
+                [
+                    "2주일에 1번 이하",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번",
+                    "하루에 2번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.11],
+            ],
+            [
+                "귀하는 견과류(호두, 잣, 아몬드 등)를 얼마나 자주 드십니까?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.157],
+            ],
+            [
+                "귀하는 전곡이나 잡곡류(현미밥, 잡곡밥, 통밀빵 등)를 얼마나 자주 드십니까?",
+                [
+                    "거의 먹지 않는다",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번",
+                    "하루에 2번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.091],
+            ],
+            [
+                "귀하는 하루에 물을 얼마나 자주 마십니까?",
+                [
+                    "거의 마시지 않는다",
+                    "하루에 1~2잔",
+                    "하루에 3~4잔",
+                    "하루에 5~6잔",
+                    "하루에 7~8잔 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.107],
+            ],
+            [
+                "귀하는 믹스커피, 가당음료, 강정, 사탕 등 설 탕이 많이 들어있는 간식을 얼마나 자주 드십니까?",
+                [
+                    "거의 먹지 않는다",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1~2번",
+                    "하루에 3번 이상",
+                ],
+                [100, 75, 50, 25, 0],
+                ["절제", 0.884],
+            ],
+            [
+                "귀하는 기름진 빵(꽈배기, 생크림빵 등)이나 스낵 과자류(감자칩, 고구마칩 등)를 얼마나 자주 드십니까?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [100, 75, 50, 25, 0],
+                ["절제", 0.116],
+            ],
+            [
+                "귀하는 평소에 건강에 좋은 식생활을 하려고 노력하십니까?",
+                [
+                    "전혀 노력하지 않는다",
+                    "노력하지 않는 편이다",
+                    "보통이다",
+                    "노력하는 편이다",
+                    "매우 노력한다",
+                ],
+                [0, 25, 50, 75, 100],
+                ["실천", 0.151],
+            ],
+            [
+                "귀하는 (가공)식품을 구입할 때 유통기한이나 영양표시를 확인하십니까?",
+                [
+                    "전혀 확인하지 않는다",
+                    "확인하지 않는 편이다",
+                    "보통이다",
+                    "확인하는 편이다",
+                    "항상 확인한다",
+                ],
+                [0, 25, 50, 75, 100],
+                ["실천", 0.092],
+            ],
+            [
+                "귀하는 음식을 먹기 전에 손을 씻으십니까?",
+                [
+                    "전혀 씻지 않는다",
+                    "씻지 않는 편이다",
+                    "보통이다",
+                    "씻는 편이다",
+                    "항상 씻는다",
+                ],
+                [0, 25, 50, 75, 100],
+                ["실천", 0.131],
+            ],
+            [
+                "귀하는 현재 치아나 틀니, 잇몸 등의 문제로 음식을 씹는 것이 어느 정도 불편하십니까?",
+                [
+                    "매우 불편하다",
+                    "불편한 편이다",
+                    "그저 그렇다",
+                    "별로 불편하지 않다",
+                    "전혀 불편하지 않다",
+                ],
+                [0, 25, 50, 75, 100],
+                ["실천", 0.142],
+            ],
+            [
+                "귀하는 평소에 우울함을 어느 정도로 느끼십니까?",
+                [
+                    "항상 느낀다",
+                    "느끼는 편이다",
+                    "보통이다",
+                    "느끼지 않는 편이다",
+                    "전혀 느끼지 않는다",
+                ],
+                [0, 25, 50, 75, 100],
+                ["실천", 0.157],
+            ],
+            [
+                "귀하는 잠을 잘 주무시는 편입니까?",
+                [
+                    "매우 못 잔다",
+                    "못 자는 편이다",
+                    "보통이다",
+                    "잘 자는 편이다",
+                    "매우 잘 잔다",
+                ],
+                [0, 25, 50, 75, 100],
+                ["실천", 0.146],
+            ],
+            [
+                "귀하는 본인이 생각하기에 얼마나 건강하다고 생각하십니까?",
+                [
+                    "전혀 건강하지 않다",
+                    "건강하지 않은 편이다",
+                    "보통이다",
+                    "건강한 편이다",
+                    "매우 건강하다",
+                ],
+                [0, 25, 50, 75, 100],
+                ["실천", 0.181],
+            ],
+            [
+                "귀하는 한 번 식사할 때 김치를 제외한 채소류를 몇 가지나 드십니까?",
+                ["거의 먹지 않는다", "1가지", "2가지", "3가지", "4가지 이상"],
+                [1, 2, 3, 4, 5],
+                ["상담용", 0],
+            ],
+            [
+                "귀하는 맵고 짠 국물음식(라면, 찌개류, 탕류, 국물 떡볶이 등)을 얼마나 자주 드십니까?",
+                [
+                    "2주일에 1번 이하",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번",
+                    "하루에 2번 이상",
+                ],
+                [1, 2, 3, 4, 5],
+                ["상담용", 0],
+            ],
+            [
+                "하루에 30분 이상의 운동을 얼마나 자주 하십니까?",
+                [
+                    "거의 하지 않는다",
+                    "일주일에 1~2번",
+                    "일주일에 3~4번",
+                    "일주일에 5~6번",
+                    "매일",
+                ],
+                [1, 2, 3, 4, 5],
+                ["상담용", 0],
+            ],
+        ];
+        const nqcq = [
+            [
+                "한 번 식사할 때 채소류 반찬(김치포함)을 몇 가지나 먹나요?",
+                ["거의 먹지 않는다", "1가지", "2가지", "3가지", "4가지 이상"],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.116],
+            ],
+            [
+                "과일을 얼마나 자주 먹나요?",
+                [
+                    "2주일에 1번 이하",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번",
+                    "하루에 2번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.178],
+            ],
+            [
+                "흰 우유나 유제품(치즈, 플레인 요거트)을 얼마나 자주 먹나요?",
+                [
+                    "거의 먹지 않는다",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번",
+                    "하루에 2번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.095],
+            ],
+            [
+                "생선이나 조개류(오징어, 굴, 새우 등 포함)를 얼마나 자주 먹나요?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번 정도",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.167],
+            ],
+            [
+                "달걀(메추리알 포함)을 얼마나 자주 먹나요?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번 정도",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.088],
+            ],
+            [
+                "콩이나 두부(두유 포함)를 얼마나 자주 먹나요?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번 정도",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.169],
+            ],
+            [
+                "견과류(호두, 아몬드 등)를 얼마나 자주 먹나요?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번 정도",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.09],
+            ],
+            [
+                "전곡이나 잡곡류(현미밥, 잡곡밥, 통밀빵, 호밀빵 등)를 얼마나 자주 먹나요?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번 정도",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [0, 25, 50, 75, 100],
+                ["균형", 0.097],
+            ],
+            [
+                "단 음식(초콜릿, 젤리 등)이나 단 음료(탄산음료, 과일맛 음료, 흑당 음료 등)를 얼마나 자주먹나요?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번 정도",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [100, 75, 50, 25, 0],
+                ["절제", 0.128],
+            ],
+            [
+                "기름진 간식(생크림 빵, 버터칩, 핫도그 등)이나 튀김류(닭튀김, 탕수육, 감자튀김 등)를 얼마나 자주 먹나요?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번 정도",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [100, 75, 50, 25, 0],
+                ["절제", 0.138],
+            ],
+            [
+                "라면(컵라면 포함)을 얼마나 자주 먹나요?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번 정도",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [100, 75, 50, 25, 0],
+                ["절제", 0.115],
+            ],
+            [
+                "맵고 짠 찌개나 탕(부대찌개, 마라탕, 국물 떡볶이 등)을 얼마나 자주 먹나요?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번 정도",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [100, 75, 50, 25, 0],
+                ["절제", 0.093],
+            ],
+            [
+                "카페인 함유 식품(커피, 커피우유, 커피 아이스크림, 에너지드링크 등)을 얼마나 자주 먹나요?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번 정도",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [100, 75, 50, 25, 0],
+                ["절제", 0.062],
+            ],
+            [
+                "과식을 얼마나 자주 하나요?",
+                [
+                    "거의 하지 않는다",
+                    "2주일에 1번 정도",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [100, 75, 50, 25, 0],
+                ["절제", 0.12],
+            ],
+            [
+                "저녁 식사 후에 야식을 얼마나 자주 먹나요?",
+                [
+                    "거의 먹지 않는다",
+                    "2주일에 1번 정도",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "매일",
+                ],
+                [100, 75, 50, 25, 0],
+                ["절제", 0.138],
+            ],
+            [
+                "학교나 학원주변(편의점, 패스트푸드점, 분식점 등)에서 음식을 얼마나 자주 사 먹나요?",
+                [
+                    "사 먹지 않는다",
+                    "2주일에 1번 정도",
+                    "일주일에 1~3번",
+                    "일주일에 4~6번",
+                    "하루에 1번 이상",
+                ],
+                [100, 75, 50, 25, 0],
+                ["절제", 0.117],
+            ],
+            [
+                "식사할 때 스마트폰, 게임, TV, 책 등을 보면서 식사하는 편인가요?",
+                [
+                    "전혀 그렇지 않다",
+                    "그렇지 않는 편이다",
+                    "보통이다",
+                    "그렇다",
+                    "매우 그렇다",
+                ],
+                [100, 75, 50, 25, 0],
+                ["절제", 0.089],
+            ],
+            [
+                "아침 식사를 얼마나 자주 하나요?",
+                [
+                    "거의 먹지 않는다",
+                    "일주일에 1~2번",
+                    "일주일에 3~4번",
+                    "일주일에 5~6번",
+                    "매일",
+                ],
+                [0, 25, 50, 75, 100],
+                ["실천", 0.221],
+            ],
+            [
+                "가공식품을 살 때 식품표시(영양표시, 알레르기 성분 표시 등)를 확인하나요?",
+                [
+                    "전혀 확인하지 않는다",
+                    "확인하지 않는 편이다",
+                    "보통이다",
+                    "확인하는 편이다",
+                    "항상 확인한다",
+                ],
+                [0, 25, 50, 75, 100],
+                ["실천", 0.433],
+            ],
+            [
+                "음식을 먹기 전에 손을 씻나요?",
+                [
+                    "전혀 씻지 않는다",
+                    "씻지 않는 편이다",
+                    "보통이다",
+                    "씻는 편이다",
+                    "항상 씻는다",
+                ],
+                [0, 25, 50, 75, 100],
+                ["실천", 0.346],
+            ],
+            [
+                "하루에 30분 이상의 운동(체육시간 포함)을 얼마나 자주 하나요?",
+                [
+                    "하지 않는다",
+                    "일주일에 1~2번",
+                    "일주일에 3~4번",
+                    "일주일에 5~6번",
+                    "매일",
+                ],
+                [1, 2, 3, 4, 5],
+                ["상담용", 0],
+            ],
+        ];
+        const totalPoint = {
+            adult: { balance: 0.3, moderation: 0.3, practice: 0.4 },
+            elder: { balance: 0.55, moderation: 0.1, practice: 0.35 },
+            child: { balance: 0.15, moderation: 0.3, practice: 0.55 }
+        };
+        function chackAge() {
+            let age = String($("#age").val());
+            $("#NQelder").empty();
+            $("#NQchild").empty();
+            $("#NQadult").empty();
+            if (age >= 20 && age < 65) {
+                showQuestions(nqaq, 'adult');
+            }
+            else if (age >= 65) {
+                showQuestions(nqeq, 'elder');
+            }
+            else if (age < 20) {
+                showQuestions(nqcq, 'child');
+            }
+        }
+
+        function showQuestions(qlist, age) {
+            for (let i = 0; i < qlist.length; i++) {
+                let questionBox = document.createElement("li");
+                let question = document.createElement("p");
+                let selection = document.createElement("div");
+                question.setAttribute("class", "question");
+                question.setAttribute("id", "q" + i);
+                question.append(qlist[i][0]);
+                questionBox.appendChild(question);
+                selection.setAttribute("class", "selectionBox");
+                for (let j = 0; j < qlist[i][1].length; j++) {
+                    let selectionBox = document.createElement("div");
+                    let qs = document.createElement("input");
+                    qs.setAttribute("type", "radio");
+                    qs.setAttribute("class", "s" + j);
+                    qs.setAttribute("id", "q" + i + "s" + j);
+                    qs.setAttribute("name", "q" + i);
+                    qs.setAttribute("value", qlist[i][2][j]);
+                    qs.setAttribute("required", "true");
+                    selectionBox.appendChild(qs);
+                    let qslabel = document.createElement("label");
+                    qslabel.setAttribute("for", "q" + i + "s" + j);
+                    qslabel.append(qlist[i][1][j]);
+                    selectionBox.appendChild(qslabel);
+                    selection.appendChild(selectionBox);
+                }
+                questionBox.appendChild(selection);
+                $("#NQ" + age).append(questionBox);
+            }
+        }
+
+        function analysisQuestionaryResult() {
+            let clientInfo = {};
+            clientInfo.sex = $("input[name=gender]:checked").val();
+            clientInfo.age = String($("#age").val());
+            clientInfo.name = String($("#name").val());
+            clientInfo.weight = String($("#weight").val());
+            clientInfo.height = String($("#height").val());
+            if (clientInfo.age >= 20 && clientInfo.age < 65) {
+                clientInfo.answer = collectAnswer(nqaq);
+                if (clientInfo.answer)
+                    [
+                        clientInfo.total,
+                        clientInfo.balance,
+                        clientInfo.moderation,
+                        clientInfo.practice,
+                        clientInfo.additional,
+                    ] = calculateGrade(clientInfo.answer, nqaq, totalPoint.adult);
+            } else if (clientInfo.age >= 65) {
+                clientInfo.answer = collectAnswer(nqeq);
+                if (clientInfo.answer)
+                    [
+                        clientInfo.total,
+                        clientInfo.balance,
+                        clientInfo.moderation,
+                        clientInfo.practice,
+                        clientInfo.additional,
+                    ] = calculateGrade(clientInfo.answer, nqeq, totalPoint.elder);
+            } else if (clientInfo.age < 20) {
+                clientInfo.answer = collectAnswer(nqcq);
+                if (clientInfo.answer)
+                    [
+                        clientInfo.total,
+                        clientInfo.balance,
+                        clientInfo.moderation,
+                        clientInfo.practice,
+                        clientInfo.additional,
+                    ] = calculateGrade(clientInfo.answer, nqcq, totalPoint.child);
+            }
+            console.log(clientInfo);
+            if (clientInfo.answer) {
+                localStorage.setItem("client-info", JSON.stringify(clientInfo));
+                window.open("NQresult.html");
+            }
+        }
+        function collectAnswer(qlist) {
+            let dummy = [];
+            for (let i = 0; i < qlist.length; i++) {
+                if ($("input[name=q" + i + "]:checked").val() == undefined) {
+                    document.getElementById("q" + i).scrollIntoView();
+                    return false;
+                }
+                dummy.push($("input[name=q" + i + "]:checked ").val());
+            }
+            return dummy;
+        }
+        function calculateGrade(answer, qlist, tpw) {
+            let total = 0,
+                balance = 0,
+                moderation = 0,
+                practice = 0,
+                dummy = [];
+            for (let i = 0; i < qlist.length; i++) {
+                if (qlist[i][3][0] == "균형") {
+                    balance = balance + qlist[i][3][1] * answer[i];
+                } else if (qlist[i][3][0] == "절제") {
+                    moderation = moderation + qlist[i][3][1] * answer[i];
+                } else if (qlist[i][3][0] == "실천") {
+                    practice = practice + qlist[i][3][1] * answer[i];
+                } else if (qlist[i][3][0] == "상담용") {
+                    dummy.push([qlist[i][0], qlist[i][1][answer[i]]]);
+                }
+            }
+            total =
+                balance * tpw.balance +
+                moderation * tpw.moderation +
+                practice * tpw.practice;
+            return [total, balance, moderation, practice, dummy];
+        }
+
+
+    </script>
+</body>
+
+</html>
