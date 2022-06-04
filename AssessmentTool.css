@@ -1,5 +1,36 @@
 @import url('style.css');
-@media (max-width: 768px) {
+
+@media (max-width: 300px) {
+  .basicInfo {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin: 0px;
+    padding: 5px 5px;
+    text-align: left;
+  }
+  .basicInfo .basicInfoBox {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 8px;
+    margin-bottom: 10px;
+    padding:0px;
+  }
+  button{
+    width: 80%;
+  }
+  .basicInfo .inputBox {
+    width: 20%;
+    height: 15px;
+    padding: 1px;
+  }
+  .basicInfo input{
+    text-align: left;
+    font-size: 1.1rem;
+  }
+}
+@media screen and (min-width:300px) and (max-width:768px) {
   .basicInfo {
     display: flex;
     flex-direction: column;
@@ -19,6 +50,15 @@
   button{
     width: 80%;
   }
+  .basicInfo .inputBox {
+    width: 30%;
+    height: 15px;
+    padding: 1px;
+  }
+  .basicInfo input{
+    text-align: left;
+    font-size: 1.4rem;
+  }
 }
 @media (min-width: 576px) {
   button{
@@ -27,8 +67,6 @@
   .mainQuestion{
     width: 80vw;
   }
- 
-  
 }
 
 @media (min-width: 768px) {
@@ -51,6 +89,15 @@
     display: grid;
     grid-template-columns: 1fr 2fr 1fr 2fr;
     margin-bottom: 10px;
+  }
+  .basicInfo .inputBox {
+    width: 70%;
+    height: 15px;
+    padding: 10px;
+  }
+  .basicInfo input{
+    text-align: center;
+    font-size: 1.4rem;
   }
 }
 
