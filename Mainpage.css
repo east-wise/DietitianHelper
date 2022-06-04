@@ -37,7 +37,7 @@ h2{grid-area: header2;}
 #helper{grid-area: helper;}
 #KPAT{grid-area: KPAT;}
 #KCAT{grid-area: KCAT;}
-#refresh{grid-area: refresh;}
+#NQ{grid-area: NQ;}
 
 @media (min-width: 770px){
     .container{
@@ -50,7 +50,7 @@ h2{grid-area: header2;}
         grid-template-areas:
             "header1 header1 header1 header1"
             "header2 header2 header2 header2"
-            "helper KPAT KCAT refresh"
+            "helper KPAT KCAT NQ"
             "footer footer footer footer";
     }
 }
@@ -68,7 +68,7 @@ h2{grid-area: header2;}
             "helper"
             "KPAT"
             "KCAT"
-            "refresh"
+            "NQ"
             "footer";
     }
 }
