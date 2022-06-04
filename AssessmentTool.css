@@ -1,5 +1,25 @@
 @import url('style.css');
-
+@media (max-width: 768px) {
+  .basicInfo {
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+    margin-left: auto ;
+    margin-right: auto ;
+    padding: 15px 20px;
+    text-align: left;
+  }
+  .basicInfo .basicInfoBox {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 8px;
+    margin-bottom: 10px;
+  }
+  button{
+    width: 80%;
+  }
+}
 @media (min-width: 576px) {
   button{
     width: 50%;
@@ -7,6 +27,8 @@
   .mainQuestion{
     width: 80vw;
   }
+ 
+  
 }
 
 @media (min-width: 768px) {
@@ -15,6 +37,20 @@
   }
   .mainQuestion{
     width: 80vw;
+  }
+  .basicInfo {
+    display: flex;
+    flex-direction: column;
+    width: 700px;
+    margin-left: auto ;
+    margin-right: auto ;
+    padding: 15px 20px;
+    text-align: left;
+  }
+  .basicInfo .basicInfoBox {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 2fr;
+    margin-bottom: 10px;
   }
 }
 
@@ -67,15 +103,7 @@
   align-items: left;
 }
 
-.basicInfo {
-  display: flex;
-  flex-direction: column;
-  width: 700px;
-  margin-left: auto ;
-  margin-right: auto ;
-  padding: 15px 20px;
-  text-align: left;
-}
+
 .center {
   display: flex;
   align-items: center;
@@ -85,11 +113,7 @@
   display: flex;
   justify-content: space-around;
 }
-.basicInfo .basicInfoBox {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr 2fr;
-  margin-bottom: 10px;
-}
+
 
 .basicInfo .inputBox {
   width: 70%;
