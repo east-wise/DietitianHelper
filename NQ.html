@@ -11,6 +11,7 @@
         href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="AssessmentTool.css">
+    <link rel="stylesheet" href="NQ.css">
 </head>
 
 <body>
@@ -82,24 +83,48 @@
                 <div class="NQquestion">
                     <ol id="NQadult">
                         <!-- <li>
-                    <p class="question" id='q1'>귀하는 한 번 식사할 때 김치를 제외한 채소류를 몇 가지나 드십니까? </p>
-                    <input type="radio" id="q1s1" name="q1" value="0" />
-                    <label for="q1s1"> 거의 먹지 않는다</label>
+                    <p class="question" id='q0'>귀하는 한 번 식사할 때 김치를 제외한 채소류를 몇 가지나 드십니까? </p>
+                    <div class="selectionBox">
+                        <div class="s0">
+                            <input type="radio" id="q0s0" name="q0" value="0"/>
+                            <label for="q0s0"> 거의 먹지 않는다</label>
+                        </div>
+                        <div class="s1">
+                            <input type="radio" id="q0s1" name="q0" value="25" />
+                            <label for="q0s1"> 1가지 </label>
+                        </div>
+                    </div>
                 </li> -->
 
                     </ol>
                     <ol id="NQelder">
                         <!-- <li>
-                    <p class="question" id='q1'>귀하는 한 번 식사할 때 김치를 제외한 채소류를 몇 가지나 드십니까? </p>
-                    <input type="radio" id="q1s1" name="q1" value="1" />
-                    <label for="q1s1"> 거의 먹지 않는다</label>
+                    <p class="question" id='q0'>귀하는 한 번 식사할 때 김치를 제외한 채소류를 몇 가지나 드십니까? </p>
+                    <div class="selectionBox">
+                        <div class="s0">
+                            <input type="radio" id="q0s0" name="q0" value="0"/>
+                            <label for="q0s0"> 거의 먹지 않는다</label>
+                        </div>
+                        <div class="s1">
+                            <input type="radio" id="q0s1" name="q0" value="25" />
+                            <label for="q0s1"> 1가지 </label>
+                        </div>
+                    </div>
                 </li> -->
                     </ol>
                     <ol id="NQchild">
                         <!-- <li>
-                    <p class="question" id='q1'>귀하는 한 번 식사할 때 김치를 제외한 채소류를 몇 가지나 드십니까? </p>
-                    <input type="radio" id="q1s1" name="q1" value="1" />
-                    <label for="q1s1"> 거의 먹지 않는다</label>
+                    <p class="question" id='q0'>귀하는 한 번 식사할 때 김치를 제외한 채소류를 몇 가지나 드십니까? </p>
+                    <div class="selectionBox">
+                        <div class="s0">
+                            <input type="radio" id="q0s0" name="q0" value="0"/>
+                            <label for="q0s0"> 거의 먹지 않는다</label>
+                        </div>
+                        <div class="s1">
+                            <input type="radio" id="q0s1" name="q0" value="25" />
+                            <label for="q0s1"> 1가지 </label>
+                        </div>
+                    </div>
                 </li> -->
                     </ol>
                 </div>
@@ -873,7 +898,7 @@
                     let selectionBox = document.createElement("div");
                     let qs = document.createElement("input");
                     qs.setAttribute("type", "radio");
-                    qs.setAttribute("class", "s" + j);
+                    selectionBox.setAttribute("class", "s" + j);
                     qs.setAttribute("id", "q" + i + "s" + j);
                     qs.setAttribute("name", "q" + i);
                     qs.setAttribute("value", qlist[i][2][j]);
@@ -968,8 +993,6 @@
                 practice * tpw.practice;
             return [total, balance, moderation, practice, dummy];
         }
-
-
     </script>
 </body>
 
