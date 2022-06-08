@@ -48,19 +48,51 @@ h2 {
   line-height: 2.1;
 }
 
-button {
-  padding: 0px 10px;
-  border-radius: 10px;
+.main1{
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+.itembox{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-bottom: 5px;
+}
+.center {
+  display: flex;
+  align-items: center;
+  padding-left: 0px;
+}
+#resetPage:hover{
+  background-color: crimson;
 }
 
-
+input[type=text], input[type=number]{
+  width: 50%;
+  height: 15px;
+  padding: 10px;
+}
 input {
   font-family: 'Nanum Gothic', sans-serif;
   font-size: medium;
   width: 70px;
   height: 22px;
 }
-
+.main1 button{
+  width: 60%;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+.resume button{
+  width: 100px;
+  height: 40px;
+}
+button {
+  padding: 0px 10px;
+  border-radius: 10px;
+}
 input[type=radio] {
   width: 18px;
   height: 18px;
