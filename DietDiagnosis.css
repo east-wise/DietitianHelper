@@ -111,7 +111,7 @@ input[type=radio]:checked {
   .container {
     height: 100%;
     grid-template-columns: 30% 30% 40%;
-    grid-template-rows: 50px 50px 340px 450px;
+    grid-template-rows: 50px 50px 340px 700px;
     grid-gap: 20px;
     grid-template-areas:
       "header header header"
