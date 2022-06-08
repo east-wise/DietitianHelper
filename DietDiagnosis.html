@@ -124,9 +124,7 @@
                 </div>
             </div>
             <div class="rowHD itembox">
-                <label class="center">
-                    투석여부
-                </label>
+                <label class="center">투석여부</label>
                 <div class="item">
                     <input type="radio" id="isDialysisY" name="isDialysis" value="y" />
                     <label for="isDialysisY">투석함</label>
@@ -182,113 +180,101 @@
         <div class="main2BloodTest">
             <h3>혈액 수치 입력</h3>
             <div class="itembox">
-                <div class="center">
-                    eGFR-Cr
-                </div>
-                <div class="item">
-                    <input type="number" id="glomerular" onkeyup="diagKidneyFunction();" />
-                </div>
+                <div class="center">eGFR-Cr</div>
+                <div class="item"><input type="number" id="glomerular" onkeyup="diagKidneyFunction();"/></div>
             </div>
             <div class="electroBattery">
                 <div class="itembox">
-                    <div class="center">
-                        혈중 칼륨 농도:
-                    </div>
-                    <div class="item">
-                        <input type="number" id="Potassium" />
-                    </div>
+                    <div class="center">혈중 칼륨 농도</div>
+                    <div class="item"><input type="number" id="Potassium" />mmol/L</div>
                 </div>
                 <div class="itembox">
                     <div class="center">혈중 나트륨 농도</div>
-                    <div class="item"><input type="number" id="Sodium" /> </div>
+                    <div class="item"><input type="number" id="Sodium" />mmol/L</div>
                 </div>
                 <div class="itembox">
                     <div class="center">혈중 인 농도</div>
-                    <div class="item"><input type="number" id="Phosphorous" /> </div>
+                    <div class="item"><input type="number" id="Phosphorous" />mg/dL</div>
                 </div>
                 <div class="itembox">
                     <div class="center">혈중 염화이온 농도</div>
-                    <div class="item"><input type="number" id="Chloride" /> </div>
+                    <div class="item"><input type="number" id="Chloride" />mmol/L</div>
                 </div>
             </div>
             <div class="bloodGlucoseTest">
                 <div class="itembox">
                     <div class="center">공복 혈당</div>
-                    <div class="item"><input type="number" id="FBS" /> </div>
+                    <div class="item"><input type="number" id="FBS" />mg/dL</div>
                 </div>
                 <div class="itembox">
                     <div class="center">식후 2시간 후 혈당</div>
-                    <div class="item"><input type="number" id="PP2" /> </div>
+                    <div class="item"><input type="number" id="PP2" />mg/dL</div>
                 </div>
                 <div class="itembox">
                     <div class="center">당화혈색소 (HbA1c)</div>
-                    <div class="item"><input type="number" id="HbA1c" /> </div>
+                    <div class="item"><input type="number" id="HbA1c" />%</div>
                 </div>
                 <div class="itembox">
                     <div class="center">당화알부민 (GA)</div>
-                    <div class="item"><input type="number" id="glucatedAlbumin" /> </div>
+                    <div class="item"><input type="number" id="glucatedAlbumin"/>%</div>
                 </div>
             </div>
             <div class="bloodPresure">
                 <div class="itembox">
                     <div class="center">수축기 혈압</div>
-                    <div class="item"><input type="number" id="SBP" /> </div>
+                    <div class="item"><input type="number" id="SBP"/>mmHg</div>
                 </div>
                 <div class="itembox">
                     <div class="center">이완기 혈압</div>
-                    <div class="item"><input type="number" id="DBP" /> </div>
+                    <div class="item"><input type="number" id="DBP"/>mmHg</div>
                 </div>
             </div>
             <div class="liverFunctionTest">
                 <div class="itembox">
                     <div class="center">간수치 AST (GOT)</div>
-                    <div class="item"><input type="number" id="AST" /> </div>
+                    <div class="item"><input type="number" id="AST" />IU/L</div>
                 </div>
                 <div class="itembox">
                     <div class="center">간수치 ALT (GPT)</div>
-                    <div class="item"> <input type="number" id="ALT" /> </div>
+                    <div class="item"> <input type="number" id="ALT" />IU/L</div>
                 </div>
                 <div class="itembox">
                     <div class="center">ALP</div>
-                    <div class="item"><input type="number" id="ALP" /> U/L</div>
+                    <div class="item"><input type="number" id="ALP" />U/L</div>
                 </div>
                 <!-- 쓸개즙 배설장애 의심, 소아의 경우에는 뼈 관련 이상 -->
                 <div class="itembox">
                     <div class="center">GGT (y-GTP)</div>
-                    <div class="item"><input type="number" id="GGT" /> </div>
+                    <div class="item"><input type="number" id="GGT" />IU/L</div>
                 </div>
                 <!-- 음주 의심 -->
                 <div class="itembox">
                     <div class="center">총 빌리루빈</div>
-                    <div class="item"><input type="number" id="totalBilirubin" /> mg/dL</div>
+                    <div class="item"><input type="number" id="totalBilirubin" />mg/dL</div>
                 </div>
             </div>
             <div class="lipidBattery">
                 <div class="itembox">
                     <div class="center">혈중 중성지방 농도</div>
-                    <div class="item"><input type="number" id="TG" /> </div>
+                    <div class="item"><input type="number" id="TG" />mg/dL</div>
                 </div>
                 <div class="itembox">
                     <div class="center">혈중 총콜레스테롤</div>
-                    <div class="item"><input type="number" id="TChol" /> </div>
+                    <div class="item"><input type="number" id="TChol" />mg/dL</div>
                 </div>
                 <div class="itembox">
                     <div class="center">혈중 LDL 농도</div>
-                    <div class="item"><input type="number" id="LDL" /> </div>
+                    <div class="item"><input type="number" id="LDL" />mg/dL</div>
                 </div>
                 <div class="itembox">
                     <div class="center">혈중 HDL 농도</div>
-                    <div class="item"><input type="number" id="HDL" /> </div>
+                    <div class="item"><input type="number" id="HDL" />mg/dL</div>
                 </div>
             </div>
             <div class="uricAcid">
                 <div class="itembox">
-                    <div class="center">
-                        혈중 요산 농도
-                    </div>
-                    <div class="item">
-                        <input type="number" id="uricAcid" />
-                    </div>
+                    <div class="center">혈중 요산 농도</div>
+                    <div class="item"><input type="number" id="uricAcid" />mg/dL</div>
                 </div>
             </div>
         </div>
