@@ -85,11 +85,9 @@
     <script src="DietDiagnosisResult.js"></script>
     <script>
         const catchPatientInfo = JSON.parse(localStorage.getItem("patient-info"));
-
-        
         console.log(catchPatientInfo);
         PrintAnalysisResult();
-        localStorage.removeItem("user-info");
+        localStorage.removeItem("patient-info");
     </script>
 </body>
 </html>
