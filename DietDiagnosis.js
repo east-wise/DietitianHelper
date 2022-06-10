@@ -75,6 +75,7 @@ function ObesityJudgement() {
   $("#resetPage").show();
   let height = $("#Height").val() / 100;
   let weight = $("#Weight").val();
+  let age = $("#Age").val();
   Patient.sex = $("input[name=healthy_gender]:checked").val();
   if (Patient.sex == "male") {
     IdealBodyWeight = height * height * 22;
@@ -85,7 +86,7 @@ function ObesityJudgement() {
   $("#ModerateActivity").empty();
   $("#SevereActivity").empty();
   $("#ObesityState").empty();
-  PIBWCondition = PIBWObesity((weight / IdealBodyWeight) * 100);
+  PIBWCondition = PIBWObesity((weight / IdealBodyWeight) * 100, age);
   $("#ObesityState").append("상태: " + PIBWCondition);
   // console.log(WeightCondition);
   // console.log(BMI);
@@ -135,7 +136,7 @@ function Examination() {
   $("#ModerateActivity").empty();
   $("#SevereActivity").empty();
   PCondition.PIBWCondition = PIBWObesity(
-    (Patient.weight / IdealBodyWeight) * 100
+    (Patient.weight / IdealBodyWeight) * 100, Patient.age
   );
   Patient.IdealBodyWeight = IdealBodyWeight;
   let dummy = [];
@@ -188,33 +189,62 @@ function Examination() {
   window.open("DietDiagnosisResult.html");
 }
 
-function PIBWObesity(PIBW) {
+function PIBWObesity(PIBW, age) {
   let judge = "정상";
-  if (PIBW >= 160) {
-    judge = "고도비만";
-    $("#LightActivity").append("20");
-    $("#ModerateActivity").append("25");
-    $("#SevereActivity").append("30");
-  } else if (PIBW >= 120) {
-    judge = "비만";
-    $("#LightActivity").append("20~25");
-    $("#ModerateActivity").append("30");
-    $("#SevereActivity").append("35");
-  } else if (PIBW >= 109) {
-    judge = "과체중";
-    $("#LightActivity").append("20~25");
-    $("#ModerateActivity").append("30");
-    $("#SevereActivity").append("35");
-  } else if (PIBW >= 90) {
-    judge = "정상";
-    $("#LightActivity").append("30");
-    $("#ModerateActivity").append("35");
-    $("#SevereActivity").append("40");
-  } else if (PIBW < 90) {
-    judge = "저체중";
-    $("#LightActivity").append("35");
-    $("#ModerateActivity").append("40");
-    $("#SevereActivity").append("40");
+  if (age < 65) {
+    if (PIBW >= 160) {
+      judge = "고도비만";
+      $("#LightActivity").append("20");
+      $("#ModerateActivity").append("25");
+      $("#SevereActivity").append("30");
+    } else if (PIBW >= 120) {
+      judge = "비만";
+      $("#LightActivity").append("20~25");
+      $("#ModerateActivity").append("30");
+      $("#SevereActivity").append("35");
+    } else if (PIBW >= 109) {
+      judge = "과체중";
+      $("#LightActivity").append("20~25");
+      $("#ModerateActivity").append("30");
+      $("#SevereActivity").append("35");
+    } else if (PIBW >= 90) {
+      judge = "정상";
+      $("#LightActivity").append("30");
+      $("#ModerateActivity").append("35");
+      $("#SevereActivity").append("40");
+    } else if (PIBW < 90) {
+      judge = "저체중";
+      $("#LightActivity").append("35");
+      $("#ModerateActivity").append("40");
+      $("#SevereActivity").append("40");
+    }
+  } else if (age >= 65) {
+    if (PIBW >= 160) {
+      judge = "고도비만";
+      $("#LightActivity").append("20");
+      $("#ModerateActivity").append("25");
+      $("#SevereActivity").append("30");
+    } else if (PIBW >= 120) {
+      judge = "비만";
+      $("#LightActivity").append("20");
+      $("#ModerateActivity").append("25");
+      $("#SevereActivity").append("30");
+    } else if (PIBW >= 109) {
+      judge = "과체중";
+      $("#LightActivity").append("20");
+      $("#ModerateActivity").append("25");
+      $("#SevereActivity").append("30");
+    } else if (PIBW >= 90) {
+      judge = "정상";
+      $("#LightActivity").append("20~25");
+      $("#ModerateActivity").append("30");
+      $("#SevereActivity").append("35");
+    } else if (PIBW < 90) {
+      judge = "저체중";
+      $("#LightActivity").append("30");
+      $("#ModerateActivity").append("35");
+      $("#SevereActivity").append("40");
+    }
   }
   return judge;
 }
