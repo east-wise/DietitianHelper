@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영양지수 분석 결과지</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="NQresult.css">
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="NQresult.js"></script>
+
+    <div class="paper">
+        <div class="content">
+            <h1>영양지수 분석 결과지</h1>
+            <ul class="resultBasicInfo">
+                <li class="item center">
+                    이름:
+                    <p id="name"></p>
+                </li>
+                <li class="item center">
+                    나이:
+                    <p id="age"></p>
+                </li>
+                <li class="item center">
+                    성별:
+                    <p id="sex"></p>
+                </li>
+                <li class="item center">
+                    키:
+                    <p id="height"></p>
+                </li>
+                <li class="item center">
+                    체중:
+                    <p id="weight"></p>
+                </li>
+            </ul>
+            <div class="NQgraph">
+                <canvas id="radar-chart"></canvas>
+            </div>
+
+        </div>
+    </div>
+    <div class="paper">
+        <div class="content">
+            <div class="obesity"></div>
+            <dl class="comment">
+                <div class="itemBox">
+                    <dt class="item">
+                        <p id="totalGrade" class="emphasize">총점: </p>
+                    </dt>
+                    <dd class="item">
+                        <p class="total"></p>
+                    </dd>
+                </div>
+                <hr />
+                <div class="itemBox">
+                    <dt class="item">
+                        <p id="balanceGrade" class="emphasize">균형영역: </p>
+                    </dt>
+                    <dd class="item">
+                        <p class="balance"></p>
+                    </dd>
+                </div>
+
+                <div class="itemBox">
+                    <dt class="item">
+                        <p id="moderationGrade" class="emphasize">절제영역: </p>
+                    </dt>
+                    <dd class="item">
+                        <p class="moderation"></p>
+                    </dd>
+                </div>
+
+                <div class="itemBox">
+                    <dt class="item">
+                        <p id="practiceGrade" class="emphasize">실천영역: </p>
+                    </dt>
+                    <dd class="item ">
+                        <p class="practice"></p>
+                    </dd>
+                </div>
+
+            </dl>
+            <table class="NQvideoURL">
+                <caption>영역별 참고영상</caption>
+            </table>
+            <div class="additionalQuestion">
+                <p>추가문항 답변</p>
+            </div>
+            <h3>더 자세한 내용을 원하시면 임상영양사와 상담을 하시길 바랍니다.</h3>
+            <footer>
+                &copy; Copyright 2022. Donghyun Kim All rights reserved.
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>
