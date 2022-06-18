@@ -1,4 +1,33 @@
-function PrintAnalysisResult() {
+document.addEventListener("DOMContentLoaded", function () {
+  const catchPatientInfo = JSON.parse(localStorage.getItem("patient-info"));
+  console.log(catchPatientInfo);
+  // const catchPatientInfo = {
+  //   BMICondition: "비만",
+  //   BMIactivity: 29.068773297766832,
+  //   BPCondition: "정상",
+  //   IdealBodyWeight: 64.3302,
+  //   KidneyCondition: 0,
+  //   PIBWCondition: "비만",
+  //   activityindex: "25",
+  //   age: "54",
+  //   diabetes: "y",
+  //   diabetesCondition: "당뇨",
+  //   gout: "정상",
+  //   height: "171",
+  //   isDialysis: "n",
+  //   name: "김필립",
+  //   sex: "male",
+  //   weight: "85",
+  //   ElectricCondition: {
+  //     Chloride: "정상",
+  //     Phosphorous: "정상",
+  //     Potassium: "정상",
+  //     Sodium: "정상",
+  //   },
+  //   LipidCondition: ["정상"],
+  //   LiverCondition: ["정상"],
+  // };
+
   const DMDiet = [
     ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"],
     [4, 3, 7, 2, 1, 1],
@@ -266,6 +295,7 @@ function PrintAnalysisResult() {
   let putativeDiagnosis = [];
 
   //----영양소 계산 시작----//
+  // 투석을 하는 경우
   if (catchPatientInfo.KidneyCondition == 99) {
     DietNutrient.Energy =
       catchPatientInfo.weight * catchPatientInfo.BMIactivity;
@@ -277,12 +307,17 @@ function PrintAnalysisResult() {
       DietNutrient.Phosphorous = catchPatientInfo.weight * 12;
     } else DietNutrient.Phosphorous = catchPatientInfo.weight * 15;
     putativeDiagnosis.push("혈액투석");
-  } else if (catchPatientInfo.KidneyCondition > 2) {
+  }
+  // 투석하지 않는 만성콩팥병인 경우 GFR_gr > 2
+  else if (catchPatientInfo.KidneyCondition > 2) {
     DietNutrient.Energy =
       catchPatientInfo.weight * catchPatientInfo.activityindex;
-    if (catchPatientInfo.diabetesCondition == "당뇨") {
-      DietNutrient.Protein = catchPatientInfo.weight * 0.8;
-    } else DietNutrient.Protein = catchPatientInfo.weight * 0.6;
+    DietNutrient.Protein = proteinIntake(
+      catchPatientInfo.diabetesCondition,
+      DietNutrient.weight,
+      0.8,
+      0.6
+    );
     if (catchPatientInfo.ElectricCondition.Potassium == "고칼륨혈증") {
       DietNutrient.Potassium = 2000;
     } else DietNutrient.Potassium = 3500;
@@ -290,7 +325,9 @@ function PrintAnalysisResult() {
       DietNutrient.Phosphorous = catchPatientInfo.weight * 12;
     } else DietNutrient.Phosphorous = catchPatientInfo.weight * 15;
     putativeDiagnosis.push("만성콩팥병");
-  } else if (catchPatientInfo.KidneyCondition <= 2) {
+  }
+  // 콩팥기능이 정상인 경우
+  else if (catchPatientInfo.KidneyCondition <= 2) {
     if (catchPatientInfo.PIBWCondition == "고도비만") {
       if (catchPatientInfo.LiverCondition != "정상") {
         DietNutrient.Targht6mWeight = catchPatientInfo.weight * 0.9;
@@ -309,16 +346,21 @@ function PrintAnalysisResult() {
           (catchPatientInfo.weight - catchPatientInfo.IdealBodyWeight) * 0.25;
     } else if (catchPatientInfo.PIBWCondition == "과체중") {
       DietNutrient.Targht6mWeight = catchPatientInfo.weight * 0.9;
-    } else DietNutrient.Targht6mWeight = catchPatientInfo.IdealBodyWeight;
+    } else {
+      DietNutrient.Targht6mWeight = catchPatientInfo.IdealBodyWeight;
+    }
     DietNutrient.LossEnergy =
       ((catchPatientInfo.weight - DietNutrient.Targht6mWeight) * 7000) / 180;
     DietNutrient.EastimateEnergy =
       catchPatientInfo.weight * catchPatientInfo.activityindex;
     DietNutrient.Energy =
       DietNutrient.EastimateEnergy - DietNutrient.LossEnergy;
-    if (catchPatientInfo.diabetesCondition == "당뇨") {
-      DietNutrient.Protein = catchPatientInfo.weight * 1.2;
-    } else DietNutrient.Protein = catchPatientInfo.weight * 1.0;
+    DietNutrient.Protein = proteinIntake(
+      catchPatientInfo.diabetesCondition,
+      DietNutrient.Targht6mWeight,
+      1.2,
+      1.0
+    );
     if (catchPatientInfo.ElectricCondition.Potassium == "고칼륨혈증") {
       DietNutrient.Potassium = 1500;
     } else DietNutrient.Potassium = 2000;
@@ -416,7 +458,6 @@ function PrintAnalysisResult() {
       }
     }
     if (catchPatientInfo.PIBWCondition != "정상") {
-      $("#PDGuide").append("<br>");
       $(".weightModify").show();
       $("#Targht6mWeight").show();
       $("#EastimateEnergy").show();
@@ -505,5 +546,15 @@ function PrintAnalysisResult() {
       $("#putativeDiagnosis").append(", ");
     }
     $("#putativeDiagnosis").append(putativeDiagnosis[i]);
+  }
+
+  localStorage.removeItem("patient-info");
+});
+
+function proteinIntake(dm, w, p1, p2) {
+  if (dm == "당뇨") {
+    return w * p1;
+  } else {
+    return w * p2;
   }
 }
