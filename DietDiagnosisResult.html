@@ -1,39 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>영양진단결과지 (Diet Diagnosis Result)</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com"> 
-    <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="DietDiagnosisResult.css"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="DietDiagnosisResult.css">
 </head>
+
 <body>
     <div class="container">
         <h1>영양진단결과지</h1>
         <h2 id="guideParagraph"> </h2>
-        <div class="main1">
-            <div>현재 신장(키): </div>
-            <div>현재 체중(몸무게): </div>
-            <div>표준체중: </div>
-            <div>정상체중범위: </div>
-            <div class="weightModify">
-                <div>6개월 뒤 목표 체중: </div>
-                <div>추정 현재 섭취 열량: </div>
-            </div>
-            <div id="PDGuide">  </div>
+        <div class="main">
+            <ul class="resultInfoBox">
+                <li class="item">
+                    현재 신장(키):
+                </li>
+                <li class="item" id="nowHeight"> </li>
+            </ul>
 
-        </div>
-        <div class="main2">
-            <div id="nowHeight"> </div>
-            <div id="nowWeight"> </div>
-            <div id="idealBodyWeight"> </div>
-            <div id="normalBodyWeightRange"> </div>
-            <div id="Targht6mWeight"></div>
-            <div id="EastimateEnergy"></div>
-            <div id="putativeDiagnosis"></div>
+            <ul class="resultInfoBox">
+                <li class="item center">
+                    현재 체중(몸무게):
+                </li>
+                <li class="item" id="nowWeight"> </li>
+            </ul>
+
+            <ul class="resultInfoBox">
+                <li class="item center">
+                    표준체중:
+
+                </li>
+                <li class="item" id="idealBodyWeight"> </li>
+            </ul>
+
+            <ul class="resultInfoBox">
+                <li class="item center">
+                    정상체중범위:
+
+                </li>
+                <li class="item" id="normalBodyWeightRange"> </li>
+            </ul>
+
+
+            <div class="weightModify">
+
+                <ul class="resultInfoBox">
+                    <li class="item center">
+                        6개월 뒤 목표 체중:
+
+                    </li>
+                    <li class="item" id="Targht6mWeight"></li>
+                </ul>
+
+                <ul class="resultInfoBox">
+                    <li class="item center">
+                        추정 현재 섭취 열량:
+
+                    </li>
+                    <li class="item" id="EastimateEnergy"></li>
+                </ul>
+            </div>
+
+            <ul class="resultInfoBox">
+                <li class="item center" id="PDGuide"> </li>
+
+                <li class="item" id="putativeDiagnosis"></li>
+            </ul>
+
         </div>
         <table id="recommendNutrientTable">
             <caption>영양소 섭취 권장량</caption>
@@ -60,7 +102,7 @@
                 <td>식품군</td>
             </tr>
             <tr id="recommendDiet">
-                <td >하루</td>
+                <td>하루</td>
             </tr>
             <tr id="recommendDiet2">
                 <td>하루</td>
@@ -75,19 +117,17 @@
                 <td>저녁</td>
             </tr>
         </table>
+        <footer>
+            &copy; Copyright 2022. Donghyun Kim All rights reserved.
+        </footer>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
     <script src="DietDiagnosisResult.js"></script>
-    <script>
-        const catchPatientInfo = JSON.parse(localStorage.getItem("patient-info"));
-        console.log(catchPatientInfo);
-        PrintAnalysisResult();
-        localStorage.removeItem("patient-info");
-    </script>
 </body>
+
 </html>
