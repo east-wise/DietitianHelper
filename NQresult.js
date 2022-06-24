@@ -80,10 +80,10 @@ document.addEventListener("DOMContentLoaded", function () {
         low: "현재 식습관과 식행동에 문제가 있습니다.<br> 아래의 내용을 읽어보시고 안내사항에 따르시길 바랍니다.",
       },
       balance: {
-        high: "현재 균형 잡힌 식사를 하고 있습니다.<br> 잡곡밥, 과일, 흰우유, 콩제품, 달걀 등 여러 종류의 식품을 골고루 섭취하고 있습니다.<br> 앞으로도 계속 골고루 섭취 할 수 있도록 노력해주세요.",
+        high: "현재 균형 잡힌 식사를 하고 있습니다.<br> 6가지 식품군 (곡류군, 어육류군, 채소군, 지방군, 우유군, 과일군)을 골고루 섭취하고 있습니다.<br> 앞으로도 계속 골고루 섭취 할 수 있도록 노력해주세요.",
         middle:
-          "균형 잡힌 식사를 위해 조금 더 노력해주세요.<br> 매일 잡곡밥, 과일, 흰우유, 콩제품, 달걀 등 여러 종류의 식품을 골고루 섭취할 수 있도록 노력하십시오.",
-        low: "현재 균형 잡힌 식사를 하고 있지 않습니다.<br> 매일 잡곡밥, 과일, 흰우유, 콩제품, 달걀 등 여러 종류의 식품을 골고루 섭취하고 편식하지 마십시오.",
+          "균형 잡힌 식사를 위해 조금 더 노력해주세요.<br> 6가지 식품군 (곡류군, 어육류군, 채소군, 지방군, 우유군, 과일군)을 골고루 섭취할 수 있도록 노력하십시오.",
+        low: "현재 균형 잡힌 식사를 하고 있지 않습니다.<br> 6가지 식품군 (곡류군, 어육류군, 채소군, 지방군, 우유군, 과일군)을 골고루 섭취하고 편식하지 마십시오.",
       },
       moderation: {
         high: "현재 에너지를 적절히 섭취하고 있습니다.<br> 과자, 패스트푸드, 탄산음료, 튀김과 같은 음식들은 열량이 높습니다.<br> 이러한 식품들을 주의하며 앞으로도 적절한 열량을 섭취를 할 수 있도록 노력해주세요.",
@@ -101,18 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
   };
   const clientInfo = JSON.parse(localStorage.getItem("client-info"));
   localStorage.removeItem("client-info");
-//   let clientInfo = {
-//       age: 50,
-//       name: '김필립',
-//       sex: 'male',
-//       height: 170,
-//       weight: 80,
-//       total: 60,
-//       balance: 20,
-//       moderation: 70.3,
-//       practice: 20,
-//       additional: [['귀하는 가당음료(탄산음료, 믹스커피, 유자차 등)를 얼마나 자주 마십니까?', '일주일에 1~3번'], ['귀하는 30분 이상 숨이 찰 정도의 운동을 얼마나 자주 하십니까?', '일주일에 5~6번']]
-//   };
   console.log(clientInfo);
 
   $("#name").append(clientInfo.name);
@@ -142,13 +130,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (clientInfo.age >= 20 && clientInfo.age < 65) {
     drowChart(NQresult.adult, clientInfo);
-    dietGrading(NQresult.adult, clientInfo,NQresult.comment);
+    dietGrading(NQresult.adult, clientInfo, NQresult.comment);
   } else if (clientInfo.age >= 65) {
     drowChart(NQresult.elder, clientInfo);
-    dietGrading(NQresult.elder, clientInfo,NQresult.comment);
+    dietGrading(NQresult.elder, clientInfo, NQresult.comment);
   } else if (clientInfo.age < 20) {
     drowChart(NQresult.child, clientInfo);
-    dietGrading(NQresult.child, clientInfo,NQresult.comment);
+    dietGrading(NQresult.child, clientInfo, NQresult.comment);
   }
 });
 function drowChart(ageArea, clientInfo) {
@@ -243,12 +231,7 @@ function drowChart(ageArea, clientInfo) {
 }
 function dietGrading(ageArea, clientInfo, comment) {
   printGrade(clientInfo.total, ageArea.total, comment.total, "total");
-  printGrade(
-    clientInfo.balance,
-    ageArea.balance,
-    comment.balance,
-    "balance"
-  );
+  printGrade(clientInfo.balance, ageArea.balance, comment.balance, "balance");
   printGrade(
     clientInfo.moderation,
     ageArea.moderation,
