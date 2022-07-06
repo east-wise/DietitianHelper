@@ -984,7 +984,7 @@
                 } else if (qlist[i][3][0] == "실천") {
                     practice = practice + qlist[i][3][1] * answer[i];
                 } else if (qlist[i][3][0] == "상담용") {
-                    dummy.push([qlist[i][0], qlist[i][1][answer[i]]-1]);
+                    dummy.push([qlist[i][0], qlist[i][1][answer[i]-1]]);
                 }
             }
             total =
