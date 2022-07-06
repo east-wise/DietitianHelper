@@ -53,7 +53,11 @@ document.addEventListener("DOMContentLoaded", function () {
   $("input[type=radio][name=isDialysis]").change(function () {
     let radioSeletion = $("input[name=isDialysis]:checked").val();
     let glomerular = String($("#glomerular").val());
-    if (radioSeletion == "y" || (glomerular <= 60 && glomerular > 0)) {
+    if (
+      radioSeletion == "y" ||
+      radioSeletion == "n" ||
+      (glomerular <= 60 && glomerular > 0)
+    ) {
       $(".electroBattery").show();
     } else {
       $(".electroBattery").hide();
