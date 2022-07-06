@@ -136,13 +136,12 @@ function Examination() {
   $("#ModerateActivity").empty();
   $("#SevereActivity").empty();
   PCondition.PIBWCondition = PIBWObesity(
-    (Patient.weight / IdealBodyWeight) * 100, Patient.age
+    (Patient.weight / IdealBodyWeight) * 100,
+    Patient.age
   );
   Patient.IdealBodyWeight = IdealBodyWeight;
-  let dummy = [];
-  dummy = BMIObesity(Patient.weight, Patient.height);
-  PCondition.BMICondition = dummy[1];
-  PCondition.BMIactivity = dummy[0];
+  [PCondition.BMI, PCondition.BMICondition, PCondition.BMIactivity] =
+    BMIObesity(Patient.weight, Patient.height);
   PCondition.KidneyCondition = CKDgrade(Patient.glomerular);
   if (Patient.isDialysis == "y") PCondition.KidneyCondition = 99;
   PCondition.diabetesCondition = diabetesJudgement(
