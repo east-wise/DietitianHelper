@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   $(".liverFunctionTest").hide();
   $(".lipidBattery").hide();
   $(".uricAcid").hide();
+  $(".eGFR").hide();
 
   $("input[type=radio][name=diabetes]").change(function () {
     let radioSeletion = $("input[name=diabetes]:checked").val();
@@ -52,15 +53,13 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   $("input[type=radio][name=isDialysis]").change(function () {
     let radioSeletion = $("input[name=isDialysis]:checked").val();
-    let glomerular = String($("#glomerular").val());
-    if (
-      radioSeletion == "y" ||
-      radioSeletion == "n" ||
-      (glomerular <= 60 && glomerular > 0)
-    ) {
+    if (radioSeletion == "y" || radioSeletion == "n") {
       $(".electroBattery").show();
+      $(".eGFR").show();
     } else {
+      document.getElementById("glomerular").value = "";
       $(".electroBattery").hide();
+      $(".eGFR").hide();
     }
   });
 });
