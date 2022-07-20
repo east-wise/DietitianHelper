@@ -624,6 +624,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   } else if (catchPatientInfo.KidneyCondition > 2) {
     const hashCKDD = goalEnergy / 100 - 13;
+    if (goalEnergy<1300) hashCKDD=0;
     recommendExUnit[0] = proteinControledDiet[0];
     recommendExUnit[1] = proteinControledDiet[hashCKDProteinIndex][hashCKDD];
     for (let i = 0; i < recommendExUnit[0].length; i++) {
