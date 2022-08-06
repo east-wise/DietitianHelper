@@ -6,24 +6,13 @@ li {
   margin-bottom: 0px;
 }
 /* section styles */
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-}
+
+
 .resultInfoBox {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
-.main{
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 5px 20px;
-  text-align: left;
-}
+
 #guideParagraph {
   text-align: center;
   flex-direction: column;
@@ -40,9 +29,150 @@ table caption {
   caption-side: top;
   text-align: center;
 }
-
-
 #recommendDiet td,
 #recommendDiet2 td {
   font-size: larger;
+}
+/* --------------------------------------------------------- */
+
+
+.center {
+  display: flex;
+  align-items: center;
+  padding-left: 0px;
+}
+.rowMeal{
+  padding: 10px;
+}
+.itembox{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-bottom: 5px;
+  margin-right: 80px;
+  margin-left: 80px;
+}
+
+input[type=radio] {
+  width: 18px;
+  height: 18px;
+  position: relative;
+  top: 3px;
+}
+
+input[type=radio]:checked {
+  width: 18px;
+  height: 18px;
+  position: relative;
+  top: 3px;
+}
+.mealSelect{
+  padding: 20px;
+}
+.DietGeneratorNarration{
+  padding: 20px;
+  text-align: center;
+}
+.text_under {
+  position: relative;
+  font-weight: bolder;
+  font-size: 1.5rem;
+}
+
+.text_under::after {
+  content: "";
+  width: 100%;
+  height: 10px;
+  background: #99fee7;
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  bottom: 1px;
+  z-index: -1;
+}
+#foodcycle{
+  margin-top: auto;
+  height: 470px;
+  width: 638px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.page2 footer{
+  margin-top: 0px;
+}
+/* --------------------------------------------------------- */
+
+.foodPhoto {
+  width: 20px;
+  height: 20px;
+}
+
+/* ----------------------------------------------------- */
+
+.main{
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px 20px;
+  text-align: left;
+}
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #ddd;
+}
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.paper {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 20mm;
+  /* set contents area */
+  margin: 10mm auto;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+  font-family: 'Poor Story', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 0;
+  border: 1px black solid;
+  height: 257mm;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+
+  html,
+  body {
+      width: 210mm;
+      height: 297mm;
+      background: #fff;
+  }
+
+  .paper {
+      margin: 0;
+      border: initial;
+      border-radius: initial;
+      width: initial;
+      min-height: initial;
+      box-shadow: initial;
+      background: initial;
+      page-break-after: always;
+  }
 }
