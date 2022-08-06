@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const catchPatientInfo = JSON.parse(localStorage.getItem("patient-info"));
-  console.log(catchPatientInfo);
-
+  
   const DMDiet = [
     ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"],
     [4, 3, 7, 2, 1, 1],
@@ -429,6 +428,566 @@ document.addEventListener("DOMContentLoaded", function () {
       [17.0, 14.0, 6.0, 6.0, 2.0, 2.0, 0.0],
     ],
   ];
+
+  // exampleMenu(DMLP)
+  //   [한식=0,양식=1,일품=2,간식=3]
+  //   [아침=0,점심=1,저녁=2]
+  //   [단백질 단위수 0=>0, (0.5~1.5)=>1, (2~)=>2]
+  //   [메뉴 5,6개 탄수화물=0,단백질=1,2 ,
+  //     {음식명=menu,사진위치=photo,단위수=exchange,분량=weight,눈대중분량=serve}]
+
+  const DMLP = [
+    [
+      [
+        [
+          {
+            menu: "흰밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+          },
+          { menu: "도토리묵", photo: null, exchange: 1, weight: 200 },
+          {
+            menu: "가지나물",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            serve: "1/2컵",
+          },
+          { menu: "상추", photo: null, exchange: 1, weight: 70 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          { menu: "콩나물국", photo: null },
+        ],
+        [
+          {
+            menu: "흰밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+          },
+          {
+            menu: "계란후라이",
+            photo: "foodpicture/protein/Ex1_egg_fry_60g.png",
+            exchange: 1,
+            weight: 50,
+            serve: "1개",
+          },
+          { menu: "깻잎튀김", photo: null, exchange: 1, weight: 20 },
+          { menu: "상추", photo: null, exchange: 1, weight: 70 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          { menu: "콩나물국", photo: null },
+        ],
+        [
+          {
+            menu: "흰밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+          },
+          {
+            menu: "돈육찜",
+            photo: "foodpicture/rawpork40g.png",
+            exchange: 1,
+            weight: 40,
+            serve: "1덩이",
+          },
+          {
+            menu: "계란후라이",
+            photo: "foodpicture/protein/Ex1_egg_fry_60g.png",
+            exchange: 1,
+            weight: 50,
+            serve: "1개",
+          },
+          { menu: "상추", photo: null, exchange: 1, weight: 70 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          { menu: "콩나물국", photo: null },
+        ],
+      ],
+      [
+        [
+          {
+            menu: "흰밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+          },
+          { menu: "고사리볶음", photo: null, exchange: 1, weight: 70 },
+          { menu: "도라지생채", photo: null, exchange: 1, weight: 50 },
+          { menu: "얼갈이나물", photo: null, exchange: 1, weight: 63 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          { menu: "무국", photo: null },
+        ],
+        [
+          {
+            menu: "흰밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+          },
+          {
+            menu: "닭찜",
+            photo: "foodpicture/protein/chickinbreast.png",
+            exchange: 1,
+            weight: 40,
+            serve: "3/4덩이",
+          },
+          { menu: "도라지생채", photo: null, exchange: 1, weight: 50 },
+          { menu: "얼갈이나물", photo: null, exchange: 1, weight: 63 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          { menu: "무국", photo: null },
+        ],
+        [
+          {
+            menu: "흰밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+          },
+          {
+            menu: "닭찜",
+            photo: "foodpicture/protein/chickinbreast.png",
+            exchange: 1,
+            weight: 40,
+            serve: "3/4덩이",
+          },
+          {
+            menu: "갈치구이",
+            photo: "foodpicture/protein/Ex1_cutlassfish_grill_40g.png",
+            exchange: 1,
+            weight: 50,
+            serve: "1토막",
+          },
+          { menu: "얼갈이나물", photo: null, exchange: 1, weight: 63 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          { menu: "무국", photo: null },
+        ],
+      ],
+      [
+        [
+          {
+            menu: "흰밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+          },
+          { menu: "궁중떡볶이", photo: null, exchange: 1, weight: 50 },
+          { menu: "더덕구이", photo: null, exchange: 1, weight: 42 },
+          { menu: "양배추찜", photo: null, exchange: 1, weight: 50 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          { menu: "미역국", photo: null },
+        ],
+        [
+          {
+            menu: "흰밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+          },
+          {
+            menu: "소불고기",
+            photo: "foodpicture/protein/Ex1_beefBulgogi_40g.png",
+            exchange: 1,
+            weight: 40,
+            serve: "1덩이",
+          },
+          { menu: "팽이버섯전", photo: null, exchange: 1, weight: 40 },
+          { menu: "양배추찜", photo: null, exchange: 1, weight: 50 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          { menu: "미역국", photo: null },
+        ],
+        [
+          {
+            menu: "흰밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+          },
+          {
+            menu: "소불고기",
+            photo: "foodpicture/protein/Ex1_beefBulgogi_40g.png",
+            exchange: 1,
+            weight: 40,
+            serve: "1덩이",
+          },
+          {
+            menu: "두부전",
+            photo: "foodpicture/protein/Ex1_tufu_fry_80g.png",
+            exchange: 1,
+            weight: 80,
+            serve: "1/6모",
+          },
+          { menu: "양배추찜", photo: null, exchange: 1, weight: 50 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          { menu: "미역국", photo: null },
+        ],
+      ],
+    ],
+    [
+      [
+        [
+          {
+            menu: "식빵",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 35,
+            serve: "1장",
+          },
+          { menu: "토마토", photo: null, exchange: 1, weight: 45 },
+          { menu: "상추", photo: null, exchange: 1, weight: 70 },
+          { menu: "양파", photo: null, exchange: 1, weight: 70 },
+          { menu: "올리브소스", photo: null },
+        ],
+        [
+          {
+            menu: "토스트",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 35,
+            serve: "1장",
+          },
+          { menu: "오믈렛", photo: null, exchange: 1, weight: 50 },
+          { menu: "토마토", photo: null, exchange: 1, weight: 45 },
+          { menu: "상추", photo: null, exchange: 1, weight: 70 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+        ],
+        [
+          {
+            menu: "토스트",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 35,
+            serve: "1장",
+          },
+          { menu: "오믈렛", photo: null, exchange: 1, weight: 50 },
+          { menu: "저염햄", photo: null, exchange: 1, weight: 40 },
+          { menu: "상추", photo: null, exchange: 1, weight: 70 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+        ],
+      ],
+      [
+        [
+          {
+            menu: "베이글",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 35,
+            serve: "1/2개",
+          },
+          { menu: "바질페스토", photo: null, exchange: 1, weight: 29 },
+          { menu: "야채샐러드", photo: null, exchange: 1, weight: 56 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          { menu: "커피(차)", photo: null },
+        ],
+        [
+          {
+            menu: "베이글",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 35,
+            serve: "1/2개",
+          },
+          { menu: "브리치즈", photo: null, exchange: 1, weight: 30 },
+          { menu: "야채샐러드", photo: null, exchange: 1, weight: 56 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          { menu: "커피(차)", photo: null },
+        ],
+        [
+          {
+            menu: "베이글",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 35,
+            serve: "1/2개",
+          },
+          { menu: "브리치즈", photo: null, exchange: 1, weight: 30 },
+          { menu: "연어샐러드", photo: null, exchange: 1, weight: 50 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          { menu: "커피(차)", photo: null },
+        ],
+      ],
+      [
+        [
+          {
+            menu: "모닝빵",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 35,
+            serve: "1개",
+          },
+          { menu: "메쉬드포테이토", photo: null, exchange: 1, weight: 24 },
+          { menu: "코울슬로", photo: null, exchange: 1, weight: 40 },
+          { menu: "아스파라거스", photo: null, exchange: 1, weight: 40 },
+          { menu: "새송이버섯구이", photo: null, exchange: 1, weight: 33 },
+          { menu: "야채스프", photo: null },
+        ],
+        [
+          {
+            menu: "모닝빵",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 35,
+            serve: "1개",
+          },
+          { menu: "풀드포크", photo: null, exchange: 1, weight: 40 },
+          { menu: "코울슬로", photo: null, exchange: 1, weight: 40 },
+          { menu: "아스파라거스", photo: null, exchange: 1, weight: 40 },
+          { menu: "새송이버섯구이", photo: null, exchange: 1, weight: 33 },
+          { menu: "야채스프", photo: null },
+        ],
+        [
+          {
+            menu: "모닝빵",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 35,
+            serve: "1개",
+          },
+          { menu: "스테이크", photo: null, exchange: 1, weight: 80 },
+          { menu: "코울슬로", photo: null, exchange: 1, weight: 40 },
+          { menu: "아스파라거스", photo: null, exchange: 1, weight: 40 },
+          { menu: "새송이버섯구이", photo: null, exchange: 1, weight: 33 },
+          { menu: "야채스프", photo: null },
+        ],
+      ],
+    ],
+    [
+      [
+        [
+          {
+            menu: "스파게티",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 30,
+            serve: "1인분",
+          },
+          {
+            menu: "가지",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            serve: "1/2컵",
+          },
+          { menu: "파프리카", photo: null, exchange: 1, weight: 45 },
+          { menu: "마늘", photo: null, exchange: 1, weight: 19 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          { menu: "알리오올리오 소스", photo: null },
+        ],
+        [
+          {
+            menu: "스파게티",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 30,
+            serve: "1인분",
+          },
+          {
+            menu: "새우",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            serve: "중하3마리, 보리새우10마리",
+          },
+          { menu: "파프리카", photo: null, exchange: 1, weight: 45 },
+          { menu: "마늘", photo: null, exchange: 1, weight: 19 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          { menu: "알리오올리오 소스", photo: null },
+        ],
+        [
+          {
+            menu: "스파게티",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 30,
+            serve: "1인분",
+          },
+          {
+            menu: "관자",
+            photo: "foodpicture/milk200ml.png",
+            exchange: 1,
+            weight: 30,
+            serve: "1개",
+          },
+          {
+            menu: "새우",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            serve: "중하3마리, 보리새우10마리",
+          },
+          { menu: "마늘", photo: null, exchange: 1, weight: 19 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          { menu: "알리오올리오 소스", photo: null },
+        ],
+      ],
+      [
+        [
+          {
+            menu: "밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+          },
+          {
+            menu: "가지",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            serve: "1/2컵",
+          },
+          { menu: "애호박", photo: null, exchange: 1, weight: 45 },
+          { menu: "양파", photo: null, exchange: 1, weight: 70 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          { menu: "양송이버섯", photo: null },
+        ],
+        [
+          {
+            menu: "밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+          },
+          {
+            menu: "고기볶음",
+            photo: "foodpicture/protein/Ex1_beefBulgogi_40g.png",
+            exchange: 1,
+            weight: 40,
+            serve: "1덩이",
+          },
+          { menu: "애호박", photo: null, exchange: 1, weight: 45 },
+          { menu: "양파", photo: null, exchange: 1, weight: 70 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          { menu: "양송이버섯", photo: null },
+        ],
+        [
+          {
+            menu: "밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+          },
+          {
+            menu: "고기볶음",
+            photo: "foodpicture/protein/Ex1_beefBulgogi_40g.png",
+            exchange: 1,
+            weight: 40,
+            serve: "1덩이",
+          },
+          {
+            menu: "계란후라이",
+            photo: "foodpicture/protein/Ex1_egg_fry_60g.png",
+            exchange: 1,
+            weight: 50,
+            serve: "1개",
+          },
+          { menu: "애호박", photo: null, exchange: 1, weight: 45 },
+          { menu: "양파", photo: null, exchange: 1, weight: 70 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+        ],
+      ],
+      [
+        [
+          {
+            menu: "떡",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 50,
+            serve: "10개",
+          },
+          {
+            menu: "표고버섯",
+            photo: null,
+            exchange: 1,
+            weight: 30,
+            serve: "2개",
+          },
+          { menu: "김", photo: null, exchange: 1, weight: 5, serve: "2장" },
+          { menu: "대파", photo: null, exchange: 1, weight: 55 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+        ],
+        [
+          {
+            menu: "떡",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 50,
+            serve: "10개",
+          },
+          {
+            menu: "고기고명",
+            photo: "foodpicture/protein/Ex1_beefBulgogi_40g.png",
+            exchange: 1,
+            weight: 40,
+            serve: "1덩이",
+          },
+          { menu: "김", photo: null, exchange: 1, weight: 5, serve: "2장" },
+          { menu: "대파", photo: null, exchange: 1, weight: 55 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+        ],
+        [
+          {
+            menu: "떡",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 50,
+            serve: "10개",
+          },
+          {
+            menu: "고기고명",
+            photo: "foodpicture/protein/Ex1_beefBulgogi_40g.png",
+            exchange: 1,
+            weight: 40,
+            serve: "1덩이",
+          },
+          {
+            menu: "계란지단",
+            photo: "foodpicture/protein/Ex1_egg_fry_60g.png",
+            exchange: 1,
+            weight: 50,
+            serve: "1개",
+          },
+          { menu: "김", photo: null, exchange: 1, weight: 5, serve: "2장" },
+          { menu: "대파", photo: null, exchange: 1, weight: 55 },
+          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+        ],
+      ],
+    ],
+    [
+      {
+        menu: "우유",
+        photo: "foodpicture/milk200ml.png",
+        exchange: 1,
+        weight: 200,
+        serve: "1잔",
+      },
+      {
+        menu: "사과",
+        photo: "foodpicture/fruit/apple100g.png",
+        exchange: 1,
+        weight: 100,
+        serve: "1/2개",
+      },
+      {
+        menu: "배",
+        photo: "foodpicture/fruit/pear100g.png",
+        exchange: 1,
+        weight: 100,
+        serve: "1/4개",
+      },
+    ],
+  ];
+
   let DietNutrient = {
     Energy: 0,
     Protein: 0,
@@ -521,6 +1080,7 @@ document.addEventListener("DOMContentLoaded", function () {
   $("#Targht6mWeight").hide();
   $("#EastimateEnergy").hide();
   $("#guideParagraph").append(catchPatientInfo.name + "님의 분석결과");
+  $("#guideParagraph3").append(catchPatientInfo.name + "님 맞춤 예시 식단");
   $("#nowHeight").append(catchPatientInfo.height + "cm");
   $("#nowWeight").append(catchPatientInfo.weight + "kg");
   $("#idealBodyWeight").append(
@@ -538,7 +1098,7 @@ document.addEventListener("DOMContentLoaded", function () {
     $("#normalBodyWeightRange").append(catchPatientInfo.PIBWCondition);
 
   //----권장 영양소 섭취량 출력----//
-  console.log(DietNutrient.Protein);
+  // console.log(DietNutrient.Protein);
   const hashCKDProteinIndex = Math.round(DietNutrient.Protein / 10) - 2;
   const goalEnergy = Math.round(DietNutrient.Energy / 100) * 100;
   const goalProtein = Math.round(DietNutrient.Protein / 10) * 10;
@@ -556,50 +1116,18 @@ document.addEventListener("DOMContentLoaded", function () {
       const hashDMdiet = goalEnergy / 100 - 11;
       recommendExUnit[0] = DMDiet[0];
       recommendExUnit[1] = DMDiet[hashDMdiet];
-      for (let i = 0; i < recommendExUnit[0].length; i++) {
-        let row_2_data = document.createElement("td");
-        let row_3_data = document.createElement("td");
-        let row_4_data = document.createElement("td");
-        let row_5_data = document.createElement("td");
-        let row_6_data = document.createElement("td");
-        row_2_data.innerHTML = recommendExUnit[0][i];
-        row_3_data.innerHTML = recommendExUnit[1][i];
-        let BLD = divide3part(recommendExUnit[1][i]);
-        row_4_data.innerHTML = BLD[1];
-        row_5_data.innerHTML = BLD[0];
-        row_6_data.innerHTML = BLD[2];
-        $("#recommendDietName").append(row_2_data);
-        $("#recommendDiet").append(row_3_data);
-        $("#rDB").append(row_4_data);
-        $("#rDL").append(row_5_data);
-        $("#rDD").append(row_6_data);
-      }
+      recommendExUnit = outputExUnit(recommendExUnit);
     } else if (catchPatientInfo.age < 20) {
       const hashGrowD = goalEnergy / 100 - 9;
       $("#recommendDiet2").show();
       recommendExUnit[0] = growthDietA[0];
       recommendExUnit[1] = growthDietA[hashGrowD];
       recommendExUnit[2] = growthDietB[hashGrowD];
+      recommendExUnit = outputExUnit(recommendExUnit);
       for (let i = 0; i < recommendExUnit[0].length; i++) {
-        let row_2_data = document.createElement("td");
-        let row_3_data = document.createElement("td");
-        let row_4_data = document.createElement("td");
-        let row_5_data = document.createElement("td");
-        let row_6_data = document.createElement("td");
         let row_7_data = document.createElement("td");
-        row_2_data.innerHTML = recommendExUnit[0][i];
-        row_3_data.innerHTML = recommendExUnit[1][i];
         row_7_data.innerHTML = recommendExUnit[2][i];
-        let BLD = divide3part(recommendExUnit[1][i]);
-        row_4_data.innerHTML = BLD[1];
-        row_5_data.innerHTML = BLD[0];
-        row_6_data.innerHTML = BLD[2];
-        $("#recommendDietName").append(row_2_data);
-        $("#recommendDiet").append(row_3_data);
         $("#recommendDiet2").append(row_7_data);
-        $("#rDB").append(row_4_data);
-        $("#rDL").append(row_5_data);
-        $("#rDD").append(row_6_data);
       }
     }
     if (catchPatientInfo.PIBWCondition != "정상") {
@@ -624,45 +1152,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   } else if (catchPatientInfo.KidneyCondition > 2) {
     const hashCKDD = goalEnergy / 100 - 13;
-    if (goalEnergy<1300) hashCKDD=0;
+    if (goalEnergy < 1300) hashCKDD = 0;
     recommendExUnit[0] = proteinControledDiet[0];
     recommendExUnit[1] = proteinControledDiet[hashCKDProteinIndex][hashCKDD];
-    for (let i = 0; i < recommendExUnit[0].length; i++) {
-      let row_2_data = document.createElement("td");
-      let row_3_data = document.createElement("td");
-      let row_4_data = document.createElement("td");
-      let row_5_data = document.createElement("td");
-      let row_6_data = document.createElement("td");
-      row_2_data.innerHTML = recommendExUnit[0][i];
-      row_3_data.innerHTML = recommendExUnit[1][i];
-      let BLD = divide3part(recommendExUnit[1][i]);
-      row_4_data.innerHTML = BLD[1];
-      row_5_data.innerHTML = BLD[0];
-      row_6_data.innerHTML = BLD[2];
-      $("#recommendDietName").append(row_2_data);
-      $("#recommendDiet").append(row_3_data);
-      $("#rDB").append(row_4_data);
-      $("#rDL").append(row_5_data);
-      $("#rDD").append(row_6_data);
-    }
+    recommendExUnit = outputExUnit(recommendExUnit);
   }
   console.log(recommendExUnit);
-  function divide3part(dummy) {
-    let BLD = [0, 0, 0];
-    if (dummy % 1.5 === 0) {
-      BLD[0] = dummy / 3;
-      BLD[1] = BLD[0];
-      BLD[2] = BLD[0];
-    } else {
-      BLD[0] = Math.round(dummy / 3);
-      BLD[1] = dummy - 2 * BLD[0];
-      BLD[2] = BLD[0];
-      BLD.sort(function (a, b) {
-        return b - a;
-      });
-    }
-    return BLD;
-  }
 
   //----추정진단명 찾아보기----//
   $("#PDGuide").append(catchPatientInfo.name + "님의 추정 진단:");
@@ -687,15 +1182,219 @@ document.addEventListener("DOMContentLoaded", function () {
   if (putativeDiagnosis.length == 0) {
     putativeDiagnosis = ["정상"];
   }
+  let DMRFswitch = false;
   for (let i = 0; i < putativeDiagnosis.length; i++) {
     if (i > 0) {
       $("#putativeDiagnosis").append(", ");
     }
     $("#putativeDiagnosis").append(putativeDiagnosis[i]);
+    if (
+      putativeDiagnosis[i] == "혈액투석" ||
+      putativeDiagnosis[i] == "만성콩팥병"
+    )
+      DMRFswitch = true;
   }
+
+  document.getElementById("DietGeneratorButton").addEventListener(
+    "click",
+    function () {
+      DietGenerator(DMLP, recommendExUnit, DMRFswitch);
+    },
+    false
+  );
 
   localStorage.removeItem("patient-info");
 });
+
+function DietGenerator(DMLP, REU, DMRFswitch) {
+  for (let i = 1; i < 5; i++) {
+    $("#dietEx" + i + "Name").empty();
+    $("#dietEx" + i + "Weight").empty();
+    $("#dietEx" + i + "Picture").empty();
+    addRowtd("#dietEx" + i + "Name", "메뉴");
+    addRowtd("#dietEx" + i + "Weight", "중량(g)");
+    addRowtd("#dietEx" + i + "Picture", " ");
+  }
+  let mealSelection = [];
+  mealSelection.push($("input[name=breakfast]:checked").val());
+  mealSelection.push($("input[name=lunch]:checked").val());
+  mealSelection.push($("input[name=dinner]:checked").val());
+  if ($("input[name=breakfast]:checked").val() == null) {
+    document.getElementById("breakfastSelection").className += " text_under";
+    let location = document.querySelector("#breakfastSelection").offsetTop;
+    window.scrollTo({
+      top: location - window.innerHeight / 2,
+      behavior: "smooth",
+    });
+  } else if ($("input[name=lunch]:checked").val() == null) {
+    document.getElementById("lunchSelection").className += " text_under";
+    let location = document.querySelector("#lunchSelection").offsetTop;
+    window.scrollTo({
+      top: location - window.innerHeight / 2,
+      behavior: "smooth",
+    });
+  } else if ($("input[name=dinner]:checked").val() == null) {
+    document.getElementById("dinnerSelection").className += " text_under";
+    let location = document.querySelector("#dinnerSelection").offsetTop;
+    window.scrollTo({
+      top: location - window.innerHeight / 2,
+      behavior: "smooth",
+    });
+  } else {
+    document.getElementById("breakfastSelection").className += "center";
+    document.getElementById("lunchSelection").className += "center";
+    document.getElementById("dinnerSelection").className += "center";
+    window.scrollTo({
+      top: document.querySelector("body").scrollHeight,
+      behavior: "smooth",
+    });
+
+    // exampleMenu(DMLP)
+    //   [한식=0,양식=1,일품=2,간식=3]
+    //   [아침=0,점심=1,저녁=2]
+    //   [단백질 단위수 0=>0, (0.5~1.5)=>1, (2~)=>2]
+    //   [메뉴 5,6개 탄수화물=0,단백질=1,2 ,
+    //     {음식명=menu,사진위치=photo,단위수=exchange,분량=weight,눈대중분량=serve}]
+    let exampleDiet = [];
+    // console.log(exampleDiet);
+    if (DMRFswitch == true) {
+      let hashprotein = 0;
+      for (let i = 0; i < 3; i++) {
+        hashprotein = hashCKDpExch(REU[i + 2]);
+        exampleDiet.push(makecopy(DMLP[mealSelection[i]][i][hashprotein]));
+        // console.log(DMLP[mealSelection[i]][i][hashprotein]);
+        // console.log(exampleDiet);
+        exampleDiet[i][0].exchange = REU[i + 2][0];
+        exampleDiet[i][0].weight =
+          exampleDiet[i][0].weight * exampleDiet[i][0].exchange;
+        if (hashprotein == 1) {
+          exampleDiet[i][1].exchange = REU[i + 2][1];
+          exampleDiet[i][1].weight =
+            exampleDiet[i][1].weight * exampleDiet[i][1].exchange;
+        } else if (hashprotein == 2) {
+          exampleDiet[i][1].exchange = divide2part(REU[i + 2][1]);
+          exampleDiet[i][1].weight =
+            exampleDiet[i][1].weight * exampleDiet[i][1].exchange;
+          exampleDiet[i][2].exchange =
+            REU[i + 2][1] - exampleDiet[i][1].exchange;
+          exampleDiet[i][2].weight =
+            exampleDiet[i][2].weight * exampleDiet[i][2].exchange;
+        } else if (hashprotein == 0) {
+        }
+      }
+      let sneck = [];
+      let DMLPSnectCopy = makecopy(DMLP[3]);
+      if (REU[1][4] > 0) {
+        DMLPSnectCopy[0].exchange = REU[1][4];
+        DMLPSnectCopy[0].weight =
+          DMLPSnectCopy[0].weight * DMLPSnectCopy[0].exchange;
+        sneck.push(DMLPSnectCopy[0]);
+      }
+      if (REU[1][5] > 0) {
+        // console.log(DMLPSnectCopy);
+        DMLPSnectCopy[1].exchange = divide2part(REU[1][5]);
+        DMLPSnectCopy[1].weight =
+          DMLPSnectCopy[1].weight * DMLPSnectCopy[1].exchange;
+        sneck.push(DMLPSnectCopy[1]);
+        if (REU[1][5] > 1) {
+          DMLPSnectCopy[2].exchange = REU[1][5] - DMLPSnectCopy[2].exchange;
+          DMLPSnectCopy[2].weight =
+            DMLPSnectCopy[2].weight * DMLPSnectCopy[2].exchange;
+          sneck.push(DMLPSnectCopy[2]);
+        }
+      }
+      exampleDiet.push(sneck);
+    }
+    // console.log(exampleDiet);
+    for (let i = 0; i < 4; i++) {
+      printPhoto(exampleDiet[i], i + 1);
+    }
+  }
+}
+
+function makecopy(originalContent) {
+  let cloneBag = {
+    a: originalContent,
+  };
+  const deepClone = JSON.parse(JSON.stringify(cloneBag));
+  return deepClone.a;
+}
+
+function divide2part(a) {
+  let b = 0;
+  let c = 0;
+  b = Math.round(a / 2);
+  c = a - b;
+  if (b > c) c = b;
+  return c;
+}
+
+function hashCKDpExch(reu) {
+  let a = 0;
+  if (reu[1] == 0) a = 0;
+  else if (reu[1] > 0 && reu[1] < 2) a = 1;
+  else if (reu[1] >= 2) a = 2;
+  return a;
+}
+
+function printPhoto(ed, meal) {
+  for (let i = 0; i < ed.length; i++) {
+    addRowtd("#dietEx" + meal + "Name", ed[i].menu);
+    if (ed[i].weight == undefined) addRowtd("#dietEx" + meal + "Weight", " ");
+    else addRowtd("#dietEx" + meal + "Weight", ed[i].weight);
+    let foodimg = "";
+    if (ed[i].photo != null) {
+      foodimg = document.createElement("IMG");
+      foodimg.setAttribute("src", ed[i].photo);
+      foodimg.setAttribute("class", "foodPhoto");
+      foodimg.setAttribute("alt", ed[i].menu);
+      let rowdata = document.createElement("td");
+      rowdata.append(foodimg);
+      $("#dietEx" + meal + "Picture").append(rowdata);
+    } else addRowtd("#dietEx" + meal + "Picture", foodimg);
+  }
+}
+
+function outputExUnit(reu) {
+  let breakfestExUnit = [];
+  let lunchExUnit = [];
+  let dinnerExUnit = [];
+  for (let i = 0; i < reu[0].length; i++) {
+    let BLD = divide3part(reu[1][i]);
+    addRowtd("#recommendDietName", reu[0][i]);
+    addRowtd("#recommendDiet", reu[1][i]);
+    breakfestExUnit.push(BLD[1]);
+    lunchExUnit.push(BLD[0]);
+    dinnerExUnit.push(BLD[2]);
+    addRowtd("#rDB", breakfestExUnit[i]);
+    addRowtd("#rDL", lunchExUnit[i]);
+    addRowtd("#rDD", dinnerExUnit[i]);
+  }
+  return [...reu, breakfestExUnit, lunchExUnit, dinnerExUnit];
+}
+
+function divide3part(num) {
+  let BLD = [0, 0, 0];
+  if (num % 1.5 === 0) {
+    BLD[0] = num / 3;
+    BLD[1] = BLD[0];
+    BLD[2] = BLD[0];
+  } else {
+    BLD[0] = Math.round(num / 3);
+    BLD[1] = num - 2 * BLD[0];
+    BLD[2] = BLD[0];
+    BLD.sort(function (a, b) {
+      return b - a;
+    });
+  }
+  return BLD;
+}
+
+function addRowtd(location, content) {
+  let rowdata = document.createElement("td");
+  rowdata.innerHTML = content;
+  $(location).append(rowdata);
+}
 
 function proteinIntake(dm, w, p1, p2) {
   if (dm == "당뇨") {
