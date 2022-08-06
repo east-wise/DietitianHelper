@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>영양진단결과지 (Diet Diagnosis Result)</title>
+    <title>식사처방전</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap"
@@ -16,111 +16,225 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>영양진단결과지</h1>
-        <h2 id="guideParagraph"> </h2>
-        <div class="main">
-            <ul class="resultInfoBox">
-                <li class="item">
-                    현재 신장(키):
-                </li>
-                <li class="item" id="nowHeight"> </li>
-            </ul>
-
-            <ul class="resultInfoBox">
-                <li class="item center">
-                    현재 체중(몸무게):
-                </li>
-                <li class="item" id="nowWeight"> </li>
-            </ul>
-
-            <ul class="resultInfoBox">
-                <li class="item center">
-                    표준체중:
-
-                </li>
-                <li class="item" id="idealBodyWeight"> </li>
-            </ul>
-
-            <ul class="resultInfoBox">
-                <li class="item center">
-                    정상체중범위:
-
-                </li>
-                <li class="item" id="normalBodyWeightRange"> </li>
-            </ul>
-
-
-            <div class="weightModify">
-
+    <div class="paper">
+        <div class="content">
+            <h1>식사처방전</h1>
+            <h2 id="guideParagraph"> </h2>
+            <div class="main">
                 <ul class="resultInfoBox">
-                    <li class="item center">
-                        6개월 뒤 목표 체중:
-
+                    <li class="item">
+                        현재 신장(키):
                     </li>
-                    <li class="item" id="Targht6mWeight"></li>
+                    <li class="item" id="nowHeight"> </li>
                 </ul>
 
                 <ul class="resultInfoBox">
                     <li class="item center">
-                        추정 현재 섭취 열량:
-
+                        현재 체중(몸무게):
                     </li>
-                    <li class="item" id="EastimateEnergy"></li>
+                    <li class="item" id="nowWeight"> </li>
                 </ul>
+
+                <ul class="resultInfoBox">
+                    <li class="item center">
+                        표준체중:
+                    </li>
+                    <li class="item" id="idealBodyWeight"> </li>
+                </ul>
+
+                <ul class="resultInfoBox">
+                    <li class="item center">
+                        정상체중범위:
+                    </li>
+                    <li class="item" id="normalBodyWeightRange"> </li>
+                </ul>
+
+
+                <div class="weightModify">
+                    <ul class="resultInfoBox">
+                        <li class="item center">
+                            6개월 뒤 목표 체중:
+                        </li>
+                        <li class="item" id="Targht6mWeight"></li>
+                    </ul>
+
+                    <ul class="resultInfoBox">
+                        <li class="item center">
+                            추정 현재 섭취 열량:
+                        </li>
+                        <li class="item" id="EastimateEnergy"></li>
+                    </ul>
+                </div>
+
+                <ul class="resultInfoBox">
+                    <li class="item center" id="PDGuide"> </li>
+                    <li class="item" id="putativeDiagnosis"></li>
+                </ul>
+
             </div>
-
-            <ul class="resultInfoBox">
-                <li class="item center" id="PDGuide"> </li>
-
-                <li class="item" id="putativeDiagnosis"></li>
-            </ul>
+            <table id="recommendNutrientTable">
+                <caption>영양소 섭취 권장량</caption>
+                <tr>
+                    <td>열량: </td>
+                    <td id="calorie"></td>
+                </tr>
+                <tr>
+                    <td>단백질: </td>
+                    <td id="protein"></td>
+                </tr>
+                <tr>
+                    <td>칼륨:</td>
+                    <td id="potassium"></td>
+                </tr>
+                <tr>
+                    <td>인:</td>
+                    <td id="phosphorous"></td>
+                </tr>
+            </table>
+            <table id="recommendDietTable">
+                <caption>권장 식사 교환 단위</caption>
+                <tr id="recommendDietName">
+                    <td>식품군</td>
+                </tr>
+                <tr id="recommendDiet">
+                    <td>하루</td>
+                </tr>
+                <tr id="recommendDiet2">
+                    <td>하루</td>
+                </tr>
+                <tr id="rDB">
+                    <td>아침</td>
+                </tr>
+                <tr id="rDL">
+                    <td>점심</td>
+                </tr>
+                <tr id="rDD">
+                    <td>저녁</td>
+                </tr>
+            </table>
+            <footer>
+                &copy; Copyright 2022. Donghyun Kim All rights reserved.
+            </footer>
 
         </div>
-        <table id="recommendNutrientTable">
-            <caption>영양소 섭취 권장량</caption>
-            <tr>
-                <td>열량: </td>
-                <td id="calorie"></td>
-            </tr>
-            <tr>
-                <td>단백질: </td>
-                <td id="protein"></td>
-            </tr>
-            <tr>
-                <td>칼륨:</td>
-                <td id="potassium"></td>
-            </tr>
-            <tr>
-                <td>인:</td>
-                <td id="phosphorous"></td>
-            </tr>
-        </table>
-        <table id="recommendDietTable">
-            <caption>권장 식사 교환 단위</caption>
-            <tr id="recommendDietName">
-                <td>식품군</td>
-            </tr>
-            <tr id="recommendDiet">
-                <td>하루</td>
-            </tr>
-            <tr id="recommendDiet2">
-                <td>하루</td>
-            </tr>
-            <tr id="rDB">
-                <td>아침</td>
-            </tr>
-            <tr id="rDL">
-                <td>점심</td>
-            </tr>
-            <tr id="rDD">
-                <td>저녁</td>
-            </tr>
-        </table>
-        <footer>
-            &copy; Copyright 2022. Donghyun Kim All rights reserved.
-        </footer>
     </div>
+    <div class="paper page2">
+        <div class="content">
+            <h1>식사처방전</h1>
+            <h2 id="guideParagraph2"> </h2>
+            <div class="mealSelect">
+            <div class="rowMeal itembox">
+                <label class="center" id="breakfastSelection">
+                    아 침
+                </label>
+                <div class="item">
+                    <input type="radio" id="korean1" name="breakfast" value="0" />
+                    <label for="korean1">한식그림 </label>
+                    <input type="radio" id="bread1" name="breakfast" value="1" />
+                    <label for="bread1">양식그림 </label>
+                    <input type="radio" id="oneDish1" name="breakfast" value="2" />
+                    <label for="oneDish1">일품요리그림 </label>
+                </div>
+            </div>
+            <div class="rowMeal itembox">
+                <label class="center" id="lunchSelection">
+                    점 심
+                </label>
+                <div class="item">
+                    <input type="radio" id="korean2" name="lunch" value="0" />
+                    <label for="korean2">한식그림 </label>
+                    <input type="radio" id="bread2" name="lunch" value="1" />
+                    <label for="bread2">양식그림 </label>
+                    <input type="radio" id="oneDish2" name="lunch" value="2" />
+                    <label for="oneDish2">일품요리그림 </label>
+                </div>
+            </div>
+            <div class="rowMeal itembox">
+                <label class="center" id="dinnerSelection">
+                    저 녁
+                </label>
+                <div class="item">
+                    <input type="radio" id="korean3" name="dinner" value="0" />
+                    <label for="korean3">한식그림 </label>
+                    <input type="radio" id="bread3" name="dinner" value="1" />
+                    <label for="bread3">양식그림 </label>
+                    <input type="radio" id="oneDish3" name="dinner" value="2" />
+                    <label for="oneDish3">일품요리그림 </label>
+                </div>
+            </div>
+        </div>
+            <h5 class="DietGeneratorNarration">버튼을 누르면 A.I.가 개인 맞춤형 식단을 생성해드립니다.</h5>
+            <button type="button" id="DietGeneratorButton" >맞춤 식단 생성</button>
+            <img src="foodbicycle2020\foodcycleNature.jpg" id="foodcycle">
+            <footer>
+                &copy; Copyright 2022. Donghyun Kim All rights reserved.
+            </footer>
+        </div>
+    </div>
+    <div class="paper">
+        <div class="content">
+            <div class="dietExample">
+                <h1>식사처방전</h1>
+                <h2 id="guideParagraph3"> </h2>
+                <table id="dietEx1">
+                    <caption>아 침 식 사</caption>
+                    <tr id="dietEx1Name">
+                        <td>메뉴</td>
+                    </tr>
+                    <tr id="dietEx1Weight">
+                        <td>중량(g)</td>
+                    </tr>
+                    <tr id="dietEx1Picture">
+                        <td> </td>
+                        <!-- <td>
+                            <img src="foodpicture\protein\Ex1_chickenBreast_40g.png">
+                            <img class="foodPhoto" id="foodPhotoExample">
+                        </td> -->
+                    </tr>
+                </table>
+                <table id="dietEx2">
+                    <caption>점 심 식 사</caption>
+                    <tr id="dietEx2Name">
+                        <td>메뉴</td>
+                    </tr>
+                    <tr id="dietEx2Weight">
+                        <td>중량(g)</td>
+                    </tr>
+                    <tr id="dietEx2Picture">
+                        <td> </td>
+                    </tr>
+                </table>
+                <table id="dietEx3">
+                    <caption>저 녁 식 사</caption>
+                    <tr id="dietEx3Name">
+                        <td>메뉴</td>
+                    </tr>
+                    <tr id="dietEx3Weight">
+                        <td>중량(g)</td>
+                    </tr>
+                    <tr id="dietEx3Picture">
+                        <td> </td>
+                    </tr>
+                </table>
+                <table id="dietEx4">
+                    <caption>간 식</caption>
+                    <tr id="dietEx4Name">
+                        <td>메뉴</td>
+                    </tr>
+                    <tr id="dietEx4Weight">
+                        <td>중량(g)</td>
+                    </tr>
+                    <tr id="dietEx4Picture">
+                        <td> </td>
+                    </tr>
+                </table>
+            </div>
+            <footer>
+                &copy; Copyright 2022. Donghyun Kim All rights reserved.
+            </footer>
+        </div>
+    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
