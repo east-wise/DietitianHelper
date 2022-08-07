@@ -40,6 +40,8 @@ h2 {
 }
 
 footer {
+    font-family: none;
+    margin-top: auto;
     text-align: center;
     background-color: aquamarine;
     border-radius: 10px
@@ -48,6 +50,7 @@ footer {
 button {
     background-color: steelblue;
     color: white;
+    border-radius: 10px;
 }
 
 button:hover {
