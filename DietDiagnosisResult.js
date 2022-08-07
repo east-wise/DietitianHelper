@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const catchPatientInfo = JSON.parse(localStorage.getItem("patient-info"));
-  
+
   const DMDiet = [
     ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"],
     [4, 3, 7, 2, 1, 1],
@@ -446,18 +446,38 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
+            type: "grain",
           },
-          { menu: "도토리묵", photo: null, exchange: 1, weight: 200 },
+          {
+            menu: "도토리묵",
+            photo: null,
+            exchange: 1,
+            weight: 200,
+            type: "grain",
+          },
           {
             menu: "가지나물",
             photo: null,
             exchange: 1,
             weight: 70,
             serve: "1/2컵",
+            type: "vegetable",
           },
-          { menu: "상추", photo: null, exchange: 1, weight: 70 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
-          { menu: "콩나물국", photo: null },
+          {
+            menu: "상추",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "콩나물국", photo: null, type: "liquid" },
         ],
         [
           {
@@ -466,6 +486,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
+            type: "grain",
           },
           {
             menu: "계란후라이",
@@ -473,11 +494,30 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 50,
             serve: "1개",
+            type: "meat",
           },
-          { menu: "깻잎튀김", photo: null, exchange: 1, weight: 20 },
-          { menu: "상추", photo: null, exchange: 1, weight: 70 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
-          { menu: "콩나물국", photo: null },
+          {
+            menu: "깻잎튀김",
+            photo: null,
+            exchange: 1,
+            weight: 20,
+            type: "vegetable",
+          },
+          {
+            menu: "상추",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "콩나물국", photo: null, type: "liquid" },
         ],
         [
           {
@@ -486,6 +526,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
+            type: "grain",
           },
           {
             menu: "돈육찜",
@@ -493,6 +534,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 40,
             serve: "1덩이",
+            type: "meat",
           },
           {
             menu: "계란후라이",
@@ -500,10 +542,23 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 50,
             serve: "1개",
+            type: "meat",
           },
-          { menu: "상추", photo: null, exchange: 1, weight: 70 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
-          { menu: "콩나물국", photo: null },
+          {
+            menu: "상추",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "콩나물국", photo: null, type: "liquid" },
         ],
       ],
       [
@@ -514,12 +569,37 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
+            type: "grain",
           },
-          { menu: "고사리볶음", photo: null, exchange: 1, weight: 70 },
-          { menu: "도라지생채", photo: null, exchange: 1, weight: 50 },
-          { menu: "얼갈이나물", photo: null, exchange: 1, weight: 63 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
-          { menu: "무국", photo: null },
+          {
+            menu: "고사리볶음",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "도라지생채",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          {
+            menu: "얼갈이나물",
+            photo: null,
+            exchange: 1,
+            weight: 63,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "무국", photo: null, type: "liquid" },
         ],
         [
           {
@@ -528,6 +608,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
+            type: "grain",
           },
           {
             menu: "닭찜",
@@ -535,11 +616,30 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 40,
             serve: "3/4덩이",
+            type: "meat",
           },
-          { menu: "도라지생채", photo: null, exchange: 1, weight: 50 },
-          { menu: "얼갈이나물", photo: null, exchange: 1, weight: 63 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
-          { menu: "무국", photo: null },
+          {
+            menu: "도라지생채",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          {
+            menu: "얼갈이나물",
+            photo: null,
+            exchange: 1,
+            weight: 63,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "무국", photo: null, type: "liquid" },
         ],
         [
           {
@@ -548,6 +648,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
+            type: "grain",
           },
           {
             menu: "닭찜",
@@ -555,6 +656,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 40,
             serve: "3/4덩이",
+            type: "meat",
           },
           {
             menu: "갈치구이",
@@ -562,10 +664,23 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 50,
             serve: "1토막",
+            type: "meat",
           },
-          { menu: "얼갈이나물", photo: null, exchange: 1, weight: 63 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
-          { menu: "무국", photo: null },
+          {
+            menu: "얼갈이나물",
+            photo: null,
+            exchange: 1,
+            weight: 63,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "무국", photo: null, type: "liquid" },
         ],
       ],
       [
@@ -576,12 +691,37 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
+            type: "grain",
           },
-          { menu: "궁중떡볶이", photo: null, exchange: 1, weight: 50 },
-          { menu: "더덕구이", photo: null, exchange: 1, weight: 42 },
-          { menu: "양배추찜", photo: null, exchange: 1, weight: 50 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
-          { menu: "미역국", photo: null },
+          {
+            menu: "궁중떡볶이",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "grain",
+          },
+          {
+            menu: "더덕구이",
+            photo: null,
+            exchange: 1,
+            weight: 42,
+            type: "vegetable",
+          },
+          {
+            menu: "양배추찜",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "미역국", photo: null, type: "liquid" },
         ],
         [
           {
@@ -590,6 +730,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
+            type: "grain",
           },
           {
             menu: "소불고기",
@@ -597,11 +738,30 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 40,
             serve: "1덩이",
+            type: "meat",
           },
-          { menu: "팽이버섯전", photo: null, exchange: 1, weight: 40 },
-          { menu: "양배추찜", photo: null, exchange: 1, weight: 50 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
-          { menu: "미역국", photo: null },
+          {
+            menu: "팽이버섯전",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            type: "vegetable",
+          },
+          {
+            menu: "양배추찜",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "미역국", photo: null, type: "liquid" },
         ],
         [
           {
@@ -610,6 +770,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
+            type: "grain",
           },
           {
             menu: "소불고기",
@@ -617,6 +778,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 40,
             serve: "1덩이",
+            type: "meat",
           },
           {
             menu: "두부전",
@@ -624,10 +786,23 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 80,
             serve: "1/6모",
+            type: "meat",
           },
-          { menu: "양배추찜", photo: null, exchange: 1, weight: 50 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
-          { menu: "미역국", photo: null },
+          {
+            menu: "양배추찜",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "미역국", photo: null, type: "liquid" },
         ],
       ],
     ],
@@ -640,11 +815,30 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 35,
             serve: "1장",
+            type: "grain",
           },
-          { menu: "토마토", photo: null, exchange: 1, weight: 45 },
-          { menu: "상추", photo: null, exchange: 1, weight: 70 },
-          { menu: "양파", photo: null, exchange: 1, weight: 70 },
-          { menu: "올리브소스", photo: null },
+          {
+            menu: "토마토",
+            photo: null,
+            exchange: 1,
+            weight: 45,
+            type: "vegetable",
+          },
+          {
+            menu: "상추",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "양파",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          { menu: "올리브소스", photo: null, type: "liquid" },
         ],
         [
           {
@@ -653,11 +847,36 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 35,
             serve: "1장",
+            type: "grain",
           },
-          { menu: "오믈렛", photo: null, exchange: 1, weight: 50 },
-          { menu: "토마토", photo: null, exchange: 1, weight: 45 },
-          { menu: "상추", photo: null, exchange: 1, weight: 70 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          {
+            menu: "오믈렛",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "meat",
+          },
+          {
+            menu: "토마토",
+            photo: null,
+            exchange: 1,
+            weight: 45,
+            type: "vegetable",
+          },
+          {
+            menu: "상추",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
         ],
         [
           {
@@ -666,11 +885,36 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 35,
             serve: "1장",
+            type: "grain",
           },
-          { menu: "오믈렛", photo: null, exchange: 1, weight: 50 },
-          { menu: "저염햄", photo: null, exchange: 1, weight: 40 },
-          { menu: "상추", photo: null, exchange: 1, weight: 70 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          {
+            menu: "오믈렛",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "meat",
+          },
+          {
+            menu: "저염햄",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            type: "meat",
+          },
+          {
+            menu: "상추",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
         ],
       ],
       [
@@ -681,11 +925,30 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 35,
             serve: "1/2개",
+            type: "grain",
           },
-          { menu: "바질페스토", photo: null, exchange: 1, weight: 29 },
-          { menu: "야채샐러드", photo: null, exchange: 1, weight: 56 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
-          { menu: "커피(차)", photo: null },
+          {
+            menu: "바질페스토",
+            photo: null,
+            exchange: 1,
+            weight: 29,
+            type: "vegetable",
+          },
+          {
+            menu: "야채샐러드",
+            photo: null,
+            exchange: 1,
+            weight: 56,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "커피(차)", photo: null, type: "liquid" },
         ],
         [
           {
@@ -694,11 +957,30 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 35,
             serve: "1/2개",
+            type: "grain",
           },
-          { menu: "브리치즈", photo: null, exchange: 1, weight: 30 },
-          { menu: "야채샐러드", photo: null, exchange: 1, weight: 56 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
-          { menu: "커피(차)", photo: null },
+          {
+            menu: "브리치즈",
+            photo: null,
+            exchange: 1,
+            weight: 30,
+            type: "meat",
+          },
+          {
+            menu: "야채샐러드",
+            photo: null,
+            exchange: 1,
+            weight: 56,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "커피(차)", photo: null, type: "liquid" },
         ],
         [
           {
@@ -707,11 +989,37 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 35,
             serve: "1/2개",
+            type: "grain",
           },
-          { menu: "브리치즈", photo: null, exchange: 1, weight: 30 },
-          { menu: "연어샐러드", photo: null, exchange: 1, weight: 50 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
-          { menu: "커피(차)", photo: null },
+          {
+            menu: "브리치즈",
+            photo: null,
+            exchange: 1,
+            weight: 30,
+            type: "meat",
+          },
+          {
+            menu: "연어구이",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "meat",
+          },
+          {
+            menu: "야채샐러드",
+            photo: null,
+            exchange: 1,
+            weight: 56,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "커피(차)", photo: null, type: "liquid" },
         ],
       ],
       [
@@ -722,12 +1030,37 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 35,
             serve: "1개",
+            type: "grain",
           },
-          { menu: "메쉬드포테이토", photo: null, exchange: 1, weight: 24 },
-          { menu: "코울슬로", photo: null, exchange: 1, weight: 40 },
-          { menu: "아스파라거스", photo: null, exchange: 1, weight: 40 },
-          { menu: "새송이버섯구이", photo: null, exchange: 1, weight: 33 },
-          { menu: "야채스프", photo: null },
+          {
+            menu: "메쉬드포테이토",
+            photo: null,
+            exchange: 1,
+            weight: 24,
+            type: "grain",
+          },
+          {
+            menu: "코울슬로",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            type: "vegetable",
+          },
+          {
+            menu: "아스파라거스",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            type: "vegetable",
+          },
+          {
+            menu: "새송이버섯구이",
+            photo: null,
+            exchange: 1,
+            weight: 33,
+            type: "highPotassium",
+          },
+          { menu: "야채스프", photo: null, type: "liquid" },
         ],
         [
           {
@@ -736,12 +1069,37 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 35,
             serve: "1개",
+            type: "grain",
           },
-          { menu: "풀드포크", photo: null, exchange: 1, weight: 40 },
-          { menu: "코울슬로", photo: null, exchange: 1, weight: 40 },
-          { menu: "아스파라거스", photo: null, exchange: 1, weight: 40 },
-          { menu: "새송이버섯구이", photo: null, exchange: 1, weight: 33 },
-          { menu: "야채스프", photo: null },
+          {
+            menu: "풀드포크",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            type: "meat",
+          },
+          {
+            menu: "코울슬로",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            type: "vegetable",
+          },
+          {
+            menu: "아스파라거스",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            type: "vegetable",
+          },
+          {
+            menu: "새송이버섯구이",
+            photo: null,
+            exchange: 1,
+            weight: 33,
+            type: "highPotassium",
+          },
+          { menu: "야채스프", photo: null, type: "liquid" },
         ],
         [
           {
@@ -750,12 +1108,37 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 35,
             serve: "1개",
+            type: "grain",
           },
-          { menu: "스테이크", photo: null, exchange: 1, weight: 80 },
-          { menu: "코울슬로", photo: null, exchange: 1, weight: 40 },
-          { menu: "아스파라거스", photo: null, exchange: 1, weight: 40 },
-          { menu: "새송이버섯구이", photo: null, exchange: 1, weight: 33 },
-          { menu: "야채스프", photo: null },
+          {
+            menu: "스테이크",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            type: "meat",
+          },
+          {
+            menu: "코울슬로",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            type: "vegetable",
+          },
+          {
+            menu: "아스파라거스",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            type: "vegetable",
+          },
+          {
+            menu: "새송이버섯구이",
+            photo: null,
+            exchange: 1,
+            weight: 33,
+            type: "highPotassium",
+          },
+          { menu: "야채스프", photo: null, type: "liquid" },
         ],
       ],
     ],
@@ -768,6 +1151,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 30,
             serve: "1인분",
+            type: "grain",
           },
           {
             menu: "가지",
@@ -775,11 +1159,30 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 70,
             serve: "1/2컵",
+            type: "vegetable",
           },
-          { menu: "파프리카", photo: null, exchange: 1, weight: 45 },
-          { menu: "마늘", photo: null, exchange: 1, weight: 19 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
-          { menu: "알리오올리오 소스", photo: null },
+          {
+            menu: "파프리카",
+            photo: null,
+            exchange: 1,
+            weight: 45,
+            type: "vegetable",
+          },
+          {
+            menu: "마늘",
+            photo: null,
+            exchange: 1,
+            weight: 19,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "알리오올리오 소스", photo: null, type: "liquid" },
         ],
         [
           {
@@ -788,6 +1191,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 30,
             serve: "1인분",
+            type: "grain",
           },
           {
             menu: "새우",
@@ -795,11 +1199,30 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 40,
             serve: "중하3마리, 보리새우10마리",
+            type: "meat",
           },
-          { menu: "파프리카", photo: null, exchange: 1, weight: 45 },
-          { menu: "마늘", photo: null, exchange: 1, weight: 19 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
-          { menu: "알리오올리오 소스", photo: null },
+          {
+            menu: "파프리카",
+            photo: null,
+            exchange: 1,
+            weight: 45,
+            type: "vegetable",
+          },
+          {
+            menu: "마늘",
+            photo: null,
+            exchange: 1,
+            weight: 19,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "알리오올리오 소스", photo: null, type: "liquid" },
         ],
         [
           {
@@ -808,6 +1231,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 30,
             serve: "1인분",
+            type: "grain",
           },
           {
             menu: "관자",
@@ -815,6 +1239,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 30,
             serve: "1개",
+            type: "meat",
           },
           {
             menu: "새우",
@@ -822,10 +1247,23 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 40,
             serve: "중하3마리, 보리새우10마리",
+            type: "meat",
           },
-          { menu: "마늘", photo: null, exchange: 1, weight: 19 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
-          { menu: "알리오올리오 소스", photo: null },
+          {
+            menu: "마늘",
+            photo: null,
+            exchange: 1,
+            weight: 19,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "알리오올리오 소스", photo: null, type: "liquid" },
         ],
       ],
       [
@@ -836,6 +1274,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
+            type: "grain",
           },
           {
             menu: "가지",
@@ -843,11 +1282,36 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 70,
             serve: "1/2컵",
+            type: "vegetable",
           },
-          { menu: "애호박", photo: null, exchange: 1, weight: 45 },
-          { menu: "양파", photo: null, exchange: 1, weight: 70 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
-          { menu: "양송이버섯", photo: null },
+          {
+            menu: "애호박",
+            photo: null,
+            exchange: 1,
+            weight: 45,
+            type: "vegetable",
+          },
+          {
+            menu: "양파",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          {
+            menu: "양송이버섯",
+            photo: null,
+            exchange: 1,
+            weight: 30,
+            type: "highPotassium",
+          },
         ],
         [
           {
@@ -856,6 +1320,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
+            type: "grain",
           },
           {
             menu: "고기볶음",
@@ -863,11 +1328,36 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 40,
             serve: "1덩이",
+            type: "meat",
           },
-          { menu: "애호박", photo: null, exchange: 1, weight: 45 },
-          { menu: "양파", photo: null, exchange: 1, weight: 70 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
-          { menu: "양송이버섯", photo: null },
+          {
+            menu: "애호박",
+            photo: null,
+            exchange: 1,
+            weight: 45,
+            type: "vegetable",
+          },
+          {
+            menu: "양파",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          {
+            menu: "양송이버섯",
+            photo: null,
+            exchange: 1,
+            weight: 30,
+            type: "highPotassium",
+          },
         ],
         [
           {
@@ -876,6 +1366,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
+            type: "grain",
           },
           {
             menu: "고기볶음",
@@ -883,6 +1374,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 40,
             serve: "1덩이",
+            type: "meat",
           },
           {
             menu: "계란후라이",
@@ -890,10 +1382,29 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 50,
             serve: "1개",
+            type: "meat",
           },
-          { menu: "애호박", photo: null, exchange: 1, weight: 45 },
-          { menu: "양파", photo: null, exchange: 1, weight: 70 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          {
+            menu: "애호박",
+            photo: null,
+            exchange: 1,
+            weight: 45,
+            type: "vegetable",
+          },
+          {
+            menu: "양파",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
         ],
       ],
       [
@@ -904,6 +1415,29 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 50,
             serve: "10개",
+            type: "grain",
+          },
+          {
+            menu: "대파",
+            photo: null,
+            exchange: 1,
+            weight: 55,
+            type: "vegetable",
+          },
+          {
+            menu: "김",
+            photo: null,
+            exchange: 1,
+            weight: 5,
+            serve: "2장",
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
           },
           {
             menu: "표고버섯",
@@ -911,10 +1445,8 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 30,
             serve: "2개",
+            type: "highPotassium",
           },
-          { menu: "김", photo: null, exchange: 1, weight: 5, serve: "2장" },
-          { menu: "대파", photo: null, exchange: 1, weight: 55 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
         ],
         [
           {
@@ -923,6 +1455,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 50,
             serve: "10개",
+            type: "grain",
           },
           {
             menu: "고기고명",
@@ -930,10 +1463,30 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 40,
             serve: "1덩이",
+            type: "meat",
           },
-          { menu: "김", photo: null, exchange: 1, weight: 5, serve: "2장" },
-          { menu: "대파", photo: null, exchange: 1, weight: 55 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          {
+            menu: "대파",
+            photo: null,
+            exchange: 1,
+            weight: 55,
+            type: "vegetable",
+          },
+          {
+            menu: "김",
+            photo: null,
+            exchange: 1,
+            weight: 5,
+            serve: "2장",
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
         ],
         [
           {
@@ -942,6 +1495,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 50,
             serve: "10개",
+            type: "grain",
           },
           {
             menu: "고기고명",
@@ -949,6 +1503,7 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 40,
             serve: "1덩이",
+            type: "meat",
           },
           {
             menu: "계란지단",
@@ -956,10 +1511,30 @@ document.addEventListener("DOMContentLoaded", function () {
             exchange: 1,
             weight: 50,
             serve: "1개",
+            type: "meat",
           },
-          { menu: "김", photo: null, exchange: 1, weight: 5, serve: "2장" },
-          { menu: "대파", photo: null, exchange: 1, weight: 55 },
-          { menu: "저염김치", photo: null, exchange: 1, weight: 50 },
+          {
+            menu: "대파",
+            photo: null,
+            exchange: 1,
+            weight: 55,
+            type: "vegetable",
+          },
+          {
+            menu: "김",
+            photo: null,
+            exchange: 1,
+            weight: 5,
+            serve: "2장",
+            type: "vegetable",
+          },
+          {
+            menu: "저염김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
         ],
       ],
     ],
@@ -970,6 +1545,7 @@ document.addEventListener("DOMContentLoaded", function () {
         exchange: 1,
         weight: 200,
         serve: "1잔",
+        type: "milk",
       },
       {
         menu: "사과",
@@ -977,6 +1553,7 @@ document.addEventListener("DOMContentLoaded", function () {
         exchange: 1,
         weight: 100,
         serve: "1/2개",
+        type: "fruit",
       },
       {
         menu: "배",
@@ -984,6 +1561,7 @@ document.addEventListener("DOMContentLoaded", function () {
         exchange: 1,
         weight: 100,
         serve: "1/4개",
+        type: "fruit",
       },
     ],
   ];
@@ -1101,7 +1679,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // console.log(DietNutrient.Protein);
   const hashCKDProteinIndex = Math.round(DietNutrient.Protein / 10) - 2;
   const goalEnergy = Math.round(DietNutrient.Energy / 100) * 100;
-  const goalProtein = Math.round(DietNutrient.Protein / 10) * 10;
 
   $("#calorie").append(goalEnergy + "kcal");
   $("#protein").append(Math.round(DietNutrient.Protein * 10) / 10 + "g");
@@ -1124,7 +1701,7 @@ document.addEventListener("DOMContentLoaded", function () {
       recommendExUnit[1] = growthDietA[hashGrowD];
       recommendExUnit[2] = growthDietB[hashGrowD];
       recommendExUnit = outputExUnit(recommendExUnit);
-      for (let i = 0; i < recommendExUnit[0].length; i++) {
+      for (i in recommendExUnit[0]) {
         let row_7_data = document.createElement("td");
         row_7_data.innerHTML = recommendExUnit[2][i];
         $("#recommendDiet2").append(row_7_data);
@@ -1183,7 +1760,7 @@ document.addEventListener("DOMContentLoaded", function () {
     putativeDiagnosis = ["정상"];
   }
   let DMRFswitch = false;
-  for (let i = 0; i < putativeDiagnosis.length; i++) {
+  for (i in putativeDiagnosis) {
     if (i > 0) {
       $("#putativeDiagnosis").append(", ");
     }
@@ -1241,20 +1818,20 @@ function DietGenerator(DMLP, REU, DMRFswitch) {
       behavior: "smooth",
     });
   } else {
-    document.getElementById("breakfastSelection").className += "center";
-    document.getElementById("lunchSelection").className += "center";
-    document.getElementById("dinnerSelection").className += "center";
+    document.getElementById("breakfastSelection").className = "center";
+    document.getElementById("lunchSelection").className = "center";
+    document.getElementById("dinnerSelection").className = "center";
     window.scrollTo({
       top: document.querySelector("body").scrollHeight,
       behavior: "smooth",
     });
 
-    // exampleMenu(DMLP)
+    // exampleMenu
     //   [한식=0,양식=1,일품=2,간식=3]
     //   [아침=0,점심=1,저녁=2]
     //   [단백질 단위수 0=>0, (0.5~1.5)=>1, (2~)=>2]
     //   [메뉴 5,6개 탄수화물=0,단백질=1,2 ,
-    //     {음식명=menu,사진위치=photo,단위수=exchange,분량=weight,눈대중분량=serve}]
+    //     {음식명=menu,사진위치=photo,단위수=exchange,분량=weight,눈대중분량=serve,분류=type}]
     let exampleDiet = [];
     // console.log(exampleDiet);
     if (DMRFswitch == true) {
@@ -1264,22 +1841,35 @@ function DietGenerator(DMLP, REU, DMRFswitch) {
         exampleDiet.push(makecopy(DMLP[mealSelection[i]][i][hashprotein]));
         // console.log(DMLP[mealSelection[i]][i][hashprotein]);
         // console.log(exampleDiet);
-        exampleDiet[i][0].exchange = REU[i + 2][0];
-        exampleDiet[i][0].weight =
-          exampleDiet[i][0].weight * exampleDiet[i][0].exchange;
-        if (hashprotein == 1) {
-          exampleDiet[i][1].exchange = REU[i + 2][1];
-          exampleDiet[i][1].weight =
-            exampleDiet[i][1].weight * exampleDiet[i][1].exchange;
-        } else if (hashprotein == 2) {
-          exampleDiet[i][1].exchange = divide2part(REU[i + 2][1]);
-          exampleDiet[i][1].weight =
-            exampleDiet[i][1].weight * exampleDiet[i][1].exchange;
-          exampleDiet[i][2].exchange =
-            REU[i + 2][1] - exampleDiet[i][1].exchange;
-          exampleDiet[i][2].weight =
-            exampleDiet[i][2].weight * exampleDiet[i][2].exchange;
-        } else if (hashprotein == 0) {
+        let grain = [];
+        let vege = [];
+        let meat = [];
+        for (j in exampleDiet[i]) {
+          if (exampleDiet[i][j] == "grain") grain.push(j);
+          else if (exampleDiet[i][j] == "vegetable") vege.push(j);
+          else if (exampleDiet[i][j] == "meat") meat.push(j);
+        }
+        if (grain.length == 1) {
+          exampleDiet[i][grain[0]].exchange = REU[i + 2][0];
+          exampleDiet[i][grain[0]].weight =
+            exampleDiet[i][grain[0]].weight * exampleDiet[i][grain[0]].exchange;
+        } else if (grain.length == 2) {
+          exampleDiet[i][grain[0]].exchange = REU[i + 2][0] - 1;
+          exampleDiet[i][grain[0]].weight =
+            exampleDiet[i][grain[0]].weight * exampleDiet[i][grain[0]].exchange;
+        }
+        if (meat.length == 1) {
+          exampleDiet[i][meat[0]].exchange = REU[i + 2][1];
+          exampleDiet[i][meat[0]].weight =
+            exampleDiet[i][meat[0]].weight * exampleDiet[i][meat[0]].exchange;
+        } else if (meat.length == 2) {
+          exampleDiet[i][meat[0]].exchange = divide2part(REU[i + 2][1]);
+          exampleDiet[i][meat[0]].weight =
+            exampleDiet[i][meat[0]].weight * exampleDiet[i][meat[0]].exchange;
+          exampleDiet[i][meat[1]].exchange =
+            REU[i + 2][1] - exampleDiet[i][meat[0]].exchange;
+          exampleDiet[i][meat[1]].weight =
+            exampleDiet[i][meat[1]].weight * exampleDiet[i][meat[1]].exchange;
         }
       }
       let sneck = [];
@@ -1338,10 +1928,11 @@ function hashCKDpExch(reu) {
 }
 
 function printPhoto(ed, meal) {
-  for (let i = 0; i < ed.length; i++) {
-    addRowtd("#dietEx" + meal + "Name", ed[i].menu);
-    if (ed[i].weight == undefined) addRowtd("#dietEx" + meal + "Weight", " ");
-    else addRowtd("#dietEx" + meal + "Weight", ed[i].weight);
+  for (i in ed) {
+    addRowtd("#dietEx" + meal + "Name", ed[i].menu, ed[i].type);
+    if (ed[i].weight == undefined)
+      addRowtd("#dietEx" + meal + "Weight", " ", ed[i].type);
+    else addRowtd("#dietEx" + meal + "Weight", ed[i].weight, ed[i].type);
     let foodimg = "";
     if (ed[i].photo != null) {
       foodimg = document.createElement("IMG");
@@ -1359,7 +1950,7 @@ function outputExUnit(reu) {
   let breakfestExUnit = [];
   let lunchExUnit = [];
   let dinnerExUnit = [];
-  for (let i = 0; i < reu[0].length; i++) {
+  for (i in reu[0]) {
     let BLD = divide3part(reu[1][i]);
     addRowtd("#recommendDietName", reu[0][i]);
     addRowtd("#recommendDiet", reu[1][i]);
@@ -1390,8 +1981,11 @@ function divide3part(num) {
   return BLD;
 }
 
-function addRowtd(location, content) {
+function addRowtd(location, content, className) {
   let rowdata = document.createElement("td");
+  if (className != undefined) {
+    rowdata.setAttribute("class", className);
+  }
   rowdata.innerHTML = content;
   $(location).append(rowdata);
 }
