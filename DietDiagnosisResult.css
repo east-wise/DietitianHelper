@@ -101,6 +101,39 @@ input[type=radio]:checked {
 }
 /* --------------------------------------------------------- */
 
+.dietExample{
+  color: white;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+}
+.highPotassium{
+  color: black;
+}
+.grain{
+  color: yellow;
+}
+.meat{
+  color: rgb(252, 98, 98);
+}
+.vegetable{
+  color: lightgreen;
+}
+.milk{
+  color: white;
+}
+.fruit{
+  color: pink;
+}
+.liquid{
+  color: rgb(173, 224, 245);
+}
+.dietExample td:first-child{
+  color: black;
+  text-shadow: none;
+}
+.dietExample caption{
+  color: black;
+  text-shadow: none;
+}
 .foodPhoto {
   width: 20px;
   height: 20px;
