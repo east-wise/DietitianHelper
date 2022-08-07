@@ -1845,25 +1845,30 @@ function DietGenerator(REU, DMRFswitch) {
 
         if (grain.length == 1) {
           exampleDiet[i][grain[0]].exchange = REU[i + 2][0];
-          exampleDiet[i][grain[0]].weight =
-            exampleDiet[i][grain[0]].weight * exampleDiet[i][grain[0]].exchange;
+          exampleDiet[i][grain[0]].weight = Math.round(
+            exampleDiet[i][grain[0]].weight * exampleDiet[i][grain[0]].exchange
+          );
         } else if (grain.length == 2) {
           exampleDiet[i][grain[0]].exchange = REU[i + 2][0] - 1;
-          exampleDiet[i][grain[0]].weight =
-            exampleDiet[i][grain[0]].weight * exampleDiet[i][grain[0]].exchange;
+          exampleDiet[i][grain[0]].weight = Math.round(
+            exampleDiet[i][grain[0]].weight * exampleDiet[i][grain[0]].exchange
+          );
         }
         if (meat.length == 1) {
           exampleDiet[i][meat[0]].exchange = REU[i + 2][1];
-          exampleDiet[i][meat[0]].weight =
-            exampleDiet[i][meat[0]].weight * exampleDiet[i][meat[0]].exchange;
+          exampleDiet[i][meat[0]].weight = Math.round(
+            exampleDiet[i][meat[0]].weight * exampleDiet[i][meat[0]].exchange
+          );
         } else if (meat.length == 2) {
           exampleDiet[i][meat[0]].exchange = divide2part(REU[i + 2][1]);
-          exampleDiet[i][meat[0]].weight =
-            exampleDiet[i][meat[0]].weight * exampleDiet[i][meat[0]].exchange;
+          exampleDiet[i][meat[0]].weight = Math.round(
+            exampleDiet[i][meat[0]].weight * exampleDiet[i][meat[0]].exchange
+          );
           exampleDiet[i][meat[1]].exchange =
             REU[i + 2][1] - exampleDiet[i][meat[0]].exchange;
-          exampleDiet[i][meat[1]].weight =
-            exampleDiet[i][meat[1]].weight * exampleDiet[i][meat[1]].exchange;
+          exampleDiet[i][meat[1]].weight = Math.round(
+            exampleDiet[i][meat[1]].weight * exampleDiet[i][meat[1]].exchange
+          );
         }
       }
       let sneck = [];
