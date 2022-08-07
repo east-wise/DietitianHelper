@@ -429,13 +429,224 @@ document.addEventListener("DOMContentLoaded", function () {
     ],
   ];
 
-  // exampleMenu(DMLP)
-  //   [한식=0,양식=1,일품=2,간식=3]
-  //   [아침=0,점심=1,저녁=2]
-  //   [단백질 단위수 0=>0, (0.5~1.5)=>1, (2~)=>2]
-  //   [메뉴 5,6개 탄수화물=0,단백질=1,2 ,
-  //     {음식명=menu,사진위치=photo,단위수=exchange,분량=weight,눈대중분량=serve}]
+  let DietNutrient = {
+    Energy: 0,
+    Protein: 0,
+    Sodium: 0,
+    Potassium: 0,
+    Phosphorous: 0,
+  };
+  let putativeDiagnosis = [];
 
+  //----영양소 계산 시작----//
+  // 투석을 하는 경우
+  if (catchPatientInfo.KidneyCondition == 99) {
+    DietNutrient.Energy =
+      catchPatientInfo.weight * catchPatientInfo.BMIactivity;
+    DietNutrient.Protein = catchPatientInfo.weight * 1.2;
+    if (catchPatientInfo.ElectricCondition.Potassium == "고칼륨혈증") {
+      DietNutrient.Potassium = 1500;
+    } else DietNutrient.Potassium = 2000;
+    if (catchPatientInfo.LipidCondition.Phosphorous == "고인산혈증") {
+      DietNutrient.Phosphorous = catchPatientInfo.weight * 12;
+    } else DietNutrient.Phosphorous = catchPatientInfo.weight * 15;
+    putativeDiagnosis.push("혈액투석");
+  }
+  // 투석하지 않는 만성콩팥병인 경우 GFR_gr > 2
+  else if (catchPatientInfo.KidneyCondition > 2) {
+    DietNutrient.Energy =
+      catchPatientInfo.weight * catchPatientInfo.activityindex;
+    DietNutrient.Protein = proteinIntake(
+      catchPatientInfo.diabetesCondition,
+      catchPatientInfo.weight,
+      0.8,
+      0.6
+    );
+    if (catchPatientInfo.ElectricCondition.Potassium == "고칼륨혈증") {
+      DietNutrient.Potassium = 2000;
+    } else DietNutrient.Potassium = 3500;
+    if (catchPatientInfo.LipidCondition.Phosphorous == "고인산혈증") {
+      DietNutrient.Phosphorous = catchPatientInfo.weight * 12;
+    } else DietNutrient.Phosphorous = catchPatientInfo.weight * 15;
+    putativeDiagnosis.push("만성콩팥병");
+  }
+  // 콩팥기능이 정상인 경우
+  else if (catchPatientInfo.KidneyCondition <= 2) {
+    if (catchPatientInfo.PIBWCondition == "고도비만") {
+      if (catchPatientInfo.LiverCondition != "정상") {
+        DietNutrient.Targht6mWeight = catchPatientInfo.weight * 0.9;
+      } else if (catchPatientInfo.LiverCondition == "정상") {
+        let idealBodyWeight =
+          ((catchPatientInfo.height * catchPatientInfo.height) / 10000) * 25;
+        DietNutrient.Targht6mWeight =
+          idealBodyWeight + (catchPatientInfo.weight - idealBodyWeight) * 0.25;
+      }
+    } else if (catchPatientInfo.PIBWCondition == "비만") {
+      if (catchPatientInfo.LiverCondition != "정상") {
+        DietNutrient.Targht6mWeight = catchPatientInfo.weight * 0.9;
+      } else if (catchPatientInfo.LiverCondition == "정상")
+        DietNutrient.Targht6mWeight =
+          catchPatientInfo.IdealBodyWeight +
+          (catchPatientInfo.weight - catchPatientInfo.IdealBodyWeight) * 0.25;
+    } else if (catchPatientInfo.PIBWCondition == "과체중") {
+      DietNutrient.Targht6mWeight = catchPatientInfo.weight * 0.9;
+    } else {
+      DietNutrient.Targht6mWeight = catchPatientInfo.IdealBodyWeight;
+    }
+    DietNutrient.LossEnergy =
+      ((catchPatientInfo.weight - DietNutrient.Targht6mWeight) * 7000) / 180;
+    DietNutrient.EastimateEnergy =
+      catchPatientInfo.weight * catchPatientInfo.activityindex;
+    DietNutrient.Energy =
+      DietNutrient.EastimateEnergy - DietNutrient.LossEnergy;
+    DietNutrient.Protein = proteinIntake(
+      catchPatientInfo.diabetesCondition,
+      DietNutrient.Targht6mWeight,
+      1.2,
+      1.0
+    );
+    if (catchPatientInfo.ElectricCondition.Potassium == "고칼륨혈증") {
+      DietNutrient.Potassium = 1500;
+    } else DietNutrient.Potassium = 2000;
+    if (catchPatientInfo.LipidCondition.Phosphorous == "고인산혈증") {
+      DietNutrient.Phosphorous = catchPatientInfo.weight * 12;
+    } else DietNutrient.Phosphorous = catchPatientInfo.weight * 15;
+    if (catchPatientInfo.PIBWCondition != "정상")
+      putativeDiagnosis.push(catchPatientInfo.PIBWCondition);
+  }
+
+  //----계산한 영양소 출력하기----//
+  $("#recommendDiet2").hide();
+  $(".weightModify").hide();
+  $("#Targht6mWeight").hide();
+  $("#EastimateEnergy").hide();
+  $("#guideParagraph").append(catchPatientInfo.name + "님의 분석결과");
+  $("#guideParagraph3").append(catchPatientInfo.name + "님 맞춤 예시 식단");
+  $("#nowHeight").append(catchPatientInfo.height + "cm");
+  $("#nowWeight").append(catchPatientInfo.weight + "kg");
+  $("#idealBodyWeight").append(
+    Math.round(catchPatientInfo.IdealBodyWeight * 10) / 10 + "kg"
+  );
+  $("#normalBodyWeightRange").append(
+    Math.round(catchPatientInfo.IdealBodyWeight * 0.9) +
+      "~" +
+      Math.round(catchPatientInfo.IdealBodyWeight * 1.09) +
+      "kg, "
+  );
+  if (catchPatientInfo.KidneyCondition > 2)
+    $("#normalBodyWeightRange").append(catchPatientInfo.BMICondition);
+  else if (catchPatientInfo.KidneyCondition <= 2)
+    $("#normalBodyWeightRange").append(catchPatientInfo.PIBWCondition);
+
+  //----권장 영양소 섭취량 출력----//
+  // console.log(DietNutrient.Protein);
+  const hashCKDProteinIndex = Math.round(DietNutrient.Protein / 10) - 2;
+  const goalEnergy = Math.round(DietNutrient.Energy / 100) * 100;
+
+  $("#calorie").append(goalEnergy + "kcal");
+  $("#protein").append(Math.round(DietNutrient.Protein * 10) / 10 + "g");
+  $("#potassium").append(DietNutrient.Potassium + "mg");
+  $("#phosphorous").append(DietNutrient.Phosphorous + "mg");
+
+  //----권장 식품교환단위 계산----//
+  //Hash table =>> DMDiet 1200->1,  growthDiet 1000->1,  proteinControledDiet pro30->1 1300kcal->0
+  let recommendExUnit = [, ,];
+  if (catchPatientInfo.KidneyCondition <= 2) {
+    if (catchPatientInfo.age > 19 || catchPatientInfo.age == 0) {
+      const hashDMdiet = goalEnergy / 100 - 11;
+      recommendExUnit[0] = DMDiet[0];
+      recommendExUnit[1] = DMDiet[hashDMdiet];
+      recommendExUnit = outputExUnit(recommendExUnit);
+    } else if (catchPatientInfo.age < 20) {
+      const hashGrowD = goalEnergy / 100 - 9;
+      $("#recommendDiet2").show();
+      recommendExUnit[0] = growthDietA[0];
+      recommendExUnit[1] = growthDietA[hashGrowD];
+      recommendExUnit[2] = growthDietB[hashGrowD];
+      recommendExUnit = outputExUnit(recommendExUnit);
+      for (i in recommendExUnit[0]) {
+        let row_7_data = document.createElement("td");
+        row_7_data.innerHTML = recommendExUnit[2][i];
+        $("#recommendDiet2").append(row_7_data);
+      }
+    }
+    if (catchPatientInfo.PIBWCondition != "정상") {
+      $(".weightModify").show();
+      $("#Targht6mWeight").show();
+      $("#EastimateEnergy").show();
+      $("#Targht6mWeight").append(
+        Math.round(DietNutrient.Targht6mWeight) + "kg"
+      );
+      $("#EastimateEnergy").append(
+        Math.round(DietNutrient.EastimateEnergy) + "kcal" + "<br>("
+      );
+      if (Math.round(DietNutrient.LossEnergy) < 0) {
+        $("#EastimateEnergy").append(
+          "+" + -1 * Math.round(DietNutrient.LossEnergy) + "kcal 추천)"
+        );
+      } else {
+        $("#EastimateEnergy").append(
+          "-" + Math.round(DietNutrient.LossEnergy) + "kcal 추천)"
+        );
+      }
+    }
+  } else if (catchPatientInfo.KidneyCondition > 2) {
+    const hashCKDD = goalEnergy / 100 - 13;
+    if (goalEnergy < 1300) hashCKDD = 0;
+    recommendExUnit[0] = proteinControledDiet[0];
+    recommendExUnit[1] = proteinControledDiet[hashCKDProteinIndex][hashCKDD];
+    recommendExUnit = outputExUnit(recommendExUnit);
+  }
+  console.log(recommendExUnit);
+
+  //----추정진단명 찾아보기----//
+  $("#PDGuide").append(catchPatientInfo.name + "님의 추정 진단:");
+  if (catchPatientInfo.diabetesCondition != "정상")
+    putativeDiagnosis.push(catchPatientInfo.diabetesCondition);
+  if (catchPatientInfo.BPCondition != "정상")
+    putativeDiagnosis.push(catchPatientInfo.BPCondition);
+  if (catchPatientInfo.ElectricCondition.Sodium != "정상")
+    putativeDiagnosis.push(catchPatientInfo.ElectricCondition.Sodium);
+  if (catchPatientInfo.ElectricCondition.Potassium != "정상")
+    putativeDiagnosis.push(catchPatientInfo.ElectricCondition.Potassium);
+  if (catchPatientInfo.ElectricCondition.Chloride != "정상")
+    putativeDiagnosis.push(catchPatientInfo.ElectricCondition.Chloride);
+  if (catchPatientInfo.ElectricCondition.Phosphorous != "정상")
+    putativeDiagnosis.push(catchPatientInfo.ElectricCondition.Phosphorous);
+  if (catchPatientInfo.LipidCondition[0] != "정상")
+    putativeDiagnosis.push(...catchPatientInfo.LipidCondition);
+  if (catchPatientInfo.LiverCondition[0] != "정상")
+    putativeDiagnosis.push(...catchPatientInfo.LiverCondition);
+  if (catchPatientInfo.gout != "정상")
+    putativeDiagnosis.push(catchPatientInfo.gout);
+  if (putativeDiagnosis.length == 0) {
+    putativeDiagnosis = ["정상"];
+  }
+  let DMRFswitch = false;
+  for (i in putativeDiagnosis) {
+    if (i > 0) {
+      $("#putativeDiagnosis").append(", ");
+    }
+    $("#putativeDiagnosis").append(putativeDiagnosis[i]);
+    if (
+      putativeDiagnosis[i] == "혈액투석" ||
+      putativeDiagnosis[i] == "만성콩팥병"
+    )
+      DMRFswitch = true;
+  }
+
+  document.getElementById("DietGeneratorButton").addEventListener(
+    "click",
+    function () {
+      DietGenerator(recommendExUnit, DMRFswitch);
+    },
+    false
+  );
+
+  localStorage.removeItem("patient-info");
+});
+
+function DietGenerator(REU, DMRFswitch) {
   const DMLP = [
     [
       [
@@ -1565,225 +1776,6 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     ],
   ];
-
-  let DietNutrient = {
-    Energy: 0,
-    Protein: 0,
-    Sodium: 0,
-    Potassium: 0,
-    Phosphorous: 0,
-  };
-  let putativeDiagnosis = [];
-
-  //----영양소 계산 시작----//
-  // 투석을 하는 경우
-  if (catchPatientInfo.KidneyCondition == 99) {
-    DietNutrient.Energy =
-      catchPatientInfo.weight * catchPatientInfo.BMIactivity;
-    DietNutrient.Protein = catchPatientInfo.weight * 1.2;
-    if (catchPatientInfo.ElectricCondition.Potassium == "고칼륨혈증") {
-      DietNutrient.Potassium = 1500;
-    } else DietNutrient.Potassium = 2000;
-    if (catchPatientInfo.LipidCondition.Phosphorous == "고인산혈증") {
-      DietNutrient.Phosphorous = catchPatientInfo.weight * 12;
-    } else DietNutrient.Phosphorous = catchPatientInfo.weight * 15;
-    putativeDiagnosis.push("혈액투석");
-  }
-  // 투석하지 않는 만성콩팥병인 경우 GFR_gr > 2
-  else if (catchPatientInfo.KidneyCondition > 2) {
-    DietNutrient.Energy =
-      catchPatientInfo.weight * catchPatientInfo.activityindex;
-    DietNutrient.Protein = proteinIntake(
-      catchPatientInfo.diabetesCondition,
-      catchPatientInfo.weight,
-      0.8,
-      0.6
-    );
-    if (catchPatientInfo.ElectricCondition.Potassium == "고칼륨혈증") {
-      DietNutrient.Potassium = 2000;
-    } else DietNutrient.Potassium = 3500;
-    if (catchPatientInfo.LipidCondition.Phosphorous == "고인산혈증") {
-      DietNutrient.Phosphorous = catchPatientInfo.weight * 12;
-    } else DietNutrient.Phosphorous = catchPatientInfo.weight * 15;
-    putativeDiagnosis.push("만성콩팥병");
-  }
-  // 콩팥기능이 정상인 경우
-  else if (catchPatientInfo.KidneyCondition <= 2) {
-    if (catchPatientInfo.PIBWCondition == "고도비만") {
-      if (catchPatientInfo.LiverCondition != "정상") {
-        DietNutrient.Targht6mWeight = catchPatientInfo.weight * 0.9;
-      } else if (catchPatientInfo.LiverCondition == "정상") {
-        let idealBodyWeight =
-          ((catchPatientInfo.height * catchPatientInfo.height) / 10000) * 25;
-        DietNutrient.Targht6mWeight =
-          idealBodyWeight + (catchPatientInfo.weight - idealBodyWeight) * 0.25;
-      }
-    } else if (catchPatientInfo.PIBWCondition == "비만") {
-      if (catchPatientInfo.LiverCondition != "정상") {
-        DietNutrient.Targht6mWeight = catchPatientInfo.weight * 0.9;
-      } else if (catchPatientInfo.LiverCondition == "정상")
-        DietNutrient.Targht6mWeight =
-          catchPatientInfo.IdealBodyWeight +
-          (catchPatientInfo.weight - catchPatientInfo.IdealBodyWeight) * 0.25;
-    } else if (catchPatientInfo.PIBWCondition == "과체중") {
-      DietNutrient.Targht6mWeight = catchPatientInfo.weight * 0.9;
-    } else {
-      DietNutrient.Targht6mWeight = catchPatientInfo.IdealBodyWeight;
-    }
-    DietNutrient.LossEnergy =
-      ((catchPatientInfo.weight - DietNutrient.Targht6mWeight) * 7000) / 180;
-    DietNutrient.EastimateEnergy =
-      catchPatientInfo.weight * catchPatientInfo.activityindex;
-    DietNutrient.Energy =
-      DietNutrient.EastimateEnergy - DietNutrient.LossEnergy;
-    DietNutrient.Protein = proteinIntake(
-      catchPatientInfo.diabetesCondition,
-      DietNutrient.Targht6mWeight,
-      1.2,
-      1.0
-    );
-    if (catchPatientInfo.ElectricCondition.Potassium == "고칼륨혈증") {
-      DietNutrient.Potassium = 1500;
-    } else DietNutrient.Potassium = 2000;
-    if (catchPatientInfo.LipidCondition.Phosphorous == "고인산혈증") {
-      DietNutrient.Phosphorous = catchPatientInfo.weight * 12;
-    } else DietNutrient.Phosphorous = catchPatientInfo.weight * 15;
-    if (catchPatientInfo.PIBWCondition != "정상")
-      putativeDiagnosis.push(catchPatientInfo.PIBWCondition);
-  }
-
-  //----계산한 영양소 출력하기----//
-  $("#recommendDiet2").hide();
-  $(".weightModify").hide();
-  $("#Targht6mWeight").hide();
-  $("#EastimateEnergy").hide();
-  $("#guideParagraph").append(catchPatientInfo.name + "님의 분석결과");
-  $("#guideParagraph3").append(catchPatientInfo.name + "님 맞춤 예시 식단");
-  $("#nowHeight").append(catchPatientInfo.height + "cm");
-  $("#nowWeight").append(catchPatientInfo.weight + "kg");
-  $("#idealBodyWeight").append(
-    Math.round(catchPatientInfo.IdealBodyWeight * 10) / 10 + "kg"
-  );
-  $("#normalBodyWeightRange").append(
-    Math.round(catchPatientInfo.IdealBodyWeight * 0.9) +
-      "~" +
-      Math.round(catchPatientInfo.IdealBodyWeight * 1.09) +
-      "kg, "
-  );
-  if (catchPatientInfo.KidneyCondition > 2)
-    $("#normalBodyWeightRange").append(catchPatientInfo.BMICondition);
-  else if (catchPatientInfo.KidneyCondition <= 2)
-    $("#normalBodyWeightRange").append(catchPatientInfo.PIBWCondition);
-
-  //----권장 영양소 섭취량 출력----//
-  // console.log(DietNutrient.Protein);
-  const hashCKDProteinIndex = Math.round(DietNutrient.Protein / 10) - 2;
-  const goalEnergy = Math.round(DietNutrient.Energy / 100) * 100;
-
-  $("#calorie").append(goalEnergy + "kcal");
-  $("#protein").append(Math.round(DietNutrient.Protein * 10) / 10 + "g");
-  $("#potassium").append(DietNutrient.Potassium + "mg");
-  $("#phosphorous").append(DietNutrient.Phosphorous + "mg");
-
-  //----권장 식품교환단위 계산----//
-  //Hash table =>> DMDiet 1200->1,  growthDiet 1000->1,  proteinControledDiet pro30->1 1300kcal->0
-  let recommendExUnit = [, ,];
-  if (catchPatientInfo.KidneyCondition <= 2) {
-    if (catchPatientInfo.age > 19 || catchPatientInfo.age == 0) {
-      const hashDMdiet = goalEnergy / 100 - 11;
-      recommendExUnit[0] = DMDiet[0];
-      recommendExUnit[1] = DMDiet[hashDMdiet];
-      recommendExUnit = outputExUnit(recommendExUnit);
-    } else if (catchPatientInfo.age < 20) {
-      const hashGrowD = goalEnergy / 100 - 9;
-      $("#recommendDiet2").show();
-      recommendExUnit[0] = growthDietA[0];
-      recommendExUnit[1] = growthDietA[hashGrowD];
-      recommendExUnit[2] = growthDietB[hashGrowD];
-      recommendExUnit = outputExUnit(recommendExUnit);
-      for (i in recommendExUnit[0]) {
-        let row_7_data = document.createElement("td");
-        row_7_data.innerHTML = recommendExUnit[2][i];
-        $("#recommendDiet2").append(row_7_data);
-      }
-    }
-    if (catchPatientInfo.PIBWCondition != "정상") {
-      $(".weightModify").show();
-      $("#Targht6mWeight").show();
-      $("#EastimateEnergy").show();
-      $("#Targht6mWeight").append(
-        Math.round(DietNutrient.Targht6mWeight) + "kg"
-      );
-      $("#EastimateEnergy").append(
-        Math.round(DietNutrient.EastimateEnergy) + "kcal" + "<br>("
-      );
-      if (Math.round(DietNutrient.LossEnergy) < 0) {
-        $("#EastimateEnergy").append(
-          "+" + -1 * Math.round(DietNutrient.LossEnergy) + "kcal 추천)"
-        );
-      } else {
-        $("#EastimateEnergy").append(
-          "-" + Math.round(DietNutrient.LossEnergy) + "kcal 추천)"
-        );
-      }
-    }
-  } else if (catchPatientInfo.KidneyCondition > 2) {
-    const hashCKDD = goalEnergy / 100 - 13;
-    if (goalEnergy < 1300) hashCKDD = 0;
-    recommendExUnit[0] = proteinControledDiet[0];
-    recommendExUnit[1] = proteinControledDiet[hashCKDProteinIndex][hashCKDD];
-    recommendExUnit = outputExUnit(recommendExUnit);
-  }
-  console.log(recommendExUnit);
-
-  //----추정진단명 찾아보기----//
-  $("#PDGuide").append(catchPatientInfo.name + "님의 추정 진단:");
-  if (catchPatientInfo.diabetesCondition != "정상")
-    putativeDiagnosis.push(catchPatientInfo.diabetesCondition);
-  if (catchPatientInfo.BPCondition != "정상")
-    putativeDiagnosis.push(catchPatientInfo.BPCondition);
-  if (catchPatientInfo.ElectricCondition.Sodium != "정상")
-    putativeDiagnosis.push(catchPatientInfo.ElectricCondition.Sodium);
-  if (catchPatientInfo.ElectricCondition.Potassium != "정상")
-    putativeDiagnosis.push(catchPatientInfo.ElectricCondition.Potassium);
-  if (catchPatientInfo.ElectricCondition.Chloride != "정상")
-    putativeDiagnosis.push(catchPatientInfo.ElectricCondition.Chloride);
-  if (catchPatientInfo.ElectricCondition.Phosphorous != "정상")
-    putativeDiagnosis.push(catchPatientInfo.ElectricCondition.Phosphorous);
-  if (catchPatientInfo.LipidCondition[0] != "정상")
-    putativeDiagnosis.push(...catchPatientInfo.LipidCondition);
-  if (catchPatientInfo.LiverCondition[0] != "정상")
-    putativeDiagnosis.push(...catchPatientInfo.LiverCondition);
-  if (catchPatientInfo.gout != "정상")
-    putativeDiagnosis.push(catchPatientInfo.gout);
-  if (putativeDiagnosis.length == 0) {
-    putativeDiagnosis = ["정상"];
-  }
-  let DMRFswitch = false;
-  for (i in putativeDiagnosis) {
-    if (i > 0) {
-      $("#putativeDiagnosis").append(", ");
-    }
-    $("#putativeDiagnosis").append(putativeDiagnosis[i]);
-    if (
-      putativeDiagnosis[i] == "혈액투석" ||
-      putativeDiagnosis[i] == "만성콩팥병"
-    )
-      DMRFswitch = true;
-  }
-
-  document.getElementById("DietGeneratorButton").addEventListener(
-    "click",
-    function () {
-      DietGenerator(DMLP, recommendExUnit, DMRFswitch);
-    },
-    false
-  );
-
-  localStorage.removeItem("patient-info");
-});
-
-function DietGenerator(DMLP, REU, DMRFswitch) {
   for (let i = 1; i < 5; i++) {
     $("#dietEx" + i + "Name").empty();
     $("#dietEx" + i + "Weight").empty();
@@ -1845,10 +1837,12 @@ function DietGenerator(DMLP, REU, DMRFswitch) {
         let vege = [];
         let meat = [];
         for (j in exampleDiet[i]) {
-          if (exampleDiet[i][j] == "grain") grain.push(j);
-          else if (exampleDiet[i][j] == "vegetable") vege.push(j);
-          else if (exampleDiet[i][j] == "meat") meat.push(j);
+          if (exampleDiet[i][j].type == "grain") grain.push(j);
+          else if (exampleDiet[i][j].type == "vegetable") vege.push(j);
+          else if (exampleDiet[i][j].type == "meat") meat.push(j);
         }
+        // console.log(grain);
+
         if (grain.length == 1) {
           exampleDiet[i][grain[0]].exchange = REU[i + 2][0];
           exampleDiet[i][grain[0]].weight =
