@@ -194,7 +194,7 @@ function Examination() {
 function PIBWObesity(PIBW, age) {
   let judge = "정상";
   if (age < 65) {
-    if (PIBW >= 160) {
+    if (PIBW >= 130) {
       judge = "고도비만";
       $("#LightActivity").append("20");
       $("#ModerateActivity").append("25");
@@ -221,7 +221,7 @@ function PIBWObesity(PIBW, age) {
       $("#SevereActivity").append("40");
     }
   } else if (age >= 65) {
-    if (PIBW >= 160) {
+    if (PIBW >= 130) {
       judge = "고도비만";
       $("#LightActivity").append("20");
       $("#ModerateActivity").append("25");
@@ -263,10 +263,10 @@ function BMIObesity(weight, height) {
     activityindex = 28;
   } else if (BMI >= 18.5) {
     judge = "정상";
-    activityindex = 28;
+    activityindex = 30;
   } else if (BMI < 18.5) {
     judge = "저체중";
-    activityindex = 25;
+    activityindex = 32;
   }
   return [BMI, judge, activityindex];
 }
