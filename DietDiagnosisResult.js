@@ -505,12 +505,6 @@ document.addEventListener("DOMContentLoaded", function () {
       1.2,
       1.0
     );
-    if (catchPatientInfo.ElectricCondition.Potassium == "고칼륨혈증") {
-      DietNutrient.Potassium = 1500;
-    } else DietNutrient.Potassium = 2000;
-    if (catchPatientInfo.LipidCondition.Phosphorous == "고인산혈증") {
-      DietNutrient.Phosphorous = catchPatientInfo.weight * 12;
-    } else DietNutrient.Phosphorous = catchPatientInfo.weight * 15;
     if (catchPatientInfo.PIBWCondition != "정상")
       putativeDiagnosis.push(catchPatientInfo.PIBWCondition);
   }
@@ -545,8 +539,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   $("#calorie").append(goalEnergy + "kcal");
   $("#protein").append(Math.round(DietNutrient.Protein * 10) / 10 + "g");
-  $("#potassium").append(DietNutrient.Potassium + "mg");
-  $("#phosphorous").append(DietNutrient.Phosphorous + "mg");
+  if (DietNutrient.Potassium == 0) {
+    $("#RNKrow").hide();
+    $("#RNProw").hide();
+  } else {
+    $("#potassium").append(DietNutrient.Potassium + "mg");
+    $("#phosphorous").append(DietNutrient.Phosphorous + "mg");
+  }
 
   //----권장 식품교환단위 계산----//
   //Hash table =>> DMDiet 1200->1,  growthDiet 1000->1,  proteinControledDiet pro30->1 1300kcal->0
@@ -647,6 +646,802 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function DietGenerator(REU, DMRFswitch) {
+  const DMEXD = [
+    [
+      [
+        ["당뇨는 단백질 0단위 없음"],
+        [
+          {
+            menu: "잡곡밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+            type: "grain",
+          },
+          {
+            menu: "닭찜",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            serve: "1덩이",
+            type: "meat",
+          },
+          {
+            menu: "김구이",
+            photo: null,
+            exchange: 1,
+            weight: 2,
+            serve: "1장",
+            type: "vegetable",
+          },
+          {
+            menu: "깻잎지",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "된장찌개", photo: null, type: "liquid" },
+        ],
+        [
+          {
+            menu: "잡곡밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+            type: "grain",
+          },
+          {
+            menu: "닭찜",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            serve: "1덩이",
+            type: "meat",
+          },
+          {
+            menu: "장조림",
+            photo: "foodpicture/rawpork40g.png",
+            exchange: 1,
+            weight: 20,
+            serve: "1덩이",
+            type: "meat",
+          },
+          {
+            menu: "깻잎지",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "된장찌개", photo: null, type: "liquid" },
+        ],
+      ],
+      [
+        ["당뇨는 단백질 0단위 없음"],
+        [
+          {
+            menu: "잡곡밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+            type: "grain",
+          },
+          {
+            menu: "달걀찜",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            serve: "1개",
+            type: "meat",
+          },
+          {
+            menu: "오이생채",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            serve: "중1/3개",
+            type: "vegetable",
+          },
+          {
+            menu: "돌나물무침",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "곰국", photo: null, type: "liquid" },
+        ],
+        [
+          {
+            menu: "잡곡밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+            type: "grain",
+          },
+          {
+            menu: "달걀찜",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            serve: "1개",
+            type: "meat",
+          },
+          {
+            menu: "진미채무침",
+            photo: null,
+            exchange: 1,
+            weight: 15,
+            type: "meat",
+          },
+          {
+            menu: "돌나물무침",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "곰국", photo: null, type: "liquid" },
+        ],
+      ],
+      [
+        ["당뇨는 단백질 0단위 없음"],
+        [
+          {
+            menu: "잡곡밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+            type: "grain",
+          },
+          {
+            menu: "제육볶음",
+            photo: null,
+            exchange: 1,
+            weight: 35,
+            serve: "1덩이",
+            type: "meat",
+          },
+          {
+            menu: "고구마순볶음",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "시금치나물",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "미역국", photo: null, type: "liquid" },
+        ],
+        [
+          {
+            menu: "잡곡밥",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+            type: "grain",
+          },
+          {
+            menu: "제육볶음",
+            photo: null,
+            exchange: 1,
+            weight: 35,
+            serve: "1덩이",
+            type: "meat",
+          },
+          {
+            menu: "갈치무조림",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "meat",
+          },
+          {
+            menu: "시금치나물",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "미역국", photo: null, type: "liquid" },
+        ],
+      ],
+    ],
+    [
+      [
+        ["당뇨는 단백질 0단위 없음"],
+        [
+          {
+            menu: "샌드위치(식빵)",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 35,
+            serve: "1개",
+            type: "grain",
+          },
+          {
+            menu: "스크램블에그",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            serve: "1개",
+            type: "meat",
+          },
+          {
+            menu: "양파",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "상추",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "피클",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+        ],
+        [
+          {
+            menu: "토스트",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 35,
+            serve: "1개",
+            type: "grain",
+          },
+          {
+            menu: "스크램블에그",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            serve: "1개",
+            type: "meat",
+          },
+          {
+            menu: "햄(로스)",
+            photo: "foodpicture/rawpork40g.png",
+            exchange: 1,
+            weight: 40,
+            serve: "1덩이",
+            type: "meat",
+          },
+          {
+            menu: "양파",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "피클",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+        ],
+      ],
+      [
+        ["당뇨는 단백질 0단위 없음"],
+        [
+          {
+            menu: "베이글",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 35,
+            serve: "1/2개",
+            type: "grain",
+          },
+          {
+            menu: "크림치즈",
+            photo: null,
+            exchange: 1,
+            weight: 30,
+            type: "meat",
+          },
+          {
+            menu: "야채샐러드",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "피클",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "커피 (차)", photo: null, type: "liquid" },
+        ],
+        [
+          {
+            menu: "베이글",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 35,
+            serve: "1/2개",
+            type: "grain",
+          },
+          {
+            menu: "크림치즈",
+            photo: null,
+            exchange: 1,
+            weight: 30,
+            type: "meat",
+          },
+          {
+            menu: "연어구이",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            serve: "1개",
+            type: "meat",
+          },
+          {
+            menu: "야채샐러드",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "피클",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "커피 (차)", photo: null, type: "liquid" },
+        ],
+      ],
+      [
+        ["당뇨는 단백질 0단위 없음"],
+        [
+          {
+            menu: "모닝빵",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 35,
+            serve: "1개",
+            type: "grain",
+          },
+          {
+            menu: "풀드포크",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            serve: "1덩이",
+            type: "meat",
+          },
+          {
+            menu: "코울슬로",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            type: "vegetable",
+          },
+          {
+            menu: "아스파라거스",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          {
+            menu: "송이버섯구이",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "야채스프", photo: null, type: "liquid" },
+        ],
+        [
+          {
+            menu: "모닝빵",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 35,
+            serve: "1개",
+            type: "grain",
+          },
+          {
+            menu: "안심스테이크",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            serve: "1덩이",
+            type: "meat",
+          },
+          {
+            menu: "코울슬로",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            type: "vegetable",
+          },
+          {
+            menu: "아스파라거스",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          {
+            menu: "송이버섯구이",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "야채스프", photo: null, type: "liquid" },
+        ],
+      ],
+    ],
+    [
+      [
+        ["당뇨는 단백질 0단위 없음"],
+        [
+          {
+            menu: "스파게티",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 35,
+            serve: "1인분",
+            type: "grain",
+          },
+          {
+            menu: "조개살",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            serve: "1/3컵",
+            type: "meat",
+          },
+          {
+            menu: "양송이버섯",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            serve: "3개",
+            type: "vegetable",
+          },
+          {
+            menu: "마늘",
+            photo: null,
+            exchange: 1,
+            weight: 7,
+            type: "vegetable",
+          },
+          {
+            menu: "피클",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "봉골레소스", photo: null, type: "liquid" },
+          { menu: "페페론치노", photo: null, type: "liquid" },
+        ],
+        [
+          {
+            menu: "스파게티",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 35,
+            serve: "1인분",
+            type: "grain",
+          },
+          {
+            menu: "관자",
+            photo: null,
+            exchange: 1,
+            weight: 30,
+            type: "meat",
+          },
+          {
+            menu: "조개살",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            serve: "1/3컵",
+            type: "meat",
+          },
+          {
+            menu: "마늘",
+            photo: null,
+            exchange: 1,
+            weight: 7,
+            type: "vegetable",
+          },
+          {
+            menu: "피클",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "봉골레소스", photo: null, type: "liquid" },
+          { menu: "페페론치노", photo: null, type: "liquid" },
+        ],
+      ],
+      [
+        ["당뇨는 단백질 0단위 없음"],
+        [
+          {
+            menu: "비빔밥(잡곡밥)",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+            type: "grain",
+          },
+          {
+            menu: "계란후라이",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            serve: "1개",
+            type: "meat",
+          },
+          {
+            menu: "콩나물",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            serve: "익혀서2/5컵",
+            type: "vegetable",
+          },
+          {
+            menu: "오색나물",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "고추장(알룰로스)", photo: null, type: "liquid" },
+        ],
+        [
+          {
+            menu: "비빔밥(잡곡밥)",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 70,
+            serve: "1/3공기",
+            type: "grain",
+          },
+          {
+            menu: "고기",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            serve: "1덩이",
+            type: "meat",
+          },
+          {
+            menu: "계란후라이",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            serve: "1개",
+            type: "meat",
+          },
+          {
+            menu: "오색나물",
+            photo: null,
+            exchange: 1,
+            weight: 70,
+            type: "vegetable",
+          },
+          {
+            menu: "김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "고추장(알룰로스)", photo: null, type: "liquid" },
+        ],
+      ],
+      [
+        ["당뇨는 단백질 0단위 없음"],
+        [
+          {
+            menu: "떡국(떡)",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 50,
+            serve: "썰은 것 11개",
+            type: "grain",
+          },
+          {
+            menu: "계란지단",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            serve: "1개",
+            type: "meat",
+          },
+          {
+            menu: "대파",
+            photo: null,
+            exchange: 1,
+            weight: 55,
+            type: "vegetable",
+          },
+          {
+            menu: "김",
+            photo: null,
+            exchange: 1,
+            weight: 2,
+            type: "vegetable",
+          },
+          {
+            menu: "김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "멸치육수", photo: null, type: "liquid" },
+        ],
+        [
+          {
+            menu: "떡국(떡)",
+            photo: "foodpicture/rice.png",
+            exchange: 1,
+            weight: 50,
+            serve: "썰은 것 11개",
+            type: "grain",
+          },
+          {
+            menu: "고기고명",
+            photo: null,
+            exchange: 1,
+            weight: 40,
+            serve: "1덩이",
+            type: "meat",
+          },
+          {
+            menu: "계란지단",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            serve: "1개",
+            type: "meat",
+          },
+          {
+            menu: "대파",
+            photo: null,
+            exchange: 1,
+            weight: 55,
+            type: "vegetable",
+          },
+          {
+            menu: "김",
+            photo: null,
+            exchange: 1,
+            weight: 2,
+            type: "vegetable",
+          },
+          {
+            menu: "김치",
+            photo: null,
+            exchange: 1,
+            weight: 50,
+            type: "vegetable",
+          },
+          { menu: "멸치육수", photo: null, type: "liquid" },
+        ],
+      ],
+    ],
+    [
+      {
+        menu: "우유",
+        photo: "foodpicture/milk200ml.png",
+        exchange: 1,
+        weight: 200,
+        serve: "1잔",
+        type: "milk",
+      },
+      {
+        menu: "사과",
+        photo: "foodpicture/fruit/apple100g.png",
+        exchange: 1,
+        weight: 80,
+        serve: "1/3개",
+        type: "fruit",
+      },
+      {
+        menu: "참외",
+        photo: "foodpicture/fruit/pear100g.png",
+        exchange: 1,
+        weight: 150,
+        serve: "1/2개",
+        type: "fruit",
+      },
+      {
+        menu: "토마토",
+        photo: "foodpicture/fruit/pear100g.png",
+        exchange: 1,
+        weight: 300,
+        serve: "2개",
+        type: "fruit",
+      },
+    ],
+  ];
   const DMLP = [
     [
       [
@@ -1021,19 +1816,12 @@ function DietGenerator(REU, DMRFswitch) {
       [
         [
           {
-            menu: "식빵",
+            menu: "샌드위치(식빵)",
             photo: "foodpicture/rice.png",
             exchange: 1,
             weight: 35,
             serve: "1장",
             type: "grain",
-          },
-          {
-            menu: "토마토",
-            photo: null,
-            exchange: 1,
-            weight: 45,
-            type: "vegetable",
           },
           {
             menu: "상추",
@@ -1053,7 +1841,7 @@ function DietGenerator(REU, DMRFswitch) {
         ],
         [
           {
-            menu: "토스트",
+            menu: "샌드위치(식빵)",
             photo: "foodpicture/rice.png",
             exchange: 1,
             weight: 35,
@@ -1068,10 +1856,10 @@ function DietGenerator(REU, DMRFswitch) {
             type: "meat",
           },
           {
-            menu: "토마토",
+            menu: "양파",
             photo: null,
             exchange: 1,
-            weight: 45,
+            weight: 70,
             type: "vegetable",
           },
           {
@@ -1082,7 +1870,7 @@ function DietGenerator(REU, DMRFswitch) {
             type: "vegetable",
           },
           {
-            menu: "저염김치",
+            menu: "저염피클",
             photo: null,
             exchange: 1,
             weight: 50,
@@ -1091,7 +1879,7 @@ function DietGenerator(REU, DMRFswitch) {
         ],
         [
           {
-            menu: "토스트",
+            menu: "샌드위치(식빵)",
             photo: "foodpicture/rice.png",
             exchange: 1,
             weight: 35,
@@ -1120,7 +1908,7 @@ function DietGenerator(REU, DMRFswitch) {
             type: "vegetable",
           },
           {
-            menu: "저염김치",
+            menu: "저염피클",
             photo: null,
             exchange: 1,
             weight: 50,
@@ -1153,7 +1941,7 @@ function DietGenerator(REU, DMRFswitch) {
             type: "vegetable",
           },
           {
-            menu: "저염김치",
+            menu: "저염피클",
             photo: null,
             exchange: 1,
             weight: 50,
@@ -1185,7 +1973,7 @@ function DietGenerator(REU, DMRFswitch) {
             type: "vegetable",
           },
           {
-            menu: "저염김치",
+            menu: "저염피클",
             photo: null,
             exchange: 1,
             weight: 50,
@@ -1224,7 +2012,7 @@ function DietGenerator(REU, DMRFswitch) {
             type: "vegetable",
           },
           {
-            menu: "저염김치",
+            menu: "저염피클",
             photo: null,
             exchange: 1,
             weight: 50,
@@ -1244,10 +2032,10 @@ function DietGenerator(REU, DMRFswitch) {
             type: "grain",
           },
           {
-            menu: "메쉬드포테이토",
+            menu: "마카로니범벅",
             photo: null,
             exchange: 1,
-            weight: 24,
+            weight: 30,
             type: "grain",
           },
           {
@@ -1357,7 +2145,7 @@ function DietGenerator(REU, DMRFswitch) {
       [
         [
           {
-            menu: "스파게티",
+            menu: "스파게티(링귀니)",
             photo: "foodpicture/rice.png",
             exchange: 1,
             weight: 30,
@@ -1397,7 +2185,7 @@ function DietGenerator(REU, DMRFswitch) {
         ],
         [
           {
-            menu: "스파게티",
+            menu: "스파게티(링귀니)",
             photo: "foodpicture/rice.png",
             exchange: 1,
             weight: 30,
@@ -1437,7 +2225,7 @@ function DietGenerator(REU, DMRFswitch) {
         ],
         [
           {
-            menu: "스파게티",
+            menu: "스파게티(링귀니)",
             photo: "foodpicture/rice.png",
             exchange: 1,
             weight: 30,
@@ -1480,7 +2268,7 @@ function DietGenerator(REU, DMRFswitch) {
       [
         [
           {
-            menu: "밥",
+            menu: "덮밥(밥)",
             photo: "foodpicture/rice.png",
             exchange: 1,
             weight: 70,
@@ -1526,7 +2314,7 @@ function DietGenerator(REU, DMRFswitch) {
         ],
         [
           {
-            menu: "밥",
+            menu: "덮밥(밥)",
             photo: "foodpicture/rice.png",
             exchange: 1,
             weight: 70,
@@ -1572,7 +2360,7 @@ function DietGenerator(REU, DMRFswitch) {
         ],
         [
           {
-            menu: "밥",
+            menu: "덮밥(밥)",
             photo: "foodpicture/rice.png",
             exchange: 1,
             weight: 70,
@@ -1621,7 +2409,7 @@ function DietGenerator(REU, DMRFswitch) {
       [
         [
           {
-            menu: "떡",
+            menu: "떡국(떡)",
             photo: "foodpicture/rice.png",
             exchange: 1,
             weight: 50,
@@ -1661,7 +2449,7 @@ function DietGenerator(REU, DMRFswitch) {
         ],
         [
           {
-            menu: "떡",
+            menu: "떡국(떡)",
             photo: "foodpicture/rice.png",
             exchange: 1,
             weight: 50,
@@ -1701,7 +2489,7 @@ function DietGenerator(REU, DMRFswitch) {
         ],
         [
           {
-            menu: "떡",
+            menu: "떡국(떡)",
             photo: "foodpicture/rice.png",
             exchange: 1,
             weight: 50,
@@ -1829,70 +2617,22 @@ function DietGenerator(REU, DMRFswitch) {
     if (DMRFswitch == true) {
       let hashprotein = 0;
       for (let i = 0; i < 3; i++) {
-        hashprotein = hashCKDpExch(REU[i + 2]);
-        exampleDiet.push(makecopy(DMLP[mealSelection[i]][i][hashprotein]));
-        // console.log(DMLP[mealSelection[i]][i][hashprotein]);
-        // console.log(exampleDiet);
-        let grain = [];
-        let vege = [];
-        let meat = [];
-        for (j in exampleDiet[i]) {
-          if (exampleDiet[i][j].type == "grain") grain.push(j);
-          else if (exampleDiet[i][j].type == "vegetable") vege.push(j);
-          else if (exampleDiet[i][j].type == "meat") meat.push(j);
-        }
-        // console.log(grain);
-
-        if (grain.length == 1) {
-          exampleDiet[i][grain[0]].exchange = REU[i + 2][0];
-          exampleDiet[i][grain[0]].weight = Math.round(
-            exampleDiet[i][grain[0]].weight * exampleDiet[i][grain[0]].exchange
-          );
-        } else if (grain.length == 2) {
-          exampleDiet[i][grain[0]].exchange = REU[i + 2][0] - 1;
-          exampleDiet[i][grain[0]].weight = Math.round(
-            exampleDiet[i][grain[0]].weight * exampleDiet[i][grain[0]].exchange
-          );
-        }
-        if (meat.length == 1) {
-          exampleDiet[i][meat[0]].exchange = REU[i + 2][1];
-          exampleDiet[i][meat[0]].weight = Math.round(
-            exampleDiet[i][meat[0]].weight * exampleDiet[i][meat[0]].exchange
-          );
-        } else if (meat.length == 2) {
-          exampleDiet[i][meat[0]].exchange = divide2part(REU[i + 2][1]);
-          exampleDiet[i][meat[0]].weight = Math.round(
-            exampleDiet[i][meat[0]].weight * exampleDiet[i][meat[0]].exchange
-          );
-          exampleDiet[i][meat[1]].exchange =
-            REU[i + 2][1] - exampleDiet[i][meat[0]].exchange;
-          exampleDiet[i][meat[1]].weight = Math.round(
-            exampleDiet[i][meat[1]].weight * exampleDiet[i][meat[1]].exchange
-          );
-        }
+        hashprotein = hashProExch(REU[i + 2]);
+        exampleDiet.push(
+          dietMultiple(DMLP[mealSelection[i]][i][hashprotein], REU[i + 2])
+        );
       }
-      let sneck = [];
-      let DMLPSnectCopy = makecopy(DMLP[3]);
-      if (REU[1][4] > 0) {
-        DMLPSnectCopy[0].exchange = REU[1][4];
-        DMLPSnectCopy[0].weight =
-          DMLPSnectCopy[0].weight * DMLPSnectCopy[0].exchange;
-        sneck.push(DMLPSnectCopy[0]);
+      exampleDiet.push(sneckMultiple(DMLP[3], REU));
+    }
+    else if (DMRFswitch == false) {
+      let hashprotein = 0;
+      for (let i = 0; i < 3; i++) {
+        hashprotein = hashProExch(REU[i + 2]);
+        exampleDiet.push(
+          dietMultiple(DMEXD[mealSelection[i]][i][hashprotein], REU[i + 2])
+        );
       }
-      if (REU[1][5] > 0) {
-        // console.log(DMLPSnectCopy);
-        DMLPSnectCopy[1].exchange = divide2part(REU[1][5]);
-        DMLPSnectCopy[1].weight =
-          DMLPSnectCopy[1].weight * DMLPSnectCopy[1].exchange;
-        sneck.push(DMLPSnectCopy[1]);
-        if (REU[1][5] > 1) {
-          DMLPSnectCopy[2].exchange = REU[1][5] - DMLPSnectCopy[2].exchange;
-          DMLPSnectCopy[2].weight =
-            DMLPSnectCopy[2].weight * DMLPSnectCopy[2].exchange;
-          sneck.push(DMLPSnectCopy[2]);
-        }
-      }
-      exampleDiet.push(sneck);
+      exampleDiet.push(sneckMultiple(DMEXD[3], REU));
     }
     // console.log(exampleDiet);
     for (let i = 0; i < 4; i++) {
@@ -1900,7 +2640,53 @@ function DietGenerator(REU, DMRFswitch) {
     }
   }
 }
+function dietMultiple(EXD, reu) {
+  let ed = [];
+  ed = makecopy(EXD);
+  let grain = [];
+  let vege = [];
+  let meat = [];
+  for (j in ed) {
+    if (ed[j].type == "grain") grain.push(j);
+    else if (ed[j].type == "vegetable") vege.push(j);
+    else if (ed[j].type == "meat") meat.push(j);
+  }
+  if (grain.length == 1) {
+    ed[grain[0]].exchange = reu[0];
+    ed[grain[0]].weight = Math.round(
+      ed[grain[0]].weight * ed[grain[0]].exchange
+    );
+  } else if (grain.length == 2) {
+    ed[grain[0]].exchange = reu[0] - 1;
+    ed[grain[0]].weight = Math.round(
+      ed[grain[0]].weight * ed[grain[0]].exchange
+    );
+  }
+  if (meat.length == 1) {
+    ed[meat[0]].exchange = reu[1];
+    ed[meat[0]].weight = Math.round(ed[meat[0]].weight * ed[meat[0]].exchange);
+  } else if (meat.length == 2) {
+    ed[meat[0]].exchange = divide2part(reu[1]);
+    ed[meat[0]].weight = Math.round(ed[meat[0]].weight * ed[meat[0]].exchange);
+    ed[meat[1]].exchange = reu[1] - ed[meat[0]].exchange;
+    ed[meat[1]].weight = Math.round(ed[meat[1]].weight * ed[meat[1]].exchange);
+  }
+  return ed;
+}
 
+function sneckMultiple(EXD, REU) {
+  let sneck = [];
+  let snectCopy = makecopy(EXD);
+  if (REU[1][4] > 0) {
+    snectCopy[0].exchange = REU[1][4];
+    snectCopy[0].weight = snectCopy[0].weight * snectCopy[0].exchange;
+    sneck.push(snectCopy[0]);
+  }
+  for(let i=0;i<REU[1][5];i++){
+    sneck.push(snectCopy[i+1]);
+  }
+  return sneck;
+}
 function makecopy(originalContent) {
   let cloneBag = {
     a: originalContent,
@@ -1918,7 +2704,7 @@ function divide2part(a) {
   return c;
 }
 
-function hashCKDpExch(reu) {
+function hashProExch(reu) {
   let a = 0;
   if (reu[1] == 0) a = 0;
   else if (reu[1] > 0 && reu[1] < 2) a = 1;
