@@ -990,7 +990,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "햄(로스)",
-            photo: "foodpicture/rawpork40g.png",
+            photo: "foodpicture/protein/Ex1_lowSaltHam_40g.png",
             exchange: 1,
             weight: 40,
             serve: "1덩이",
