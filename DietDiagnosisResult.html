@@ -16,11 +16,17 @@
 </head>
 
 <body>
-    <div class="paper">
+    <div class="paper page1">
         <div class="content">
             <h1>식사처방전</h1>
             <h2 id="guideParagraph"> </h2>
             <div class="main">
+                <ul class="resultInfoBox">
+                    <li class="item">
+                        성별&nbsp&nbsp/&nbsp&nbsp나이:
+                    </li>
+                    <li class="item" id="nowSexAge"> </li>
+                </ul>
                 <ul class="resultInfoBox">
                     <li class="item">
                         현재 신장(키):
@@ -123,48 +129,75 @@
             <h1>식사처방전</h1>
             <h2 id="guideParagraph2"> </h2>
             <div class="mealSelect">
-            <div class="rowMeal itembox">
-                <label class="center" id="breakfastSelection">
-                    아 침
-                </label>
-                <div class="item">
-                    <input type="radio" id="korean1" name="breakfast" value="0" />
-                    <label for="korean1">한식그림 </label>
-                    <input type="radio" id="bread1" name="breakfast" value="1" />
-                    <label for="bread1">양식그림 </label>
-                    <input type="radio" id="oneDish1" name="breakfast" value="2" />
-                    <label for="oneDish1">일품요리그림 </label>
+                <div class="rowMeal itembox">
+                    <label class="center" id="breakfastSelection">
+                        아 침
+                    </label>
+                    <div class="item">
+                        <input type="radio" id="korean1" name="breakfast" value="0" />
+                        <label for="korean1">
+                            <img class="mealPhoto" src="foodpicture\KoreanMeal.png">
+                            <p>한식</p>
+                        </label>
+                        <input type="radio" id="bread1" name="breakfast" value="1" />
+                        <label for="bread1">
+                            <img class="mealPhoto" src="foodpicture\WestMeal.png">
+                            <p>양식</p>
+                        </label>
+                        <input type="radio" id="oneDish1" name="breakfast" value="2" />
+                        <label for="oneDish1">
+                            <img class="mealPhoto" src="foodpicture\Pasta.png">
+                            <p>일품</p>
+                        </label>
+                    </div>
+                </div>
+                <div class="rowMeal itembox">
+                    <label class="center" id="lunchSelection">
+                        점 심
+                    </label>
+                    <div class="item">
+                        <input type="radio" id="korean2" name="lunch" value="0" />
+                        <label for="korean2">
+                            <img class="mealPhoto" src="foodpicture\KoreanMeal.png">
+                            <p>한식</p>
+                        </label>
+                        <input type="radio" id="bread2" name="lunch" value="1" />
+                        <label for="bread2">
+                            <img class="mealPhoto" src="foodpicture\WestMeal.png">
+                            <p>양식</p>
+                        </label>
+                        <input type="radio" id="oneDish2" name="lunch" value="2" />
+                        <label for="oneDish2">
+                            <img class="mealPhoto" src="foodpicture\Bibimbbab.png">
+                            <p>일품</p>
+                        </label>
+                    </div>
+                </div>
+                <div class="rowMeal itembox">
+                    <label class="center" id="dinnerSelection">
+                        저 녁
+                    </label>
+                    <div class="item">
+                        <input type="radio" id="korean3" name="dinner" value="0" />
+                        <label for="korean3">
+                            <img class="mealPhoto" src="foodpicture\KoreanMeal.png">
+                            <p>한식</p>
+                        </label>
+                        <input type="radio" id="bread3" name="dinner" value="1" />
+                        <label for="bread3">
+                            <img class="mealPhoto" src="foodpicture\Steak.png">
+                            <p>양식</p>
+                        </label>
+                        <input type="radio" id="oneDish3" name="dinner" value="2" />
+                        <label for="oneDish3">
+                            <img class="mealPhoto" src="foodpicture\DDukGok.png">
+                            <p>일품</p>
+                        </label>
+                    </div>
                 </div>
             </div>
-            <div class="rowMeal itembox">
-                <label class="center" id="lunchSelection">
-                    점 심
-                </label>
-                <div class="item">
-                    <input type="radio" id="korean2" name="lunch" value="0" />
-                    <label for="korean2">한식그림 </label>
-                    <input type="radio" id="bread2" name="lunch" value="1" />
-                    <label for="bread2">양식그림 </label>
-                    <input type="radio" id="oneDish2" name="lunch" value="2" />
-                    <label for="oneDish2">일품요리그림 </label>
-                </div>
-            </div>
-            <div class="rowMeal itembox">
-                <label class="center" id="dinnerSelection">
-                    저 녁
-                </label>
-                <div class="item">
-                    <input type="radio" id="korean3" name="dinner" value="0" />
-                    <label for="korean3">한식그림 </label>
-                    <input type="radio" id="bread3" name="dinner" value="1" />
-                    <label for="bread3">양식그림 </label>
-                    <input type="radio" id="oneDish3" name="dinner" value="2" />
-                    <label for="oneDish3">일품요리그림 </label>
-                </div>
-            </div>
-        </div>
             <h5 class="DietGeneratorNarration">버튼을 누르면 A.I.가 개인 맞춤형 식단을 생성해드립니다.</h5>
-            <button type="button" id="DietGeneratorButton" >맞춤 식단 생성</button>
+            <button type="button" id="DietGeneratorButton">맞춤 식단 생성</button>
             <img src="foodbicycle2020\foodcycleNature.jpg" id="foodcycle">
             <footer>
                 &copy; Copyright 2022. Donghyun Kim All rights reserved.
@@ -179,10 +212,10 @@
                 <table id="dietEx1" class="dietExample">
                     <caption>아 침 식 사</caption>
                     <tr id="dietEx1Name">
-                        <td>메뉴</td>
+                        <!-- <td>메뉴</td> -->
                     </tr>
                     <tr id="dietEx1Weight">
-                        <td>중량(g)</td>
+                        <!-- <td>중량(g)</td> -->
                     </tr>
                     <tr id="dietEx1Picture">
                         <td> </td>
@@ -195,10 +228,10 @@
                 <table id="dietEx2" class="dietExample">
                     <caption>점 심 식 사</caption>
                     <tr id="dietEx2Name">
-                        <td>메뉴</td>
+                        <!-- <td>메뉴</td> -->
                     </tr>
                     <tr id="dietEx2Weight">
-                        <td>중량(g)</td>
+                        <!-- <td>중량(g)</td> -->
                     </tr>
                     <tr id="dietEx2Picture">
                         <td> </td>
@@ -207,24 +240,12 @@
                 <table id="dietEx3" class="dietExample">
                     <caption>저 녁 식 사</caption>
                     <tr id="dietEx3Name">
-                        <td>메뉴</td>
+                        <!-- <td>메뉴</td> -->
                     </tr>
                     <tr id="dietEx3Weight">
-                        <td>중량(g)</td>
+                        <!-- <td>중량(g)</td> -->
                     </tr>
                     <tr id="dietEx3Picture">
-                        <td> </td>
-                    </tr>
-                </table>
-                <table id="dietEx4" class="dietExample">
-                    <caption>간 식</caption>
-                    <tr id="dietEx4Name">
-                        <td>메뉴</td>
-                    </tr>
-                    <tr id="dietEx4Weight">
-                        <td>중량(g)</td>
-                    </tr>
-                    <tr id="dietEx4Picture">
                         <td> </td>
                     </tr>
                 </table>
@@ -234,7 +255,28 @@
             </footer>
         </div>
     </div>
-
+    <div class="paper">
+        <div class="content">
+            <h1>식사처방전</h1>
+            <h2 id="guideParagraph4"> </h2>
+            <table id="dietEx4" class="dietExample">
+                <caption>간 식</caption>
+                <tr id="dietEx4Name">
+                    <!-- <td>메뉴</td> -->
+                </tr>
+                <tr id="dietEx4Weight">
+                    <!-- <td>중량(g)</td> -->
+                </tr>
+                <tr id="dietEx4Picture">
+                    <td> </td>
+                </tr>
+            </table>
+            
+            <footer>
+                &copy; Copyright 2022. Donghyun Kim All rights reserved.
+            </footer>
+        </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
