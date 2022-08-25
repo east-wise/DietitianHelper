@@ -2734,8 +2734,9 @@ function DietGenerator(REU, DMRFswitch) {
     document.getElementById("breakfastSelection").className = "center";
     document.getElementById("lunchSelection").className = "center";
     document.getElementById("dinnerSelection").className = "center";
+    let location = document.querySelector("#guideParagraph2").offsetTop;
     window.scrollTo({
-      top: document.querySelector("body").scrollHeight,
+      top: location + window.innerHeight * 1.3,
       behavior: "smooth",
     });
 
