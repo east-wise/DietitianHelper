@@ -516,6 +516,10 @@ document.addEventListener("DOMContentLoaded", function () {
   $("#EastimateEnergy").hide();
   $("#guideParagraph").append(catchPatientInfo.name + "님의 분석결과");
   $("#guideParagraph3").append(catchPatientInfo.name + "님 맞춤 예시 식단");
+  $("#guideParagraph4").append(catchPatientInfo.name + "님 맞춤 예시 식단");
+  if (catchPatientInfo.sex == "male")
+    $("#nowSexAge").append("남성 / " + catchPatientInfo.age + "세");
+  else $("#nowSexAge").append("여성 / " + catchPatientInfo.age + "세");
   $("#nowHeight").append(catchPatientInfo.height + "cm");
   $("#nowWeight").append(catchPatientInfo.weight + "kg");
   $("#idealBodyWeight").append(
@@ -653,7 +657,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "잡곡밥",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_wholegrainRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -661,7 +665,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "닭찜",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_chickinBraise_40g.png",
             exchange: 1,
             weight: 40,
             serve: "1덩이",
@@ -669,7 +673,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "김구이",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_seaweed_5g.png",
             exchange: 1,
             weight: 2,
             serve: "1장",
@@ -677,24 +681,28 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "깻잎지",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_sesameLevesJi_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "된장찌개", photo: null, type: "liquid" },
+          {
+            menu: "된장찌개",
+            photo: "foodpicture/liquid/doenjangsoup.png",
+            type: "liquid",
+          },
         ],
         [
           {
             menu: "잡곡밥",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_wholegrainRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -702,7 +710,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "닭찜",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_chickinBraise_40g.png",
             exchange: 1,
             weight: 40,
             serve: "1덩이",
@@ -718,19 +726,23 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "깻잎지",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_sesameLevesJi_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "된장찌개", photo: null, type: "liquid" },
+          {
+            menu: "된장찌개",
+            photo: "foodpicture/liquid/doenjangsoup.png",
+            type: "liquid",
+          },
         ],
       ],
       [
@@ -738,7 +750,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "잡곡밥",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_wholegrainRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -746,7 +758,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "달걀찜",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_eggsteamed_60g.png",
             exchange: 1,
             weight: 70,
             serve: "1개",
@@ -754,7 +766,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "오이생채",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_cucumber_70g.png",
             exchange: 1,
             weight: 70,
             serve: "중1/3개",
@@ -762,24 +774,28 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "돌나물무침",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_dolNaMul_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "곰국", photo: null, type: "liquid" },
+          {
+            menu: "곰국",
+            photo: "foodpicture/liquid/gomguk.png",
+            type: "liquid",
+          },
         ],
         [
           {
             menu: "잡곡밥",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_wholegrainRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -787,7 +803,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "달걀찜",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_eggsteamed_60g.png",
             exchange: 1,
             weight: 70,
             serve: "1개",
@@ -795,26 +811,30 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "진미채무침",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_squid_15g.png",
             exchange: 1,
             weight: 15,
             type: "meat",
           },
           {
             menu: "돌나물무침",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_dolNaMul_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "곰국", photo: null, type: "liquid" },
+          {
+            menu: "곰국",
+            photo: "foodpicture/liquid/gomguk.png",
+            type: "liquid",
+          },
         ],
       ],
       [
@@ -822,7 +842,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "잡곡밥",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_wholegrainRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -830,7 +850,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "제육볶음",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_seasoningpork_35g.png",
             exchange: 1,
             weight: 35,
             serve: "1덩이",
@@ -838,31 +858,35 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "고구마순볶음",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_swtpotatoStalks_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "시금치나물",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_spinach_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "미역국", photo: null, type: "liquid" },
+          {
+            menu: "미역국",
+            photo: "foodpicture/liquid/seaweedsoup.png",
+            type: "liquid",
+          },
         ],
         [
           {
             menu: "잡곡밥",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_wholegrainRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -870,7 +894,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "제육볶음",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_seasoningpork_35g.png",
             exchange: 1,
             weight: 35,
             serve: "1덩이",
@@ -878,26 +902,30 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "갈치무조림",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_galchiJoRim_35g.png",
             exchange: 1,
             weight: 50,
             type: "meat",
           },
           {
             menu: "시금치나물",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_spinach_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "미역국", photo: null, type: "liquid" },
+          {
+            menu: "미역국",
+            photo: "foodpicture/liquid/seaweedsoup.png",
+            type: "liquid",
+          },
         ],
       ],
     ],
@@ -907,7 +935,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "샌드위치(식빵)",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_bread_35g.png",
             exchange: 1,
             weight: 35,
             serve: "1개",
@@ -915,7 +943,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "스크램블에그",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_scrambledEgg_40g.png",
             exchange: 1,
             weight: 50,
             serve: "1개",
@@ -923,21 +951,21 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "양파",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_onion_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "상추",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_lettuce_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "피클",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_pickle_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
@@ -946,7 +974,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "토스트",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_bread_35g.png",
             exchange: 1,
             weight: 35,
             serve: "1개",
@@ -954,7 +982,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "스크램블에그",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_scrambledEgg_40g.png",
             exchange: 1,
             weight: 50,
             serve: "1개",
@@ -970,14 +998,14 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "양파",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_onion_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "피클",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_pickle_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
@@ -989,7 +1017,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "베이글",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex2_bagel_70g.png",
             exchange: 1,
             weight: 35,
             serve: "1/2개",
@@ -997,31 +1025,35 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "크림치즈",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_cremeCheeze_30g.png",
             exchange: 1,
             weight: 30,
             type: "meat",
           },
           {
             menu: "야채샐러드",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_salad_56g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "피클",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_pickle_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "커피 (차)", photo: null, type: "liquid" },
+          {
+            menu: "커피 (차)",
+            photo: "foodpicture/liquid/coffee.png",
+            type: "liquid",
+          },
         ],
         [
           {
             menu: "베이글",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex2_bagel_70g.png",
             exchange: 1,
             weight: 35,
             serve: "1/2개",
@@ -1029,14 +1061,14 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "크림치즈",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_cremeCheeze_30g.png",
             exchange: 1,
             weight: 30,
             type: "meat",
           },
           {
             menu: "연어구이",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_salmon_grill_40g.png",
             exchange: 1,
             weight: 50,
             serve: "1개",
@@ -1044,19 +1076,23 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "야채샐러드",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_salad_56g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "피클",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_pickle_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "커피 (차)", photo: null, type: "liquid" },
+          {
+            menu: "커피 (차)",
+            photo: "foodpicture/liquid/coffee.png",
+            type: "liquid",
+          },
         ],
       ],
       [
@@ -1064,7 +1100,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "모닝빵",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_morningBread_35g.png",
             exchange: 1,
             weight: 35,
             serve: "1개",
@@ -1072,7 +1108,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "풀드포크",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_pulledpork_40g.png",
             exchange: 1,
             weight: 40,
             serve: "1덩이",
@@ -1080,31 +1116,35 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "코울슬로",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_coleslaw_40g.png",
             exchange: 1,
             weight: 40,
             type: "vegetable",
           },
           {
             menu: "아스파라거스",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_asparagus_34g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
           {
             menu: "송이버섯구이",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kingoystermushroom_33g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "야채스프", photo: null, type: "liquid" },
+          {
+            menu: "야채스프",
+            photo: "foodpicture/liquid/tomatoSoup.png",
+            type: "liquid",
+          },
         ],
         [
           {
             menu: "모닝빵",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_morningBread_35g.png",
             exchange: 1,
             weight: 35,
             serve: "1개",
@@ -1112,7 +1152,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "안심스테이크",
-            photo: null,
+            photo: "foodpicture/protein/Ex2_tenderloinsteak_80g.png",
             exchange: 1,
             weight: 40,
             serve: "1덩이",
@@ -1120,26 +1160,30 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "코울슬로",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_coleslaw_40g.png",
             exchange: 1,
             weight: 40,
             type: "vegetable",
           },
           {
             menu: "아스파라거스",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_asparagus_34g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
           {
             menu: "송이버섯구이",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kingoystermushroom_33g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "야채스프", photo: null, type: "liquid" },
+          {
+            menu: "야채스프",
+            photo: "foodpicture/liquid/tomatoSoup.png",
+            type: "liquid",
+          },
         ],
       ],
     ],
@@ -1149,7 +1193,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "스파게티",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_linguini_30g.png",
             exchange: 1,
             weight: 35,
             serve: "1인분",
@@ -1157,7 +1201,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "조개살",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_clam_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3컵",
@@ -1165,7 +1209,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "양송이버섯",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_buttonmushroom_50g.png",
             exchange: 1,
             weight: 50,
             serve: "3개",
@@ -1173,25 +1217,28 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "마늘",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_garlic_7g.png",
             exchange: 1,
             weight: 7,
             type: "vegetable",
           },
           {
             menu: "피클",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_pickle_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "봉골레소스", photo: null, type: "liquid" },
-          { menu: "페페론치노", photo: null, type: "liquid" },
+          {
+            menu: "봉골레소스",
+            photo: "foodpicture/liquid/vongole.png",
+            type: "liquid",
+          }
         ],
         [
           {
             menu: "스파게티",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_linguini_30g.png",
             exchange: 1,
             weight: 35,
             serve: "1인분",
@@ -1199,14 +1246,14 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "관자",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_scallup_30g.png",
             exchange: 1,
             weight: 30,
             type: "meat",
           },
           {
             menu: "조개살",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_clam_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3컵",
@@ -1214,20 +1261,23 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "마늘",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_garlic_7g.png",
             exchange: 1,
             weight: 7,
             type: "vegetable",
           },
           {
             menu: "피클",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_pickle_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "봉골레소스", photo: null, type: "liquid" },
-          { menu: "페페론치노", photo: null, type: "liquid" },
+          {
+            menu: "봉골레소스",
+            photo: "foodpicture/liquid/vongole.png",
+            type: "liquid",
+          },
         ],
       ],
       [
@@ -1235,7 +1285,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "비빔밥(잡곡밥)",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_wholegrainRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -1243,7 +1293,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "계란후라이",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_egg_fry_60g.png",
             exchange: 1,
             weight: 70,
             serve: "1개",
@@ -1251,7 +1301,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "콩나물",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_sprouts_70g.png",
             exchange: 1,
             weight: 70,
             serve: "익혀서2/5컵",
@@ -1259,24 +1309,28 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "오색나물",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_5colorNamul_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "고추장(알룰로스)", photo: null, type: "liquid" },
+          {
+            menu: "고추장(알룰로스)",
+            photo: "foodpicture/liquid/redChiliPaste.png",
+            type: "liquid",
+          },
         ],
         [
           {
             menu: "비빔밥(잡곡밥)",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_wholegrainRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -1284,7 +1338,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "고기",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_beefBulgogi_40g.png",
             exchange: 1,
             weight: 40,
             serve: "1덩이",
@@ -1292,7 +1346,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "계란후라이",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_egg_fry_60g.png",
             exchange: 1,
             weight: 70,
             serve: "1개",
@@ -1300,19 +1354,23 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "오색나물",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_5colorNamul_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "고추장(알룰로스)", photo: null, type: "liquid" },
+          {
+            menu: "고추장(알룰로스)",
+            photo: "foodpicture/liquid/redChiliPaste.png",
+            type: "liquid",
+          },
         ],
       ],
       [
@@ -1320,7 +1378,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "떡국(떡)",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_ttukgug_50g.png",
             exchange: 1,
             weight: 50,
             serve: "썰은 것 11개",
@@ -1328,7 +1386,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "계란지단",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_eggpan_ 50g.png",
             exchange: 1,
             weight: 50,
             serve: "1개",
@@ -1336,21 +1394,21 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "대파",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_springonion_55g.png",
             exchange: 1,
             weight: 55,
             type: "vegetable",
           },
           {
             menu: "김",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_seaweed_5g.png",
             exchange: 1,
             weight: 2,
             type: "vegetable",
           },
           {
             menu: "김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
@@ -1360,7 +1418,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "떡국(떡)",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_ttukgug_50g.png",
             exchange: 1,
             weight: 50,
             serve: "썰은 것 11개",
@@ -1368,7 +1426,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "고기고명",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_pork_ballBraise_40g.png",
             exchange: 1,
             weight: 40,
             serve: "1덩이",
@@ -1376,7 +1434,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "계란지단",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_eggpan_ 50g.png",
             exchange: 1,
             weight: 50,
             serve: "1개",
@@ -1384,26 +1442,25 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "대파",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_springonion_55g.png",
             exchange: 1,
             weight: 55,
             type: "vegetable",
           },
           {
             menu: "김",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_seaweed_5g.png",
             exchange: 1,
             weight: 2,
             type: "vegetable",
           },
           {
             menu: "김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "멸치육수", photo: null, type: "liquid" },
         ],
       ],
     ],
@@ -1418,7 +1475,7 @@ function DietGenerator(REU, DMRFswitch) {
       },
       {
         menu: "사과",
-        photo: "foodpicture/fruit/apple100g.png",
+        photo: "foodpicture/fruit/Ex1_apple_100g.png",
         exchange: 1,
         weight: 80,
         serve: "1/3개",
@@ -1426,7 +1483,7 @@ function DietGenerator(REU, DMRFswitch) {
       },
       {
         menu: "참외",
-        photo: "foodpicture/fruit/pear100g.png",
+        photo: "foodpicture/fruit/Ex1_orientalMelon_150g.png",
         exchange: 1,
         weight: 150,
         serve: "1/2개",
@@ -1434,7 +1491,7 @@ function DietGenerator(REU, DMRFswitch) {
       },
       {
         menu: "토마토",
-        photo: "foodpicture/fruit/pear100g.png",
+        photo: "foodpicture/fruit/EX1_tomato_300g.png",
         exchange: 1,
         weight: 300,
         serve: "2개",
@@ -1448,7 +1505,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "흰밥",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_whiteRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -1456,14 +1513,14 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "도토리묵",
-            photo: null,
+            photo: "foodpicture/grain/Ex1_acornjelly_200g.png",
             exchange: 1,
             weight: 200,
             type: "grain",
           },
           {
             menu: "가지나물",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_eggplantNamul_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/2컵",
@@ -1471,24 +1528,28 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "상추",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_lettuce_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "콩나물국", photo: null, type: "liquid" },
+          {
+            menu: "콩나물국",
+            photo: "foodpicture/liquid/beansproutsoup.png",
+            type: "liquid",
+          },
         ],
         [
           {
             menu: "흰밥",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_whiteRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -1504,31 +1565,35 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "깻잎튀김",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_sesameLeafFry_24g.png",
             exchange: 1,
             weight: 20,
             type: "vegetable",
           },
           {
             menu: "상추",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_lettuce_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "콩나물국", photo: null, type: "liquid" },
+          {
+            menu: "콩나물국",
+            photo: "foodpicture/liquid/beansproutsoup.png",
+            type: "liquid",
+          },
         ],
         [
           {
             menu: "흰밥",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_whiteRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -1536,7 +1601,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "돈육찜",
-            photo: "foodpicture/rawpork40g.png",
+            photo: "foodpicture/protein/Ex1_porkbraise_40g.png",
             exchange: 1,
             weight: 40,
             serve: "1덩이",
@@ -1552,26 +1617,30 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "상추",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_lettuce_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "콩나물국", photo: null, type: "liquid" },
+          {
+            menu: "콩나물국",
+            photo: "foodpicture/liquid/beansproutsoup.png",
+            type: "liquid",
+          },
         ],
       ],
       [
         [
           {
             menu: "흰밥",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_whiteRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -1579,38 +1648,42 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "고사리볶음",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_seasonedBracken_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "도라지생채",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_ballonflowerrootsalad_70g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
           {
             menu: "얼갈이나물",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_winterPlowing_70g.png",
             exchange: 1,
             weight: 63,
             type: "vegetable",
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "무국", photo: null, type: "liquid" },
+          {
+            menu: "무국",
+            photo: "foodpicture/liquid/radishsoup.png",
+            type: "liquid",
+          },
         ],
         [
           {
             menu: "흰밥",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_whiteRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -1618,7 +1691,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "닭찜",
-            photo: "foodpicture/protein/chickinbreast.png",
+            photo: "foodpicture/protein/Ex1_chickinBraise_40g.png",
             exchange: 1,
             weight: 40,
             serve: "3/4덩이",
@@ -1626,31 +1699,35 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "도라지생채",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_ballonflowerrootsalad_70g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
           {
             menu: "얼갈이나물",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_winterPlowing_70g.png",
             exchange: 1,
             weight: 63,
             type: "vegetable",
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "무국", photo: null, type: "liquid" },
+          {
+            menu: "무국",
+            photo: "foodpicture/liquid/radishsoup.png",
+            type: "liquid",
+          },
         ],
         [
           {
             menu: "흰밥",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_whiteRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -1658,7 +1735,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "닭찜",
-            photo: "foodpicture/protein/chickinbreast.png",
+            photo: "foodpicture/protein/Ex1_chickinBraise_40g.png",
             exchange: 1,
             weight: 40,
             serve: "3/4덩이",
@@ -1674,26 +1751,30 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "얼갈이나물",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_winterPlowing_70g.png",
             exchange: 1,
             weight: 63,
             type: "vegetable",
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "무국", photo: null, type: "liquid" },
+          {
+            menu: "무국",
+            photo: "foodpicture/liquid/radishsoup.png",
+            type: "liquid",
+          },
         ],
       ],
       [
         [
           {
             menu: "흰밥",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_whiteRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -1701,38 +1782,42 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "궁중떡볶이",
-            photo: null,
+            photo: "foodpicture/grain/Ex1_ttuk_50g.png",
             exchange: 1,
             weight: 50,
             type: "grain",
           },
           {
             menu: "더덕구이",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_grilleddeodeok_42g.png",
             exchange: 1,
             weight: 42,
             type: "vegetable",
           },
           {
             menu: "양배추찜",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_cabbage_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "미역국", photo: null, type: "liquid" },
+          {
+            menu: "미역국",
+            photo: "foodpicture/liquid/seaweedsoup.png",
+            type: "liquid",
+          },
         ],
         [
           {
             menu: "흰밥",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_whiteRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -1748,31 +1833,35 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "팽이버섯전",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_enokitakemushroomPancake_40g.png",
             exchange: 1,
             weight: 40,
             type: "vegetable",
           },
           {
             menu: "양배추찜",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_cabbage_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "미역국", photo: null, type: "liquid" },
+          {
+            menu: "미역국",
+            photo: "foodpicture/liquid/seaweedsoup.png",
+            type: "liquid",
+          },
         ],
         [
           {
             menu: "흰밥",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_whiteRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -1788,7 +1877,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "두부전",
-            photo: "foodpicture/protein/Ex1_tufu_fry_80g.png",
+            photo: "foodpicture/protein/Ex1_tufuFry_80g.png",
             exchange: 1,
             weight: 80,
             serve: "1/6모",
@@ -1796,19 +1885,23 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "양배추찜",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_cabbage_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "미역국", photo: null, type: "liquid" },
+          {
+            menu: "미역국",
+            photo: "foodpicture/liquid/seaweedsoup.png",
+            type: "liquid",
+          },
         ],
       ],
     ],
@@ -1817,7 +1910,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "샌드위치(식빵)",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_bread_35g.png",
             exchange: 1,
             weight: 35,
             serve: "1장",
@@ -1825,24 +1918,28 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "상추",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_lettuce_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "양파",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_onion_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
-          { menu: "올리브소스", photo: null, type: "liquid" },
+          {
+            menu: "올리브소스",
+            photo: "foodpicture/liquid/olivesauce.png",
+            type: "liquid",
+          },
         ],
         [
           {
             menu: "샌드위치(식빵)",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_bread_35g.png",
             exchange: 1,
             weight: 35,
             serve: "1장",
@@ -1850,28 +1947,28 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "오믈렛",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_omelet_50g.png",
             exchange: 1,
             weight: 50,
             type: "meat",
           },
           {
             menu: "양파",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_onion_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "상추",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_lettuce_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "저염피클",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_pickle_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
@@ -1880,7 +1977,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "샌드위치(식빵)",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_bread_35g.png",
             exchange: 1,
             weight: 35,
             serve: "1장",
@@ -1888,28 +1985,28 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "오믈렛",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_omelet_50g.png",
             exchange: 1,
             weight: 50,
             type: "meat",
           },
           {
             menu: "저염햄",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_lowSaltHam_40g.png",
             exchange: 1,
             weight: 40,
             type: "meat",
           },
           {
             menu: "상추",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_lettuce_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "저염피클",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_pickle_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
@@ -1920,7 +2017,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "베이글",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex2_bagel_70g.png",
             exchange: 1,
             weight: 35,
             serve: "1/2개",
@@ -1928,31 +2025,35 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "바질페스토",
-            photo: null,
+            photo: "foodpicture/liquid/baselpesto.png",
             exchange: 1,
             weight: 29,
             type: "vegetable",
           },
           {
             menu: "야채샐러드",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_salad_56g.png",
             exchange: 1,
             weight: 56,
             type: "vegetable",
           },
           {
             menu: "저염피클",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_pickle_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "커피(차)", photo: null, type: "liquid" },
+          {
+            menu: "커피(차)",
+            photo: "foodpicture/liquid/coffee.png",
+            type: "liquid",
+          },
         ],
         [
           {
             menu: "베이글",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex2_bagel_70g.png",
             exchange: 1,
             weight: 35,
             serve: "1/2개",
@@ -1960,31 +2061,35 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "브리치즈",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_bricheeze_30g.jpg",
             exchange: 1,
             weight: 30,
             type: "meat",
           },
           {
             menu: "야채샐러드",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_salad_56g.png",
             exchange: 1,
             weight: 56,
             type: "vegetable",
           },
           {
             menu: "저염피클",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_pickle_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "커피(차)", photo: null, type: "liquid" },
+          {
+            menu: "커피(차)",
+            photo: "foodpicture/liquid/coffee.png",
+            type: "liquid",
+          },
         ],
         [
           {
             menu: "베이글",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex2_bagel_70g.png",
             exchange: 1,
             weight: 35,
             serve: "1/2개",
@@ -1992,40 +2097,44 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "브리치즈",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_bricheeze_30g.jpg",
             exchange: 1,
             weight: 30,
             type: "meat",
           },
           {
             menu: "연어구이",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_salmon_grill_40g.png",
             exchange: 1,
             weight: 50,
             type: "meat",
           },
           {
             menu: "야채샐러드",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_salad_56g.png",
             exchange: 1,
             weight: 56,
             type: "vegetable",
           },
           {
             menu: "저염피클",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_pickle_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "커피(차)", photo: null, type: "liquid" },
+          {
+            menu: "커피(차)",
+            photo: "foodpicture/liquid/coffee.png",
+            type: "liquid",
+          },
         ],
       ],
       [
         [
           {
             menu: "모닝빵",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_morningBread_35g.png",
             exchange: 1,
             weight: 35,
             serve: "1개",
@@ -2033,111 +2142,123 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "마카로니범벅",
-            photo: null,
+            photo: "foodpicture/grain/Ex1_macaroni_30g.png",
             exchange: 1,
             weight: 30,
             type: "grain",
           },
           {
             menu: "코울슬로",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_coleslaw_40g.png",
             exchange: 1,
             weight: 40,
             type: "vegetable",
           },
           {
             menu: "아스파라거스",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_asparagus_34g.png",
             exchange: 1,
             weight: 40,
             type: "vegetable",
           },
           {
             menu: "새송이버섯구이",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kingoystermushroom_33g.png",
             exchange: 1,
             weight: 33,
             type: "highPotassium",
           },
-          { menu: "야채스프", photo: null, type: "liquid" },
         ],
         [
           {
             menu: "모닝빵",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_morningBread_35g.png",
             exchange: 1,
             weight: 35,
             serve: "1개",
+            type: "grain",
+          },
+          {
+            menu: "감자으깸",
+            photo: "foodpicture/vegetable/Ex1_meshedPotato_50g.png",
+            exchange: 1,
+            weight: 50,
             type: "grain",
           },
           {
             menu: "풀드포크",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_pulledpork_40g.png",
             exchange: 1,
             weight: 40,
             type: "meat",
           },
           {
             menu: "코울슬로",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_coleslaw_40g.png",
             exchange: 1,
             weight: 40,
             type: "vegetable",
           },
           {
             menu: "아스파라거스",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_asparagus_34g.png",
             exchange: 1,
             weight: 40,
             type: "vegetable",
           },
+  
           {
             menu: "새송이버섯구이",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kingoystermushroom_33g.png",
             exchange: 1,
             weight: 33,
             type: "highPotassium",
           },
-          { menu: "야채스프", photo: null, type: "liquid" },
         ],
         [
           {
             menu: "모닝빵",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_morningBread_35g.png",
             exchange: 1,
             weight: 35,
             serve: "1개",
             type: "grain",
           },
           {
+            menu: "감자으깸",
+            photo: "foodpicture/vegetable/Ex1_meshedPotato_50g.png",
+            exchange: 1,
+            weight: 50,
+            type: "grain",
+          },
+          {
             menu: "스테이크",
-            photo: null,
+            photo: "foodpicture/protein/Ex2_tenderloinsteak_80g.png",
             exchange: 1,
             weight: 40,
             type: "meat",
           },
           {
             menu: "코울슬로",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_coleslaw_40g.png",
             exchange: 1,
             weight: 40,
             type: "vegetable",
           },
           {
             menu: "아스파라거스",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_asparagus_34g.png",
             exchange: 1,
             weight: 40,
             type: "vegetable",
           },
           {
             menu: "새송이버섯구이",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kingoystermushroom_33g.png",
             exchange: 1,
             weight: 33,
             type: "highPotassium",
           },
-          { menu: "야채스프", photo: null, type: "liquid" },
         ],
       ],
     ],
@@ -2146,7 +2267,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "스파게티(링귀니)",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_linguini_30g.png",
             exchange: 1,
             weight: 30,
             serve: "1인분",
@@ -2154,7 +2275,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "가지",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_eggplant_45g.png",
             exchange: 1,
             weight: 70,
             serve: "1/2컵",
@@ -2162,31 +2283,35 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "파프리카",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_paprika_45g.png",
             exchange: 1,
             weight: 45,
             type: "vegetable",
           },
           {
             menu: "마늘",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_garlic_20g.png",
             exchange: 1,
             weight: 19,
             type: "vegetable",
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "알리오올리오 소스", photo: null, type: "liquid" },
+          {
+            menu: "알리오올리오 소스",
+            photo: "foodpicture/liquid/aglioolio.png",
+            type: "liquid",
+          },
         ],
         [
           {
             menu: "스파게티(링귀니)",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_linguini_30g.png",
             exchange: 1,
             weight: 30,
             serve: "1인분",
@@ -2194,7 +2319,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "새우",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_shrimp_40g.png",
             exchange: 1,
             weight: 40,
             serve: "중하3마리, 보리새우10마리",
@@ -2202,31 +2327,35 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "파프리카",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_paprika_45g.png",
             exchange: 1,
             weight: 45,
             type: "vegetable",
           },
           {
             menu: "마늘",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_garlic_20g.png",
             exchange: 1,
             weight: 19,
             type: "vegetable",
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "알리오올리오 소스", photo: null, type: "liquid" },
+          {
+            menu: "알리오올리오 소스",
+            photo: "foodpicture/liquid/aglioolio.png",
+            type: "liquid",
+          },
         ],
         [
           {
             menu: "스파게티(링귀니)",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_linguini_30g.png",
             exchange: 1,
             weight: 30,
             serve: "1인분",
@@ -2234,7 +2363,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "관자",
-            photo: "foodpicture/milk200ml.png",
+            photo: "foodpicture/protein/Ex1_scallup_30g.png",
             exchange: 1,
             weight: 30,
             serve: "1개",
@@ -2242,7 +2371,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "새우",
-            photo: null,
+            photo: "foodpicture/protein/Ex1_shrimp_40g.png",
             exchange: 1,
             weight: 40,
             serve: "중하3마리, 보리새우10마리",
@@ -2250,26 +2379,30 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "마늘",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_garlic_20g.png",
             exchange: 1,
             weight: 19,
             type: "vegetable",
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
-          { menu: "알리오올리오 소스", photo: null, type: "liquid" },
+          {
+            menu: "알리오올리오 소스",
+            photo: "foodpicture/liquid/aglioolio.png",
+            type: "liquid",
+          },
         ],
       ],
       [
         [
           {
             menu: "덮밥(밥)",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_whiteRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -2277,7 +2410,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "가지",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_eggplant_45g.png",
             exchange: 1,
             weight: 70,
             serve: "1/2컵",
@@ -2285,28 +2418,28 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "애호박",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_zucchini_45g.png",
             exchange: 1,
             weight: 45,
             type: "vegetable",
           },
           {
             menu: "양파",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_onion_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
           {
             menu: "양송이버섯",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_buttonmushroom_50g.png",
             exchange: 1,
             weight: 30,
             type: "highPotassium",
@@ -2315,7 +2448,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "덮밥(밥)",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_whiteRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -2331,28 +2464,28 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "애호박",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_zucchini_45g.png",
             exchange: 1,
             weight: 45,
             type: "vegetable",
           },
           {
             menu: "양파",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_onion_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
           {
             menu: "양송이버섯",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_buttonmushroom_50g.png",
             exchange: 1,
             weight: 30,
             type: "highPotassium",
@@ -2361,7 +2494,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "덮밥(밥)",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_whiteRice_70g.png",
             exchange: 1,
             weight: 70,
             serve: "1/3공기",
@@ -2385,21 +2518,21 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "애호박",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_zucchini_45g.png",
             exchange: 1,
             weight: 45,
             type: "vegetable",
           },
           {
             menu: "양파",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_onion_70g.png",
             exchange: 1,
             weight: 70,
             type: "vegetable",
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
@@ -2410,7 +2543,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "떡국(떡)",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_ttukgug_50g.png",
             exchange: 1,
             weight: 50,
             serve: "10개",
@@ -2418,14 +2551,14 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "대파",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_springonion_55g.png",
             exchange: 1,
             weight: 55,
             type: "vegetable",
           },
           {
             menu: "김",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_seaweed_5g.png",
             exchange: 1,
             weight: 5,
             serve: "2장",
@@ -2433,14 +2566,14 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
           },
           {
             menu: "표고버섯",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_shiitake_30g.png",
             exchange: 1,
             weight: 30,
             serve: "2개",
@@ -2450,7 +2583,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "떡국(떡)",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_ttukgug_50g.png",
             exchange: 1,
             weight: 50,
             serve: "10개",
@@ -2458,7 +2591,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "고기고명",
-            photo: "foodpicture/protein/Ex1_beefBulgogi_40g.png",
+            photo: "foodpicture/protein/Ex1_pork_ballBraise_40g.png",
             exchange: 1,
             weight: 40,
             serve: "1덩이",
@@ -2466,14 +2599,14 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "대파",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_springonion_55g.png",
             exchange: 1,
             weight: 55,
             type: "vegetable",
           },
           {
             menu: "김",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_seaweed_5g.png",
             exchange: 1,
             weight: 5,
             serve: "2장",
@@ -2481,7 +2614,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
@@ -2490,7 +2623,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "떡국(떡)",
-            photo: "foodpicture/rice.png",
+            photo: "foodpicture/grain/Ex1_ttukgug_50g.png",
             exchange: 1,
             weight: 50,
             serve: "10개",
@@ -2498,7 +2631,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "고기고명",
-            photo: "foodpicture/protein/Ex1_beefBulgogi_40g.png",
+            photo: "foodpicture/protein/Ex1_pork_ballBraise_40g.png",
             exchange: 1,
             weight: 40,
             serve: "1덩이",
@@ -2506,7 +2639,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "계란지단",
-            photo: "foodpicture/protein/Ex1_egg_fry_60g.png",
+            photo: "foodpicture/protein/Ex1_eggpan_ 50g.png",
             exchange: 1,
             weight: 50,
             serve: "1개",
@@ -2514,14 +2647,14 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "대파",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_springonion_55g.png",
             exchange: 1,
             weight: 55,
             type: "vegetable",
           },
           {
             menu: "김",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_seaweed_5g.png",
             exchange: 1,
             weight: 5,
             serve: "2장",
@@ -2529,7 +2662,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "저염김치",
-            photo: null,
+            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
@@ -2548,7 +2681,7 @@ function DietGenerator(REU, DMRFswitch) {
       },
       {
         menu: "사과",
-        photo: "foodpicture/fruit/apple100g.png",
+        photo: "foodpicture/fruit/Ex1_apple_100g.png",
         exchange: 1,
         weight: 100,
         serve: "1/2개",
@@ -2556,7 +2689,7 @@ function DietGenerator(REU, DMRFswitch) {
       },
       {
         menu: "배",
-        photo: "foodpicture/fruit/pear100g.png",
+        photo: "foodpicture/fruit/Ex1_pear_100g.png",
         exchange: 1,
         weight: 100,
         serve: "1/4개",
@@ -2568,9 +2701,9 @@ function DietGenerator(REU, DMRFswitch) {
     $("#dietEx" + i + "Name").empty();
     $("#dietEx" + i + "Weight").empty();
     $("#dietEx" + i + "Picture").empty();
-    addRowtd("#dietEx" + i + "Name", "메뉴");
-    addRowtd("#dietEx" + i + "Weight", "중량(g)");
-    addRowtd("#dietEx" + i + "Picture", " ");
+    // addRowtd("#dietEx" + i + "Name", "메뉴");
+    // addRowtd("#dietEx" + i + "Weight", "중량(g)");
+    // addRowtd("#dietEx" + i + "Picture", " ");
   }
   let mealSelection = [];
   mealSelection.push($("input[name=breakfast]:checked").val());
@@ -2623,8 +2756,7 @@ function DietGenerator(REU, DMRFswitch) {
         );
       }
       exampleDiet.push(sneckMultiple(DMLP[3], REU));
-    }
-    else if (DMRFswitch == false) {
+    } else if (DMRFswitch == false) {
       let hashprotein = 0;
       for (let i = 0; i < 3; i++) {
         hashprotein = hashProExch(REU[i + 2]);
@@ -2682,8 +2814,8 @@ function sneckMultiple(EXD, REU) {
     snectCopy[0].weight = snectCopy[0].weight * snectCopy[0].exchange;
     sneck.push(snectCopy[0]);
   }
-  for(let i=0;i<REU[1][5];i++){
-    sneck.push(snectCopy[i+1]);
+  for (let i = 0; i < REU[1][5]; i++) {
+    sneck.push(snectCopy[i + 1]);
   }
   return sneck;
 }
