@@ -7,7 +7,9 @@ li {
 }
 /* section styles */
 
-
+.page1{
+  font-size: 1.1rem;
+}
 .resultInfoBox {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -31,7 +33,7 @@ table caption {
 }
 #recommendDiet td,
 #recommendDiet2 td {
-  font-size: larger;
+  font-size: 1.3rem;
 }
 /* --------------------------------------------------------- */
 
@@ -42,35 +44,45 @@ table caption {
   padding-left: 0px;
 }
 .rowMeal{
-  padding: 10px;
+  padding: 5px;
 }
 .itembox{
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 4fr;
   margin-bottom: 5px;
-  margin-right: 80px;
-  margin-left: 80px;
+  margin-right: 50px;
+  margin-left: 50px;
 }
 
 input[type=radio] {
   width: 18px;
   height: 18px;
   position: relative;
-  top: 3px;
+  top: -25px;
 }
 
 input[type=radio]:checked {
   width: 18px;
   height: 18px;
   position: relative;
-  top: 3px;
+  top: -25px;
 }
 .mealSelect{
-  padding: 20px;
+  padding: 0px;
 }
 .DietGeneratorNarration{
-  padding: 20px;
+  padding: 10px;
   text-align: center;
+}
+#DietGeneratorButton{
+  width: 50%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.mealPhoto{
+  width: 80px;
+  height: 50px;
+  margin-right: 20px;
 }
 .text_under {
   position: relative;
@@ -145,17 +157,17 @@ input[type=radio]:checked {
 .liquid{
   color: rgb(173, 224, 245);
 } */
-.dietExample td:first-child{
+/* .dietExample td:first-child{
   color: black;
   text-shadow: none;
-}
+} */
 .dietExample caption{
   color: black;
   text-shadow: none;
 }
 .foodPhoto {
-  width: 20px;
-  height: 20px;
+  width: 80px;
+  height: 80px;
 }
 
 /* ----------------------------------------------------- */
