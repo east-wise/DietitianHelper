@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   const catchPatientInfo = JSON.parse(localStorage.getItem("patient-info"));
 
+  // console.log(catchPatientInfo);
+
+
   const DMDiet = [
     ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"],
     [4, 3, 7, 2, 1, 1],
@@ -521,20 +524,32 @@ document.addEventListener("DOMContentLoaded", function () {
     $("#nowSexAge").append("남성 / " + catchPatientInfo.age + "세");
   else $("#nowSexAge").append("여성 / " + catchPatientInfo.age + "세");
   $("#nowHeight").append(catchPatientInfo.height + "cm");
-  $("#nowWeight").append(catchPatientInfo.weight + "kg");
+  $("#nowWeight").append(catchPatientInfo.weight + "kg / ");
   $("#idealBodyWeight").append(
     Math.round(catchPatientInfo.IdealBodyWeight * 10) / 10 + "kg"
   );
-  $("#normalBodyWeightRange").append(
+  $(".progress-bar-success").append(
     Math.round(catchPatientInfo.IdealBodyWeight * 0.9) +
       "~" +
       Math.round(catchPatientInfo.IdealBodyWeight * 1.09) +
-      "kg, "
+      "kg"
+  );
+  $(".progress-bar-warning").append(
+    Math.round(catchPatientInfo.IdealBodyWeight * 1.1) +
+      "~" +
+      Math.round(catchPatientInfo.IdealBodyWeight * 1.2) +
+      "kg"
+  );
+  $(".progress-bar-danger").append(
+    Math.round(catchPatientInfo.IdealBodyWeight * 1.2) +
+      "~" +
+      Math.round(catchPatientInfo.IdealBodyWeight * 1.3) +
+      "kg"
   );
   if (catchPatientInfo.KidneyCondition > 2)
-    $("#normalBodyWeightRange").append(catchPatientInfo.BMICondition);
+    $("#nowWeight").append(catchPatientInfo.BMICondition);
   else if (catchPatientInfo.KidneyCondition <= 2)
-    $("#normalBodyWeightRange").append(catchPatientInfo.PIBWCondition);
+    $("#nowWeight").append(catchPatientInfo.PIBWCondition);
 
   //----권장 영양소 섭취량 출력----//
   // console.log(DietNutrient.Protein);
@@ -1017,7 +1032,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "베이글",
-            photo: "foodpicture/grain/Ex2_bagel_70g.png",
+            photo: "foodpicture/grain/Ex1_bagel_35g.png",
             exchange: 1,
             weight: 35,
             serve: "1/2개",
@@ -1053,7 +1068,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "베이글",
-            photo: "foodpicture/grain/Ex2_bagel_70g.png",
+            photo: "foodpicture/grain/Ex1_bagel_35g.png",
             exchange: 1,
             weight: 35,
             serve: "1/2개",
@@ -1233,7 +1248,7 @@ function DietGenerator(REU, DMRFswitch) {
             menu: "봉골레소스",
             photo: "foodpicture/liquid/vongole.png",
             type: "liquid",
-          }
+          },
         ],
         [
           {
@@ -2017,7 +2032,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "베이글",
-            photo: "foodpicture/grain/Ex2_bagel_70g.png",
+            photo: "foodpicture/grain/Ex1_bagel_35g.png",
             exchange: 1,
             weight: 35,
             serve: "1/2개",
@@ -2053,7 +2068,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "베이글",
-            photo: "foodpicture/grain/Ex2_bagel_70g.png",
+            photo: "foodpicture/grain/Ex1_bagel_35g.png",
             exchange: 1,
             weight: 35,
             serve: "1/2개",
@@ -2089,7 +2104,7 @@ function DietGenerator(REU, DMRFswitch) {
         [
           {
             menu: "베이글",
-            photo: "foodpicture/grain/Ex2_bagel_70g.png",
+            photo: "foodpicture/grain/Ex1_bagel_35g.png",
             exchange: 1,
             weight: 35,
             serve: "1/2개",
@@ -2206,7 +2221,7 @@ function DietGenerator(REU, DMRFswitch) {
             weight: 40,
             type: "vegetable",
           },
-  
+
           {
             menu: "새송이버섯구이",
             photo: "foodpicture/vegetable/Ex1_kingoystermushroom_33g.png",
@@ -2734,7 +2749,7 @@ function DietGenerator(REU, DMRFswitch) {
     document.getElementById("breakfastSelection").className = "center";
     document.getElementById("lunchSelection").className = "center";
     document.getElementById("dinnerSelection").className = "center";
-    let location = document.querySelector("#guideParagraph2").offsetTop;
+    let location = document.querySelector(".page2").offsetTop;
     window.scrollTo({
       top: location + window.innerHeight * 1.3,
       behavior: "smooth",
