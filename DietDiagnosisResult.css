@@ -5,14 +5,21 @@ li {
   list-style: none;
   margin-bottom: 0px;
 }
-/* section styles */
 
-.page1{
+/* section styles */
+.progress{
+  margin-bottom: 0px;
+  height: 30px;
+}
+.progress-bar{
+  font-size: 1.1rem;
+}
+.page1 {
   font-size: 1.1rem;
 }
 .resultInfoBox {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
 }
 
 #guideParagraph {
@@ -21,7 +28,7 @@ li {
   align-items: center;
 }
 
-table{
+table {
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -31,22 +38,31 @@ table caption {
   caption-side: top;
   text-align: center;
 }
+
 #recommendDiet td,
 #recommendDiet2 td {
   font-size: 1.3rem;
 }
-/* --------------------------------------------------------- */
 
+/* --------------------------------------------------------- */
 
 .center {
   display: flex;
   align-items: center;
   padding-left: 0px;
 }
-.rowMeal{
+
+#breakfastSelection,
+#lunchSelection,
+#dinnerSelection {
+  font-size: 1.1rem;
+}
+
+.rowMeal {
   padding: 5px;
 }
-.itembox{
+
+.itembox {
   display: grid;
   grid-template-columns: 1fr 4fr;
   margin-bottom: 5px;
@@ -67,23 +83,29 @@ input[type=radio]:checked {
   position: relative;
   top: -25px;
 }
-.mealSelect{
+
+.mealSelect {
   padding: 0px;
 }
-.DietGeneratorNarration{
+
+.DietGeneratorNarration {
   padding: 10px;
   text-align: center;
+  font-size: 1.25rem;
 }
-#DietGeneratorButton{
+
+#DietGeneratorButton {
   width: 50%;
   margin-right: auto;
   margin-left: auto;
 }
-.mealPhoto{
+
+.mealPhoto {
   width: 80px;
   height: 50px;
   margin-right: 20px;
 }
+
 .text_under {
   position: relative;
   font-weight: bolder;
@@ -101,44 +123,55 @@ input[type=radio]:checked {
   bottom: 1px;
   z-index: -1;
 }
-#foodcycle{
+
+#foodcycle {
   margin-top: auto;
   height: 470px;
   width: 638px;
   margin-left: auto;
   margin-right: auto;
 }
-.page2 footer{
+
+.page2 footer {
   margin-top: 0px;
 }
+
 /* --------------------------------------------------------- */
 
-.dietExample{
+.dietExample {
   color: white;
   font-size: 1.1rem;
   /* text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000; */
 }
-.highPotassium{
+
+.highPotassium {
   color: purple;
 }
-.grain{
+
+.grain {
   color: rgb(163, 76, 76);
 }
-.meat{
+
+.meat {
   color: crimson;
 }
-.vegetable{
+
+.vegetable {
   color: green;
 }
-.milk{
+
+.milk {
   color: black;
 }
-.fruit{
+
+.fruit {
   color: rgb(255, 102, 0);
 }
-.liquid{
+
+.liquid {
   color: rgb(39, 1, 255);
 }
+
 /* .grain{
   color: burlywood;
 }
@@ -161,10 +194,11 @@ input[type=radio]:checked {
   color: black;
   text-shadow: none;
 } */
-.dietExample caption{
+.dietExample caption {
   color: black;
   text-shadow: none;
 }
+
 .foodPhoto {
   width: 80px;
   height: 80px;
@@ -172,7 +206,7 @@ input[type=radio]:checked {
 
 /* ----------------------------------------------------- */
 
-.NCP{
+.NCP {
   display: flex;
   flex-direction: column;
   margin-top: 50px;
@@ -180,11 +214,13 @@ input[type=radio]:checked {
   margin-right: 80px;
   text-align: center;
 }
-.NCP label{
+
+.NCP label {
   font-size: 1.3rem;
   font-weight: bold;
 }
-.NCPdiagnosis{
+
+.NCPdiagnosis {
   border-width: 1px;
   text-align: center;
   /* box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2); */
@@ -193,15 +229,16 @@ input[type=radio]:checked {
 
 /* ----------------------------------------------------- */
 
-.main{
+.main {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 550px;
   margin-left: auto;
   margin-right: auto;
   padding: 5px 20px;
   text-align: left;
 }
+
 body {
   width: 100%;
   height: 100%;
@@ -245,19 +282,19 @@ body {
 
   html,
   body {
-      width: 210mm;
-      height: 297mm;
-      background: #fff;
+    width: 210mm;
+    height: 297mm;
+    background: #fff;
   }
 
   .paper {
-      margin: 0;
-      border: initial;
-      border-radius: initial;
-      width: initial;
-      min-height: initial;
-      box-shadow: initial;
-      background: initial;
-      page-break-after: always;
+    margin: 0;
+    border: initial;
+    border-radius: initial;
+    width: initial;
+    min-height: initial;
+    box-shadow: initial;
+    background: initial;
+    page-break-after: always;
   }
 }
