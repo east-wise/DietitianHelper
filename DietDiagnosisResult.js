@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const catchPatientInfo = JSON.parse(localStorage.getItem("patient-info"));
   /**
    * DMDiet
-   * [Hash table =>> 1200->1]
-   * ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"]
+   ** [Hash table =>> 1200->1]
+   ** ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"]
    */
   const DMDiet = [
     ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"],
@@ -30,8 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
   /**
    * growthDiet
-   * [Hash table =>> 1000->1]
-   * ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"]
+   ** [Hash table =>> 1000->1]
+   ** ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"]
    */
   const growthDietA = [
     ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"],
@@ -57,8 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
   /**
    * growthDiet
-   * [Hash table =>> 1000->1]
-   * ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"]
+   ** [Hash table =>> 1000->1]
+   ** ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"]
    */
   const growthDietB = [
     ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"],
@@ -83,9 +83,9 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
   /**
    * proteinControledDiet
-   * [Hash table =>> protein 30->1]
-   * [Hash table =>> 1300kcal->0]
-   * ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군","열량보충군"]
+   ** [Hash table =>> protein 30->1]
+   ** [Hash table =>> 1300kcal->0]
+   ** ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군","열량보충군"]
    */
   const proteinControledDiet = [
     [
