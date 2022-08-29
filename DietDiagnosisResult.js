@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   const catchPatientInfo = JSON.parse(localStorage.getItem("patient-info"));
-
-  // console.log(catchPatientInfo);
-
-
+  /**
+   * DMDiet
+   * [Hash table =>> 1200->1]
+   * ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"]
+   */
   const DMDiet = [
     ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"],
     [4, 3, 7, 2, 1, 1],
@@ -27,49 +28,65 @@ document.addEventListener("DOMContentLoaded", function () {
     [14, 8, 9, 6, 2, 3],
     [15, 8, 9, 6, 2, 3],
   ];
+  /**
+   * growthDiet
+   * [Hash table =>> 1000->1]
+   * ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"]
+   */
   const growthDietA = [
-      ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"],
-      [3, 1.5, 3, 3, 2, 1],
-      [4.5, 1.5, 3, 3, 2, 1],
-      [4.5, 2, 4, 3, 2, 1],
-      [4.5, 2, 4.5, 4, 2, 1],
-      [6, 2, 4.5, 4, 2, 1],
-      [6, 2.5, 4.5, 5, 2, 1],
-      [7.5, 2.5, 4.5, 5, 2, 1],
-      [7.5, 3, 4.5, 5, 2, 1],
-      [9, 3, 4.5, 5, 2, 1],
-      [9, 3.5, 5, 5, 2, 1],
-      [9, 3.5, 5, 6, 2, 2],
-      [9, 4, 6, 6, 2, 2],
-      [10.5, 4, 6, 6, 2, 2],
-      [10.5, 5, 6, 6, 2, 2],
-      [10.5, 5, 6, 6, 2, 3],
-      [10.5, 5.5, 6, 7, 2, 3],
-      [10.5, 5.5, 6, 8, 2, 4],
-      [12, 5.5, 6, 8, 2, 4],
-      [12, 6, 6, 8, 2, 4],
-    ],
-    growthDietB = [
-      ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"],
-      [4.5, 1.5, 4, 2, 1, 1],
-      [4.5, 2, 4, 3, 1, 1],
-      [6, 2, 4, 3, 1, 1],
-      [6, 2, 4.5, 4, 1, 1],
-      [7.5, 2, 4.5, 4, 1, 1],
-      [7.5, 2.5, 4.5, 4, 1, 1],
-      [9, 2.5, 4.5, 4, 1, 1],
-      [9, 3.5, 4.5, 4, 1, 1],
-      [9, 3.5, 5, 4, 1, 2],
-      [9, 4, 6, 4, 1, 2],
-      [10.5, 4, 6, 4, 1, 2],
-      [10.5, 4.5, 6, 5, 1, 2],
-      [10.5, 5, 6, 6, 1, 2],
-      [12, 5, 6, 6, 1, 2],
-      [12, 5, 6, 6, 1, 3],
-      [12, 5, 6, 7, 1, 4],
-      [12, 6, 6, 7, 1, 4],
-      [12, 6.5, 7, 8, 1, 4],
-    ];
+    ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"],
+    [3, 1.5, 3, 3, 2, 1],
+    [4.5, 1.5, 3, 3, 2, 1],
+    [4.5, 2, 4, 3, 2, 1],
+    [4.5, 2, 4.5, 4, 2, 1],
+    [6, 2, 4.5, 4, 2, 1],
+    [6, 2.5, 4.5, 5, 2, 1],
+    [7.5, 2.5, 4.5, 5, 2, 1],
+    [7.5, 3, 4.5, 5, 2, 1],
+    [9, 3, 4.5, 5, 2, 1],
+    [9, 3.5, 5, 5, 2, 1],
+    [9, 3.5, 5, 6, 2, 2],
+    [9, 4, 6, 6, 2, 2],
+    [10.5, 4, 6, 6, 2, 2],
+    [10.5, 5, 6, 6, 2, 2],
+    [10.5, 5, 6, 6, 2, 3],
+    [10.5, 5.5, 6, 7, 2, 3],
+    [10.5, 5.5, 6, 8, 2, 4],
+    [12, 5.5, 6, 8, 2, 4],
+    [12, 6, 6, 8, 2, 4],
+  ];
+  /**
+   * growthDiet
+   * [Hash table =>> 1000->1]
+   * ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"]
+   */
+  const growthDietB = [
+    ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군"],
+    [4.5, 1.5, 4, 2, 1, 1],
+    [4.5, 2, 4, 3, 1, 1],
+    [6, 2, 4, 3, 1, 1],
+    [6, 2, 4.5, 4, 1, 1],
+    [7.5, 2, 4.5, 4, 1, 1],
+    [7.5, 2.5, 4.5, 4, 1, 1],
+    [9, 2.5, 4.5, 4, 1, 1],
+    [9, 3.5, 4.5, 4, 1, 1],
+    [9, 3.5, 5, 4, 1, 2],
+    [9, 4, 6, 4, 1, 2],
+    [10.5, 4, 6, 4, 1, 2],
+    [10.5, 4.5, 6, 5, 1, 2],
+    [10.5, 5, 6, 6, 1, 2],
+    [12, 5, 6, 6, 1, 2],
+    [12, 5, 6, 6, 1, 3],
+    [12, 5, 6, 7, 1, 4],
+    [12, 6, 6, 7, 1, 4],
+    [12, 6.5, 7, 8, 1, 4],
+  ];
+  /**
+   * proteinControledDiet
+   * [Hash table =>> protein 30->1]
+   * [Hash table =>> 1300kcal->0]
+   * ["곡류군", "어육류군", "채소군", "지방군", "우유군", "과일군","열량보충군"]
+   */
   const proteinControledDiet = [
     [
       "곡류군",
@@ -525,7 +542,10 @@ document.addEventListener("DOMContentLoaded", function () {
   else $("#nowSexAge").append("여성 / " + catchPatientInfo.age + "세");
   $("#nowHeight").append(catchPatientInfo.height + "cm");
   $("#nowWeight").append(catchPatientInfo.weight + "kg / ");
-   $(".underWeight").append(
+  $("#idealBodyWeight").append(
+    Math.round(catchPatientInfo.IdealBodyWeight * 10) / 10 + "kg"
+  );
+  $(".underWeight").append(
     "~" + Math.round(catchPatientInfo.IdealBodyWeight * 0.9) + "kg"
   );
   $(".normalWeight").append(
@@ -567,7 +587,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   //----권장 식품교환단위 계산----//
-  //Hash table =>> DMDiet 1200->1,  growthDiet 1000->1,  proteinControledDiet pro30->1 1300kcal->0
   let recommendExUnit = [, ,];
   if (catchPatientInfo.KidneyCondition <= 2) {
     if (catchPatientInfo.age > 19 || catchPatientInfo.age == 0) {
@@ -663,8 +682,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   localStorage.removeItem("patient-info");
 });
-
+/**
+ * 식단 생성 함수
+ * @param {array} REU 식품군 권장섭취 단위수
+ * @param {boolean} DMRFswitch 콩팥병 있으면 true, 없으면 false
+ */
 function DietGenerator(REU, DMRFswitch) {
+  /**
+   * 당뇨 Example Menu
+   ** [한식=0,양식=1,일품=2,간식=3]
+   ** [아침=0,점심=1,저녁=2]
+   ** [단백질 단위수 (0.5,1,1.5)=>1, (2~)=>2]
+   ** [메뉴 5,6개 탄수화물=0,단백질=1or2]
+   ** {음식명=menu,사진위치=photo,단위수=exchange,분량=weight,눈대중분량=serve,분류=type}
+   */
   const DMEXD = [
     [
       [
@@ -1514,6 +1545,14 @@ function DietGenerator(REU, DMRFswitch) {
       },
     ],
   ];
+  /**
+   * 당뇨&콩팥병 Example Menu
+   ** [한식=0,양식=1,일품=2,간식=3]
+   ** [아침=0,점심=1,저녁=2]
+   ** [단백질 단위수 0=>0, (0.5,1,1.5)=>1, (2~)=>2]
+   ** [메뉴 5,6개 탄수화물=0,단백질=1or2]
+   ** {음식명=menu,사진위치=photo,단위수=exchange,분량=weight,눈대중분량=serve,분류=type}
+   */
   const DMLP = [
     [
       [
@@ -2754,13 +2793,6 @@ function DietGenerator(REU, DMRFswitch) {
       top: location + window.innerHeight * 1.3,
       behavior: "smooth",
     });
-
-    // exampleMenu
-    //   [한식=0,양식=1,일품=2,간식=3]
-    //   [아침=0,점심=1,저녁=2]
-    //   [단백질 단위수 0=>0, (0.5~1.5)=>1, (2~)=>2]
-    //   [메뉴 5,6개 탄수화물=0,단백질=1,2 ,
-    //     {음식명=menu,사진위치=photo,단위수=exchange,분량=weight,눈대중분량=serve,분류=type}]
     let exampleDiet = [];
     // console.log(exampleDiet);
     if (DMRFswitch == true) {
@@ -2788,6 +2820,12 @@ function DietGenerator(REU, DMRFswitch) {
     }
   }
 }
+/**
+ * 권장량에 맞는 식사 메뉴 양 설정
+ * @param {array} EXD 식단 메뉴 구성
+ * @param {array} reu 식품군 권장섭취 단위수
+ * @returns {array} 식사메뉴 리스트
+ */
 function dietMultiple(EXD, reu) {
   let ed = [];
   ed = makecopy(EXD);
@@ -2821,20 +2859,32 @@ function dietMultiple(EXD, reu) {
   }
   return ed;
 }
-
+/**
+ * 권장량에 맞는 간식 메뉴 양 설정
+ * @param {array} EXD 간식 메뉴 구성
+ * @param {array} REU 식품군 권장섭취 단위수
+ * @returns {array} 간식메뉴리스트
+ */
 function sneckMultiple(EXD, REU) {
   let sneck = [];
   let snectCopy = makecopy(EXD);
+  /* 우유 권장량 설정 */
   if (REU[1][4] > 0) {
     snectCopy[0].exchange = REU[1][4];
     snectCopy[0].weight = snectCopy[0].weight * snectCopy[0].exchange;
     sneck.push(snectCopy[0]);
   }
+  /* 과일 권장량 설정 */
   for (let i = 0; i < REU[1][5]; i++) {
     sneck.push(snectCopy[i + 1]);
   }
   return sneck;
 }
+/**
+ * make deep array copy
+ * @param {[json]} originalContent 복사할 변수
+ * @returns {array} 복사된 변수
+ */
 function makecopy(originalContent) {
   let cloneBag = {
     a: originalContent,
@@ -2842,7 +2892,11 @@ function makecopy(originalContent) {
   const deepClone = JSON.parse(JSON.stringify(cloneBag));
   return deepClone.a;
 }
-
+/**
+ * 0.5 진수 정수로 숫자를 둘로 나눠주는 함수
+ * @param {number} a 둘로 나눌 숫자
+ * @returns 둘 중 큰 숫자
+ */
 function divide2part(a) {
   let b = 0;
   let c = 0;
@@ -2851,7 +2905,11 @@ function divide2part(a) {
   if (b > c) c = b;
   return c;
 }
-
+/**
+ * protein hash tag 변환 함수
+ * @param {[...number]} reu 식품군 권장 섭취 단위수
+ * @returns {number} 해시태그 숫자
+ */
 function hashProExch(reu) {
   let a = 0;
   if (reu[1] == 0) a = 0;
@@ -2859,7 +2917,11 @@ function hashProExch(reu) {
   else if (reu[1] >= 2) a = 2;
   return a;
 }
-
+/**
+ * 음식이름, 권장섭취량(무게), 음식사진 출력하는 함수
+ * @param {[...json]} ed 해당 식사 메뉴
+ * @param {number} meal 식사 아침=1, 점심=2, 저녁=3
+ */
 function printPhoto(ed, meal) {
   for (i in ed) {
     addRowtd("#dietEx" + meal + "Name", ed[i].menu, ed[i].type);
@@ -2878,7 +2940,11 @@ function printPhoto(ed, meal) {
     } else addRowtd("#dietEx" + meal + "Picture", foodimg);
   }
 }
-
+/**
+ * 식품군 권장 섭취량 출력하는 함수
+ * @param {[[...number]]} reu 식품군 권장섭취 단위수
+ * @returns {[...[...number]]}식품군 권장섭취량을 아침,점심,저녁으로 쪼갠 배열
+ */
 function outputExUnit(reu) {
   let breakfestExUnit = [];
   let lunchExUnit = [];
@@ -2896,7 +2962,11 @@ function outputExUnit(reu) {
   }
   return [...reu, breakfestExUnit, lunchExUnit, dinnerExUnit];
 }
-
+/**
+ * 0.5 진수 정수로 숫자를 셋으로 나눠주는 함수
+ * @param {number} num 셋으로 나눌 숫자
+ * @returns [a,b,c] //a >= b >= c
+ */
 function divide3part(num) {
   let BLD = [0, 0, 0];
   if (num % 1.5 === 0) {
@@ -2913,7 +2983,12 @@ function divide3part(num) {
   }
   return BLD;
 }
-
+/**
+ * HTML에 글자 추가 하는 함수
+ * @param {string} location 출력할 위치
+ * @param {string} content 출력할 내용
+ * @param {string} className 출력할 때 cass이름을 달고 싶으면 추가
+ */
 function addRowtd(location, content, className) {
   let rowdata = document.createElement("td");
   if (className != undefined) {
