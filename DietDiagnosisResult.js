@@ -525,22 +525,22 @@ document.addEventListener("DOMContentLoaded", function () {
   else $("#nowSexAge").append("여성 / " + catchPatientInfo.age + "세");
   $("#nowHeight").append(catchPatientInfo.height + "cm");
   $("#nowWeight").append(catchPatientInfo.weight + "kg / ");
-  $("#idealBodyWeight").append(
-    Math.round(catchPatientInfo.IdealBodyWeight * 10) / 10 + "kg"
+   $(".underWeight").append(
+    "~" + Math.round(catchPatientInfo.IdealBodyWeight * 0.9) + "kg"
   );
-  $(".progress-bar-success").append(
+  $(".normalWeight").append(
     Math.round(catchPatientInfo.IdealBodyWeight * 0.9) +
       "~" +
       Math.round(catchPatientInfo.IdealBodyWeight * 1.09) +
       "kg"
   );
-  $(".progress-bar-warning").append(
+  $(".overWeight").append(
     Math.round(catchPatientInfo.IdealBodyWeight * 1.1) +
       "~" +
       Math.round(catchPatientInfo.IdealBodyWeight * 1.2) +
       "kg"
   );
-  $(".progress-bar-danger").append(
+  $(".obesityWeight").append(
     Math.round(catchPatientInfo.IdealBodyWeight * 1.2) +
       "~" +
       Math.round(catchPatientInfo.IdealBodyWeight * 1.3) +
