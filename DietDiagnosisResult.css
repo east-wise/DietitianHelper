@@ -7,9 +7,16 @@ li {
 }
 
 /* section styles */
+#normalBodyWeightRange{
+  display: block;
+  text-align: center;
+  width: 70%;
+  background-color: #198754;
+  color: white;
+}
 .progress{
   margin-bottom: 0px;
-  height: 30px;
+  height: 25px;
 }
 .progress-bar{
   font-size: 1.1rem;
