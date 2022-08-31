@@ -1,9 +1,9 @@
 @import url('style.css');
-input[type=text],
+/*input[type=text],
 input[type=number] {
   border-radius: 0;
   -webkit-appearance: none
-}
+}*/
 
 h2 {
   font-size: 1.5rem;
@@ -75,14 +75,13 @@ h2 {
 
 input[type=text], input[type=number]{
   width: 50%;
+  line-height: 20px;
   height: 15px;
   padding: 10px;
 }
 input {
   font-family: 'Nanum Gothic', sans-serif;
   font-size: medium;
-  width: 70px;
-  height: 22px;
 }
 .main1 button{
   width: 60%;
