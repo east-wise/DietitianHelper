@@ -2,297 +2,296 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>영양진단 (Diet Diagnosis)</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap"
-        rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="DietDiagnosis.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>영양진단 (Diet Diagnosis)</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="bootstrap-5.2.0-dist\css\bootstrap.min.css">
+  <link rel="stylesheet" href="DietDiagnosis.css">
 </head>
 
 <body>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="DietDiagnosis.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script src="DietDiagnosis.js"></script>
 
-    <div class="container">
-        <h1>영양진단</h1>
-        <h2>필요한 정보를 입력해주세요</h2>
-        <div class="main1">
-            <h3>기본정보</h3>
-            <div class="itembox">
-                <div class="center">
-                    이름
-                </div>
-                <div class="item">
-                    <input type="text" id="Name" />
-                </div>
-            </div>
-            <div class="itembox">
-                <div class="center">
-                    만 나이
-                </div>
-                <div class="item">
-                    <input type="number" id="Age" />
-                </div>
-            </div>
-            <div class="rowSex itembox">
-                <label class="center">
-                    성별
-                </label>
-                <div class="item">
-                    <input type="radio" id="healthy_gender_male" name="healthy_gender" value="male" />
-                    <label for="healthy_gender_male">남자</label>
-                    <input type="radio" id="healthy_gender_female" name="healthy_gender" value="female" />
-                    <label for="healthy_gender_female">여자</label>
-                </div>
-            </div>
-            <div class="itembox">
-                <div class="center">
-                    키 (신장)
-                </div>
-                <div class="item">
-                    <input type="number" id="Height" /> cm
-                </div>
-            </div>
-            <div class="itembox">
-                <div class="center">
-                    몸무게 (체중)
-                </div>
-                <div class="item">
-                    <input type="number" id="Weight" /> kg
-                </div>
-            </div>
-            <button type="button" onclick="ObesityJudgement();">키, 체중 입력!</button>
-            <div class="itembox">
-                <div class="center">
-                    활동량
-                </div>
-                <div class="item">
-                    <input type="number" id="ActivityIndex" />
-                </div>
-            </div>
+  <div class="container">
+    <h1>영양진단</h1>
+    <h2>필요한 정보를 입력해주세요</h2>
+    <div class="main1">
+      <h3>기본정보</h3>
+      <div class="itembox">
+        <div class="center">
+          이름
         </div>
-        <div class="side">
-            <table id="physicalActivity">
-                <thead>
-                    <tr>
-                        <td id="ObesityState" name="physicalActivityNarration"></td>
-                        <td name="physicalActivityValue">활동량</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td name="physicalActivityNarration">운동을 따로 하지 않음</td>
-                        <td id="LightActivity" name="physicalActivityValue"></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td name="physicalActivityNarration">가벼운 운동을 자주 함</td>
-                        <td id="ModerateActivity" name="physicalActivityValue"></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td name="physicalActivityNarration">강도있는 운동을 자주 함<br>또는 소모성 질환이 있음</td>
-                        <td id="SevereActivity" name="physicalActivityValue"></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="item">
+          <input type="text" id="Name" />
         </div>
-        <div class="main2selection">
-            <h3 id="Hx">과거병력 또는 현병력</h3>
-            <div class="rowDM itembox">
-                <label class="center">
-                    당뇨여부
-                </label>
-                <div class="item">
-                    <input type="radio" id="diabetesY" name="diabetes" value="y" />
-                    <label for="diabetesY">있음</label>
-                    <input type="radio" id="diabetesN" name="diabetes" value="n" />
-                    <label for="diabetesN">없음</label>
-                    <input type="radio" id="diabetesC" name="diabetes" value="c" />
-                    <label for="diabetesC">모름</label>
-                </div>
-            </div>
-            <div class="rowHD itembox">
-                <label class="center">만성콩팥병</label>
-                <div class="item">
-                    <input type="radio" id="isDialysisY" name="isDialysis" value="y" />
-                    <label for="isDialysisY">투석함</label>
-                    <input type="radio" id="isDialysisN" name="isDialysis" value="n" />
-                    <label for="isDialysisN">투석안함</label>
-                    <input type="radio" id="isDialysisC" name="isDialysis" value="c" />
-                    <label for="isDialysisC">없음</label>
-                </div>
-            </div>
-            <div class="rowHTN itembox">
-                <label class="center">고혈압여부</label>
-                <div class="item">
-                    <input type="radio" id="hypertentionY" name="hypertention" value="y" />
-                    <label for="hypertentionY">있음</label>
-                    <input type="radio" id="hypertentionN" name="hypertention" value="n" />
-                    <label for="hypertentionN">없음</label>
-                    <input type="radio" id="hypertentionC" name="hypertention" value="c" />
-                    <label for="hypertentionC">모름</label>
-                </div>
-            </div>
-            <div class="rowFLD itembox">
-                <label class="center">지방간여부</label>
-                <div class="item">
-                    <input type="radio" id="fattyLiverY" name="fattyLiver" value="y" />
-                    <label for="fattyLiverY">있음</label>
-                    <input type="radio" id="fattyLiverN" name="fattyLiver" value="n" />
-                    <label for="fattyLiverN">없음</label>
-                    <input type="radio" id="fattyLiverC" name="fattyLiver" value="c" />
-                    <label for="fattyLiverC">모름</label>
-                </div>
-            </div>
-            <div class="rowHLP itembox">
-                <label class="item">고지혈증여부</label>
-                <div class="item">
-                    <input type="radio" id="dislipidemiaY" name="dislipidemia" value="y" />
-                    <label for="dislipidemiaY">있음</label>
-                    <input type="radio" id="dislipidemiaN" name="dislipidemia" value="n" />
-                    <label for="dislipidemiaN">없음</label>
-                    <input type="radio" id="dislipidemiaC" name="dislipidemia" value="c" />
-                    <label for="dislipidemiaC">모름</label>
-                </div>
-            </div>
-            <div class="rowGout itembox">
-                <label class="item">통풍여부</label>
-                <div class="item">
-                    <input type="radio" id="goutY" name="gout" value="y" />
-                    <label for="goutY">있음</label>
-                    <input type="radio" id="goutN" name="gout" value="n" />
-                    <label for="goutN">없음</label>
-                    <input type="radio" id="goutC" name="gout" value="c" />
-                    <label for="goutC">모름</label>
-                </div>
-            </div>
+      </div>
+      <div class="itembox">
+        <div class="center">
+          만 나이
         </div>
-        <div class="main2BloodTest">
-            <h3>혈액 수치 입력</h3>
-            <div class="eGFR">
-            <div class="itembox">
-                <div class="center">eGFR-Cr</div>
-                <div class="item"><input type="number" id="glomerular" onkeyup="diagKidneyFunction();"/></div>
-            </div>
-            </div>
-            <div class="electroBattery">
-                <div class="itembox">
-                    <div class="center">혈중 칼륨 농도</div>
-                    <div class="item"><input type="number" id="Potassium" />mmol/L</div>
-                </div>
-                <div class="itembox">
-                    <div class="center">혈중 나트륨 농도</div>
-                    <div class="item"><input type="number" id="Sodium" />mmol/L</div>
-                </div>
-                <div class="itembox">
-                    <div class="center">혈중 인 농도</div>
-                    <div class="item"><input type="number" id="Phosphorous" />mg/dL</div>
-                </div>
-                <div class="itembox">
-                    <div class="center">혈중 염화이온 농도</div>
-                    <div class="item"><input type="number" id="Chloride" />mmol/L</div>
-                </div>
-            </div>
-            <div class="bloodGlucoseTest">
-                <div class="itembox">
-                    <div class="center">공복 혈당</div>
-                    <div class="item"><input type="number" id="FBS" />mg/dL</div>
-                </div>
-                <div class="itembox">
-                    <div class="center">식후 2시간 후 혈당</div>
-                    <div class="item"><input type="number" id="PP2" />mg/dL</div>
-                </div>
-                <div class="itembox">
-                    <div class="center">당화혈색소 (HbA1c)</div>
-                    <div class="item"><input type="number" id="HbA1c" />%</div>
-                </div>
-                <div class="itembox">
-                    <div class="center">당화알부민 (GA)</div>
-                    <div class="item"><input type="number" id="glucatedAlbumin"/>%</div>
-                </div>
-            </div>
-            <div class="bloodPresure">
-                <div class="itembox">
-                    <div class="center">수축기 혈압</div>
-                    <div class="item"><input type="number" id="SBP"/>mmHg</div>
-                </div>
-                <div class="itembox">
-                    <div class="center">이완기 혈압</div>
-                    <div class="item"><input type="number" id="DBP"/>mmHg</div>
-                </div>
-            </div>
-            <div class="liverFunctionTest">
-                <div class="itembox">
-                    <div class="center">간수치 AST (GOT)</div>
-                    <div class="item"><input type="number" id="AST" />IU/L</div>
-                </div>
-                <div class="itembox">
-                    <div class="center">간수치 ALT (GPT)</div>
-                    <div class="item"> <input type="number" id="ALT" />IU/L</div>
-                </div>
-                <div class="itembox">
-                    <div class="center">ALP</div>
-                    <div class="item"><input type="number" id="ALP" />U/L</div>
-                </div>
-                <!-- 쓸개즙 배설장애 의심, 소아의 경우에는 뼈 관련 이상 -->
-                <div class="itembox">
-                    <div class="center">GGT (y-GTP)</div>
-                    <div class="item"><input type="number" id="GGT" />IU/L</div>
-                </div>
-                <!-- 음주 의심 -->
-                <div class="itembox">
-                    <div class="center">총 빌리루빈</div>
-                    <div class="item"><input type="number" id="totalBilirubin" />mg/dL</div>
-                </div>
-            </div>
-            <div class="lipidBattery">
-                <div class="itembox">
-                    <div class="center">혈중 중성지방 농도</div>
-                    <div class="item"><input type="number" id="TG" />mg/dL</div>
-                </div>
-                <div class="itembox">
-                    <div class="center">혈중 총콜레스테롤</div>
-                    <div class="item"><input type="number" id="TChol" />mg/dL</div>
-                </div>
-                <div class="itembox">
-                    <div class="center">혈중 LDL 농도</div>
-                    <div class="item"><input type="number" id="LDL" />mg/dL</div>
-                </div>
-                <div class="itembox">
-                    <div class="center">혈중 HDL 농도</div>
-                    <div class="item"><input type="number" id="HDL" />mg/dL</div>
-                </div>
-            </div>
-            <div class="uricAcid">
-                <div class="itembox">
-                    <div class="center">혈중 요산 농도</div>
-                    <div class="item"><input type="number" id="uricAcid" />mg/dL</div>
-                </div>
-            </div>
+        <div class="item">
+          <input type="number" id="Age" />
         </div>
-
-        <div class="resume">
-            <button type="button" onclick="location.reload();" id="resetPage">리셋!</button>
-            <button type="button" onclick="Examination();" id="resumebutton">입력완료!</button>
+      </div>
+      <div class="rowSex itembox">
+        <label class="center">
+          성별
+        </label>
+        <div class="item">
+          <input type="radio" id="healthy_gender_male" name="healthy_gender" value="male" />
+          <label for="healthy_gender_male">남자</label>
+          <input type="radio" id="healthy_gender_female" name="healthy_gender" value="female" />
+          <label for="healthy_gender_female">여자</label>
         </div>
+      </div>
+      <div class="itembox">
+        <div class="center">
+          키 (신장)
+        </div>
+        <div class="item">
+          <input type="number" id="Height" /> cm
+        </div>
+      </div>
+      <div class="itembox">
+        <div class="center">
+          몸무게 (체중)
+        </div>
+        <div class="item">
+          <input type="number" id="Weight" /> kg
+        </div>
+      </div>
+      <button type="button" onclick="ObesityJudgement();">키, 체중 입력!</button>
+      <div class="itembox">
+        <div class="center">
+          활동량
+        </div>
+        <div class="item">
+          <input type="number" id="ActivityIndex" />
+        </div>
+      </div>
+    </div>
+    <div class="side">
+      <table id="physicalActivity">
+        <thead>
+          <tr>
+            <td id="ObesityState" name="physicalActivityNarration"></td>
+            <td name="physicalActivityValue">활동량</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td name="physicalActivityNarration">운동을 따로 하지 않음</td>
+            <td id="LightActivity" name="physicalActivityValue"></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td name="physicalActivityNarration">가벼운 운동을 자주 함</td>
+            <td id="ModerateActivity" name="physicalActivityValue"></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td name="physicalActivityNarration">강도있는 운동을 자주 함<br>또는 소모성 질환이 있음</td>
+            <td id="SevereActivity" name="physicalActivityValue"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="main2selection">
+      <h3 id="Hx">과거병력 또는 현병력</h3>
+      <div class="rowDM itembox">
+        <label class="center">
+          당뇨여부
+        </label>
+        <div class="item">
+          <input type="radio" id="diabetesY" name="diabetes" value="y" />
+          <label for="diabetesY">있음</label>
+          <input type="radio" id="diabetesN" name="diabetes" value="n" />
+          <label for="diabetesN">없음</label>
+          <input type="radio" id="diabetesC" name="diabetes" value="c" />
+          <label for="diabetesC">모름</label>
+        </div>
+      </div>
+      <div class="rowHD itembox">
+        <label class="center">만성콩팥병</label>
+        <div class="item">
+          <input type="radio" id="isDialysisY" name="isDialysis" value="y" />
+          <label for="isDialysisY">투석함</label>
+          <input type="radio" id="isDialysisN" name="isDialysis" value="n" />
+          <label for="isDialysisN">투석안함</label>
+          <input type="radio" id="isDialysisC" name="isDialysis" value="c" />
+          <label for="isDialysisC">없음</label>
+        </div>
+      </div>
+      <div class="rowHTN itembox">
+        <label class="center">고혈압여부</label>
+        <div class="item">
+          <input type="radio" id="hypertentionY" name="hypertention" value="y" />
+          <label for="hypertentionY">있음</label>
+          <input type="radio" id="hypertentionN" name="hypertention" value="n" />
+          <label for="hypertentionN">없음</label>
+          <input type="radio" id="hypertentionC" name="hypertention" value="c" />
+          <label for="hypertentionC">모름</label>
+        </div>
+      </div>
+      <div class="rowFLD itembox">
+        <label class="center">지방간여부</label>
+        <div class="item">
+          <input type="radio" id="fattyLiverY" name="fattyLiver" value="y" />
+          <label for="fattyLiverY">있음</label>
+          <input type="radio" id="fattyLiverN" name="fattyLiver" value="n" />
+          <label for="fattyLiverN">없음</label>
+          <input type="radio" id="fattyLiverC" name="fattyLiver" value="c" />
+          <label for="fattyLiverC">모름</label>
+        </div>
+      </div>
+      <div class="rowHLP itembox">
+        <label class="item">고지혈증여부</label>
+        <div class="item">
+          <input type="radio" id="dislipidemiaY" name="dislipidemia" value="y" />
+          <label for="dislipidemiaY">있음</label>
+          <input type="radio" id="dislipidemiaN" name="dislipidemia" value="n" />
+          <label for="dislipidemiaN">없음</label>
+          <input type="radio" id="dislipidemiaC" name="dislipidemia" value="c" />
+          <label for="dislipidemiaC">모름</label>
+        </div>
+      </div>
+      <div class="rowGout itembox">
+        <label class="item">통풍여부</label>
+        <div class="item">
+          <input type="radio" id="goutY" name="gout" value="y" />
+          <label for="goutY">있음</label>
+          <input type="radio" id="goutN" name="gout" value="n" />
+          <label for="goutN">없음</label>
+          <input type="radio" id="goutC" name="gout" value="c" />
+          <label for="goutC">모름</label>
+        </div>
+      </div>
+    </div>
+    <div class="main2BloodTest">
+      <h3>혈액 수치 입력</h3>
+      <div class="eGFR">
+        <div class="itembox">
+          <div class="center">eGFR-Cr</div>
+          <div class="item"><input type="number" id="glomerular" onkeyup="diagKidneyFunction();" /></div>
+        </div>
+      </div>
+      <div class="electroBattery">
+        <div class="itembox">
+          <div class="center">혈중 칼륨 농도</div>
+          <div class="item"><input type="number" id="Potassium" />mmol/L</div>
+        </div>
+        <div class="itembox">
+          <div class="center">혈중 나트륨 농도</div>
+          <div class="item"><input type="number" id="Sodium" />mmol/L</div>
+        </div>
+        <div class="itembox">
+          <div class="center">혈중 인 농도</div>
+          <div class="item"><input type="number" id="Phosphorous" />mg/dL</div>
+        </div>
+        <div class="itembox">
+          <div class="center">혈중 염화이온 농도</div>
+          <div class="item"><input type="number" id="Chloride" />mmol/L</div>
+        </div>
+      </div>
+      <div class="bloodGlucoseTest">
+        <div class="itembox">
+          <div class="center">공복 혈당</div>
+          <div class="item"><input type="number" id="FBS" />mg/dL</div>
+        </div>
+        <div class="itembox">
+          <div class="center">식후 2시간 후 혈당</div>
+          <div class="item"><input type="number" id="PP2" />mg/dL</div>
+        </div>
+        <div class="itembox">
+          <div class="center">당화혈색소 (HbA1c)</div>
+          <div class="item"><input type="number" id="HbA1c" />%</div>
+        </div>
+        <div class="itembox">
+          <div class="center">당화알부민 (GA)</div>
+          <div class="item"><input type="number" id="glucatedAlbumin" />%</div>
+        </div>
+      </div>
+      <div class="bloodPresure">
+        <div class="itembox">
+          <div class="center">수축기 혈압</div>
+          <div class="item"><input type="number" id="SBP" />mmHg</div>
+        </div>
+        <div class="itembox">
+          <div class="center">이완기 혈압</div>
+          <div class="item"><input type="number" id="DBP" />mmHg</div>
+        </div>
+      </div>
+      <div class="liverFunctionTest">
+        <div class="itembox">
+          <div class="center">간수치 AST (GOT)</div>
+          <div class="item"><input type="number" id="AST" />IU/L</div>
+        </div>
+        <div class="itembox">
+          <div class="center">간수치 ALT (GPT)</div>
+          <div class="item"> <input type="number" id="ALT" />IU/L</div>
+        </div>
+        <div class="itembox">
+          <div class="center">ALP</div>
+          <div class="item"><input type="number" id="ALP" />U/L</div>
+        </div>
+        <!-- 쓸개즙 배설장애 의심, 소아의 경우에는 뼈 관련 이상 -->
+        <div class="itembox">
+          <div class="center">GGT (y-GTP)</div>
+          <div class="item"><input type="number" id="GGT" />IU/L</div>
+        </div>
+        <!-- 음주 의심 -->
+        <div class="itembox">
+          <div class="center">총 빌리루빈</div>
+          <div class="item"><input type="number" id="totalBilirubin" />mg/dL</div>
+        </div>
+      </div>
+      <div class="lipidBattery">
+        <div class="itembox">
+          <div class="center">혈중 중성지방 농도</div>
+          <div class="item"><input type="number" id="TG" />mg/dL</div>
+        </div>
+        <div class="itembox">
+          <div class="center">혈중 총콜레스테롤</div>
+          <div class="item"><input type="number" id="TChol" />mg/dL</div>
+        </div>
+        <div class="itembox">
+          <div class="center">혈중 LDL 농도</div>
+          <div class="item"><input type="number" id="LDL" />mg/dL</div>
+        </div>
+        <div class="itembox">
+          <div class="center">혈중 HDL 농도</div>
+          <div class="item"><input type="number" id="HDL" />mg/dL</div>
+        </div>
+      </div>
+      <div class="uricAcid">
+        <div class="itembox">
+          <div class="center">혈중 요산 농도</div>
+          <div class="item"><input type="number" id="uricAcid" />mg/dL</div>
+        </div>
+      </div>
     </div>
 
-    <script>
-        var IdealBodyWeight = 0;
-        var Patient = {};
-        var PCondition = {};
-    </script>
+    <div class="resume">
+      <button type="button" onclick="location.reload();" id="resetPage">리셋!</button>
+      <button type="button" onclick="Examination();" id="resumebutton">입력완료!</button>
+    </div>
+  </div>
+
+  <script>
+    var IdealBodyWeight = 0;
+    var Patient = {};
+    var PCondition = {};
+  </script>
 </body>
 
 </html>
