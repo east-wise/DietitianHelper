@@ -688,15 +688,15 @@ document.addEventListener("DOMContentLoaded", function () {
  * @param {boolean} DMRFswitch 콩팥병 있으면 true, 없으면 false
  */
 function DietGenerator(REU, DMRFswitch) {
-  /**
+   /**
    * 당뇨 Example Menu
-   ** [한식=0,양식=1,일품=2,간식=3]
-   ** [아침=0,점심=1,저녁=2]
-   ** [단백질 단위수 (0.5,1,1.5)=>1, (2~)=>2]
-   ** [메뉴 5,6개 탄수화물=0,단백질=1or2]
-   ** {음식명=menu,사진위치=photo,단위수=exchange,분량=weight,눈대중분량=serve,분류=type}
+   ** [한식 = 0, 양식 = 1, 일품 = 2, 간식 = 3]
+   ** [아침 = 0, 점심 = 1, 저녁 = 2]
+   ** [단백질 단위수 (0.5, 1, 1.5) => 1, (2~) => 2]
+   ** [메뉴 5,6개 탄수화물 = 0, 단백질= 1 or 2]
+   ** {음식명 = menu, 사진위치 = photo, 단위수 = exchange, 분량 = weight, 눈대중분량 = serve, 분류 = type}
    */
-  const DMEXD = [
+   const DMEXD = [
     [
       [
         ["당뇨는 단백질 0단위 없음"],
@@ -1545,13 +1545,13 @@ function DietGenerator(REU, DMRFswitch) {
       },
     ],
   ];
-  /**
-   * 당뇨&콩팥병 Example Menu
-   ** [한식=0,양식=1,일품=2,간식=3]
-   ** [아침=0,점심=1,저녁=2]
-   ** [단백질 단위수 0=>0, (0.5,1,1.5)=>1, (2~)=>2]
-   ** [메뉴 5,6개 탄수화물=0,단백질=1or2]
-   ** {음식명=menu,사진위치=photo,단위수=exchange,분량=weight,눈대중분량=serve,분류=type}
+/**
+   * 당뇨 & 콩팥병 Example Menu
+   ** [한식 = 0, 양식 = 1, 일품 = 2, 간식 = 3]
+   ** [아침 = 0, 점심 = 1, 저녁 = 2]
+   ** [단백질 단위수 0 => 0 (0.5, 1, 1.5) => 1, (2~) => 2]
+   ** [메뉴 5,6개 탄수화물 = 0, 단백질= 1 or 2]
+   ** {음식명 = menu, 사진위치 = photo, 단위수 = exchange, 분량 = weight, 눈대중분량 = serve, 분류 = type}
    */
   const DMLP = [
     [
@@ -2455,7 +2455,7 @@ function DietGenerator(REU, DMRFswitch) {
       [
         [
           {
-            menu: "덮밥(밥)",
+            menu: "덮밥(흰밥)",
             photo: "foodpicture/grain/Ex1_whiteRice_70g.png",
             exchange: 1,
             weight: 70,
@@ -2463,8 +2463,8 @@ function DietGenerator(REU, DMRFswitch) {
             type: "grain",
           },
           {
-            menu: "가지",
-            photo: "foodpicture/vegetable/Ex1_eggplant_45g.png",
+            menu: "가지튀김",
+            photo: "foodpicture/vegetable/Ex1_eggplantFry_45g.png",
             exchange: 1,
             weight: 70,
             serve: "1/2컵",
@@ -2501,7 +2501,7 @@ function DietGenerator(REU, DMRFswitch) {
         ],
         [
           {
-            menu: "덮밥(밥)",
+            menu: "덮밥(흰밥)",
             photo: "foodpicture/grain/Ex1_whiteRice_70g.png",
             exchange: 1,
             weight: 70,
@@ -2509,19 +2509,12 @@ function DietGenerator(REU, DMRFswitch) {
             type: "grain",
           },
           {
-            menu: "고기볶음",
-            photo: "foodpicture/protein/Ex1_beefBulgogi_40g.png",
+            menu: "돈까스",
+            photo: "foodpicture/protein/Ex1_porkFried_40g.png",
             exchange: 1,
             weight: 40,
             serve: "1덩이",
             type: "meat",
-          },
-          {
-            menu: "애호박",
-            photo: "foodpicture/vegetable/Ex1_zucchini_45g.png",
-            exchange: 1,
-            weight: 45,
-            type: "vegetable",
           },
           {
             menu: "양파",
@@ -2547,7 +2540,7 @@ function DietGenerator(REU, DMRFswitch) {
         ],
         [
           {
-            menu: "덮밥(밥)",
+            menu: "덮밥(흰밥)",
             photo: "foodpicture/grain/Ex1_whiteRice_70g.png",
             exchange: 1,
             weight: 70,
@@ -2555,8 +2548,8 @@ function DietGenerator(REU, DMRFswitch) {
             type: "grain",
           },
           {
-            menu: "고기볶음",
-            photo: "foodpicture/protein/Ex1_beefBulgogi_40g.png",
+            menu: "돈까스",
+            photo: "foodpicture/protein/Ex1_porkFried_40g.png",
             exchange: 1,
             weight: 40,
             serve: "1덩이",
@@ -2569,13 +2562,6 @@ function DietGenerator(REU, DMRFswitch) {
             weight: 50,
             serve: "1개",
             type: "meat",
-          },
-          {
-            menu: "애호박",
-            photo: "foodpicture/vegetable/Ex1_zucchini_45g.png",
-            exchange: 1,
-            weight: 45,
-            type: "vegetable",
           },
           {
             menu: "양파",
