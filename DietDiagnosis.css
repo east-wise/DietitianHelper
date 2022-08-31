@@ -1,4 +1,9 @@
 @import url('style.css');
+input[type=text],
+input[type=number] {
+  border-radius: 0;
+  -webkit-appearance: none
+}
 
 h2 {
   font-size: 1.5rem;
