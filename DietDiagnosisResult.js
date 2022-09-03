@@ -2913,7 +2913,9 @@ function printPhoto(ed, meal) {
     addRowtd("#dietEx" + meal + "Name", ed[i].menu, ed[i].type);
     if (ed[i].weight == undefined)
       addRowtd("#dietEx" + meal + "Weight", " ", ed[i].type);
-    else addRowtd("#dietEx" + meal + "Weight", ed[i].weight, ed[i].type);
+    else if (ed[i].menu == "우유")
+      addRowtd("#dietEx" + meal + "Weight", ed[i].weight + "ml", ed[i].type);
+    else addRowtd("#dietEx" + meal + "Weight", ed[i].weight + "g", ed[i].type);
     let foodimg = "";
     if (ed[i].photo != null) {
       foodimg = document.createElement("IMG");
