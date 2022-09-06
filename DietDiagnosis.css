@@ -1,9 +1,5 @@
 @import url('style.css');
-/*input[type=text],
-input[type=number] {
-  border-radius: 0;
-  -webkit-appearance: none
-}*/
+
 
 h2 {
   font-size: 1.5rem;
@@ -44,6 +40,7 @@ h2 {
   grid-area: resume;
   text-align: center;
 }
+
 #resetPage {
   margin-right: 50px;
 }
@@ -54,50 +51,67 @@ h2 {
   line-height: 2.1;
 }
 
-.main1{
+.main1 {
   display: flex;
   flex-direction: column;
   align-items: left;
 }
-.itembox{
+
+.itembox {
   display: grid;
   grid-template-columns: 1fr 2fr;
   margin-bottom: 5px;
+}
+.birthdate #birthYear{
+  width: 65px;
+}
+.birthdate #birthMonth{
+  width: 55px;
+}
+.birthdate #birthDay{
+  width: 45px;
 }
 .center {
   display: flex;
   align-items: center;
   padding-left: 0px;
 }
-#resetPage:hover{
+
+#resetPage:hover {
   background-color: crimson;
 }
 
-input[type=text], input[type=number]{
+input[type=text],
+input[type=number] {
   width: 50%;
   line-height: 20px;
   height: 15px;
   padding: 10px;
 }
+
 input {
   font-family: 'Nanum Gothic', sans-serif;
   font-size: medium;
 }
-.main1 button{
+
+.main1 button {
   width: 60%;
   height: 40px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
 }
-.resume button{
+
+.resume button {
   width: 100px;
   height: 40px;
 }
+
 button {
   padding: 0px 10px;
   border-radius: 10px;
 }
+
 input[type=radio] {
   width: 18px;
   height: 18px;
@@ -111,24 +125,8 @@ input[type=radio]:checked {
   position: relative;
   top: 3px;
 }
-/* Portrait */
-/* Declare the same value for min- and max-width to avoid colliding with desktops */
-/* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
-@media only screen and (min-device-width: 834px) and (max-device-width: 834px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
-  .container {
-    max-width: 820px;
-  }
-}
 
-/* Landscape */
-/* Declare the same value for min- and max-width to avoid colliding with desktops */
-/* Source: https://medium.com/connect-the-dots/css-media-queries-for-ipad-pro-8cad10e17106*/
-@media only screen and (min-device-width: 1112px) and (max-device-width: 1112px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
-  .container {
-    max-width: 1080px;
-  }
-}
-@media (min-width: 1000px) {
+@media (min-width: 1050px) {
   .container {
     height: 100%;
     grid-template-columns: 30% 30% 40%;
@@ -140,34 +138,40 @@ input[type=radio]:checked {
       "main1 main2R main2N"
       "side resume main2N"
   }
-  
+
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1050px) {
   .container {
     display: flex;
     flex-direction: column;
     align-items: left;
   }
-  h3{
+
+  h3 {
     font-weight: bold;
     text-align: center;
   }
-  .main1{
+
+  .main1 {
     margin-bottom: 20px;
   }
-  .side{
+
+  .side {
     margin-bottom: 20px;
   }
-  .main2selection{
+
+  .main2selection {
     margin-bottom: 20px;
   }
-  .main2BloodTest{
+
+  .main2BloodTest {
     margin-bottom: 20px;
   }
-  .resume button{
-  margin-top: 50px;
-  margin-bottom: 20px;
+
+  .resume button {
+    margin-top: 50px;
+    margin-bottom: 20px;
   }
 
 }
