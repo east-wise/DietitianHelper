@@ -44,7 +44,14 @@ footer {
     margin-top: auto;
     text-align: center;
     background-color: aquamarine;
-    border-radius: 10px
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 button {
@@ -117,6 +124,12 @@ td {
         max-width: 1800px;
     }
 }
+/* @media (min-width: 2350px) {
+    .container {
+        max-width: 2300px;
+    }
+} */
+
 @media (min-width: 2500px) {
     .container {
         max-width: 2400px;
