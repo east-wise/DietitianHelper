@@ -1,3 +1,9 @@
+function handleOnInput(el, maxlength) {
+  if (el.value.length > maxlength) {
+    el.value = el.value.substr(0, maxlength);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   $("#resulturl").hide();
   $("#resumebutton").hide();
@@ -63,6 +69,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+/**
+ * 신장 상태 확인 및 혈액수치 검색창 열어주는 함수
+ */
 function diagKidneyFunction() {
   let glomerular = String($("#glomerular").val());
   if (glomerular <= 60 && glomerular > 0) {
@@ -71,14 +80,39 @@ function diagKidneyFunction() {
     $(".electroBattery").hide();
   }
 }
-
+/**
+ * 비만도 판정 함수
+ */
 function ObesityJudgement() {
   $("#physicalActivity").show();
   $("#resumebutton").show();
   $("#resetPage").show();
   let height = $("#Height").val() / 100;
   let weight = $("#Weight").val();
-  let age = $("#Age").val();
+  const today = new Date();
+  let nowyear = today.getFullYear();
+  let nowmonth = today.getMonth() + 1;
+  let nowday = today.getDay();
+  let birthyear = parseInt($("#birthYear").val());
+  let birthmonth = parseInt($("#birthMonth").val());
+  let birthday = parseInt($("#birthDay").val());
+  let age = 0;
+  if (birthyear > 0) {
+    age = nowyear - birthyear;
+    if (birthmonth > 0) {
+      if (nowmonth - birthmonth < 0) age--;
+      else if (
+        nowmonth - birthmonth == 0 &&
+        birthday > 0 &&
+        nowday - birthday < 0
+      )
+        age--;
+    }
+  }
+  // else{
+
+  // }
+
   Patient.sex = $("input[name=healthy_gender]:checked").val();
   if (Patient.sex == "male") {
     IdealBodyWeight = height * height * 22;
@@ -94,12 +128,34 @@ function ObesityJudgement() {
   // console.log(WeightCondition);
   // console.log(BMI);
 }
-
+/**
+ * 총 혈액수치 분석 함수
+ */
 function Examination() {
   Patient.name = String($("#Name").val());
   Patient.height = String($("#Height").val());
   Patient.weight = String($("#Weight").val());
-  Patient.age = String($("#Age").val());
+  let age = 0;
+  const today = new Date();
+  let nowyear = today.getFullYear();
+  let nowmonth = today.getMonth() + 1;
+  let nowday = today.getDay();
+  let birthyear = parseInt($("#birthYear").val());
+  let birthmonth = parseInt($("#birthMonth").val());
+  let birthday = parseInt($("#birthDay").val());
+  if (birthyear > 0) {
+    age = nowyear - birthyear;
+    if (birthmonth > 0) {
+      if (nowmonth - birthmonth < 0) age--;
+      else if (
+        nowmonth - birthmonth == 0 &&
+        birthday > 0 &&
+        nowday - birthday < 0
+      )
+        age--;
+    }
+  }
+  Patient.age = String(age);
   Patient.sex = $("input[name=healthy_gender]:checked").val();
   Patient.activityindex = String($("#ActivityIndex").val());
   Patient.diabetes = $("input[name=diabetes]:checked").val();
@@ -190,7 +246,12 @@ function Examination() {
   localStorage.setItem("patient-info", JSON.stringify(patientInfo));
   window.open("DietDiagnosisResult.html");
 }
-
+/**
+ * 비만판정 및 신체활동계수 참고표 출력
+ * @param {number} PIBW %
+ * @param {number} age 나이
+ * @returns 비만정도
+ */
 function PIBWObesity(PIBW, age) {
   let judge = "정상";
   if (age < 65) {
@@ -250,6 +311,12 @@ function PIBWObesity(PIBW, age) {
   }
   return judge;
 }
+/**
+ * BMI를 통한 비만도 및 활동량 계산
+ * @param {number} weight 몸무게 (kg)
+ * @param {number} height 키 (cm)
+ * @returns [BMI, 비만도, 활동량]
+ */
 function BMIObesity(weight, height) {
   let BMI = 0;
   let judge = "정상";
@@ -270,6 +337,11 @@ function BMIObesity(weight, height) {
   }
   return [BMI, judge, activityindex];
 }
+/**
+ * CKD stage 평가
+ * @param {number} glomerular 신장 GFR 수치
+ * @returns {number} CKD stage (1, 2, 3, 3.5, 4, 5)
+ */
 function CKDgrade(glomerular) {
   let judge = 0;
   if (glomerular == 0) judge = 0;
@@ -281,6 +353,15 @@ function CKDgrade(glomerular) {
   else if (glomerular > 90) judge = 1;
   return judge;
 }
+/**
+ * 당뇨진단함수
+ * @param {string} Hxdiabetes
+ * @param {number} FBS
+ * @param {number} PP2
+ * @param {number} HbA1c
+ * @param {number} glucatedAlbumin
+ * @returns {string} 당뇨판정
+ */
 function diabetesJudgement(Hxdiabetes, FBS, PP2, HbA1c, glucatedAlbumin) {
   // HbA1c 반감기 3개월, glucatedAlbumin 반감기 2~3주
   let judge = "정상";
@@ -301,8 +382,14 @@ function diabetesJudgement(Hxdiabetes, FBS, PP2, HbA1c, glucatedAlbumin) {
   else if ((FBS <= 70 && FBS > 0) || (PP2 <= 70 && PP2 > 0)) judge = "저혈당";
   return judge;
 }
+/**
+ * 혈압 진단 함수 (대한고혈압학회 분류 2018년 기준)
+ * @param {string} HxHTN
+ * @param {number} SBP
+ * @param {number} DBP
+ * @returns {string} 고혈압 진단
+ */
 function HTNJudgement(HxHTN, SBP, DBP) {
-  // 대한고혈압학회 분류 2018년
   let judge = "정상";
   if (HxHTN == "y") {
     judge = "고혈압";
@@ -319,12 +406,21 @@ function HTNJudgement(HxHTN, SBP, DBP) {
   }
   return judge;
 }
+
+/**
+ * 이상지질혈증 진단 함수
+ * @param {string} HxHLP
+ * @param {number} TG
+ * @param {number} LDL 없을 시 LDL Cholesterol 계산함 (Friedewald 공식)
+ * @param {number} Tchol
+ * @param {number} HDL
+ * @returns {[string]} 이상지질혈증 판정
+ */
 function LipidBattery(HxHLP, TG, LDL, Tchol, HDL) {
   let judge = [];
   if (HxHLP == "y") {
     judge.push("고지혈증");
   } else {
-    // LDL Cholesterol 계산 (Friedewald 공식)
     if (LDL == 0) {
       if (TG < 400) LDL = TG - (TG / 5 + HDL);
       else if (TG >= 400) judge.push("TG>400 !! LDL 직접 측정 요망");
@@ -350,6 +446,14 @@ function LipidBattery(HxHLP, TG, LDL, Tchol, HDL) {
   }
   return judge;
 }
+/**
+ * 전해질 상태 진단
+ * @param {number} Sodium
+ * @param {number} Potassium
+ * @param {number} Chloride
+ * @param {number} Phosphorous
+ * @returns {JSON} {Sodium, Potassium, Chloride, Phosphorous} 전해질 상태 판정
+ */
 function ElectricBattery(Sodium, Potassium, Chloride, Phosphorous) {
   let judge = {
     Sodium: "정상",
@@ -374,6 +478,19 @@ function ElectricBattery(Sodium, Potassium, Chloride, Phosphorous) {
   else if (Phosphorous > 5) judge.Phosphorous = "고인산혈증";
   return judge;
 }
+
+/**
+ * 간 상태 이상 진단 함수
+ * @param {string} sex
+ * @param {number} age
+ * @param {string} HxFLD
+ * @param {number} AST
+ * @param {number} ALT
+ * @param {number} ALP
+ * @param {number} GGT
+ * @param {number} TBili
+ * @returns {[string]} 간 판정 결과
+ */
 function LiverDiseaseDig(sex, age, HxFLD, AST, ALT, ALP, GGT, TBili) {
   let judge = [];
   if (HxFLD == "y") judge.push("지방간");
@@ -410,6 +527,13 @@ function LiverDiseaseDig(sex, age, HxFLD, AST, ALT, ALP, GGT, TBili) {
   }
   return judge;
 }
+
+/**
+ * 통풍 진단 함수
+ * @param {string} Hxgout
+ * @param {number} uricAcid
+ * @returns {string} 통풍 판정
+ */
 function diagGout(Hxgout, uricAcid) {
   let judge = "정상";
   if (Hxgout == "y") judge = "통풍 의심";
