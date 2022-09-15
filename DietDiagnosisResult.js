@@ -1,81 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // const catchPatientInfo = JSON.parse(localStorage.getItem("patient-info"));
+  const catchPatientInfo = JSON.parse(localStorage.getItem("patient-info"));
 
-  // console.log(catchPatientInfo);
-  // const catchPatientInfo = {
-  //   BMICondition: "비만",
-  //   BMIactivity: 29.068773297766832,
-  //   BPCondition: "정상",
-  //   IdealBodyWeight: 64.3302,
-  //   KidneyCondition: 0,
-  //   PIBWCondition: "비만",
-  //   activityindex: "25",
-  //   age: "54",
-  //   diabetes: "y",
-  //   diabetesCondition: "당뇨",
-  //   gout: "정상",
-  //   height: "171",
-  //   isDialysis: "n",
-  //   name: "김필립",
-  //   sex: "male",
-  //   weight: "80",
-  //   ElectricCondition: {
-  //     Chloride: "정상",
-  //     Phosphorous: "정상",
-  //     Potassium: "정상",
-  //     Sodium: "정상",
-  //   },
-  //   LipidCondition: ["정상"],
-  //   LiverCondition: ["정상"],
-  // };
-
-  const catchPatientInfo = {
-    ALP: "",
-    ALT: "",
-    AST: "",
-    BMI: 23.93898977463151,
-    BMICondition: "정상",
-    BMIactivity: 30,
-    BPCondition: "정상",
-    Chloride: "",
-    DBP: "",
-    ElectricCondition: {
-      Chloride: "정상",
-      Phosphorous: "정상",
-      Potassium: "정상",
-      Sodium: "정상",
-    },
-    FBS: "",
-    GGT: "",
-    HDL: "",
-    HbA1c: "",
-    IdealBodyWeight: 64.3302,
-    KidneyCondition: 99,
-    LDL: "",
-    LipidCondition: ["정상"],
-    LiverCondition: ["정상"],
-    PIBWCondition: "정상",
-    PP2: "",
-    Phosphorous: "",
-    Potassium: "",
-    SBP: "",
-    Sodium: "",
-    TG: "",
-    Tchol: "",
-    activityindex: "30",
-    age: "54",
-    diabetesCondition: "정상",
-    glomerular: "",
-    glucatedAlbumin: "",
-    gout: "정상",
-    height: "171",
-    isDialysis: "y",
-    name: "김필립",
-    sex: "male",
-    totalBilirubin: "",
-    uricAcid: "",
-    weight: "70",
-  };
   /**
    * DMDiet
    ** [Hash table =>> 1200->1]
@@ -791,7 +716,7 @@ document.addEventListener("DOMContentLoaded", function () {
     false
   );
 
-  // localStorage.removeItem("patient-info");
+  localStorage.removeItem("patient-info");
 });
 
 /**
