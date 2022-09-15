@@ -1,5 +1,81 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const catchPatientInfo = JSON.parse(localStorage.getItem("patient-info"));
+  // const catchPatientInfo = JSON.parse(localStorage.getItem("patient-info"));
+
+  // console.log(catchPatientInfo);
+  // const catchPatientInfo = {
+  //   BMICondition: "비만",
+  //   BMIactivity: 29.068773297766832,
+  //   BPCondition: "정상",
+  //   IdealBodyWeight: 64.3302,
+  //   KidneyCondition: 0,
+  //   PIBWCondition: "비만",
+  //   activityindex: "25",
+  //   age: "54",
+  //   diabetes: "y",
+  //   diabetesCondition: "당뇨",
+  //   gout: "정상",
+  //   height: "171",
+  //   isDialysis: "n",
+  //   name: "김필립",
+  //   sex: "male",
+  //   weight: "80",
+  //   ElectricCondition: {
+  //     Chloride: "정상",
+  //     Phosphorous: "정상",
+  //     Potassium: "정상",
+  //     Sodium: "정상",
+  //   },
+  //   LipidCondition: ["정상"],
+  //   LiverCondition: ["정상"],
+  // };
+
+  const catchPatientInfo = {
+    ALP: "",
+    ALT: "",
+    AST: "",
+    BMI: 23.93898977463151,
+    BMICondition: "정상",
+    BMIactivity: 30,
+    BPCondition: "정상",
+    Chloride: "",
+    DBP: "",
+    ElectricCondition: {
+      Chloride: "정상",
+      Phosphorous: "정상",
+      Potassium: "정상",
+      Sodium: "정상",
+    },
+    FBS: "",
+    GGT: "",
+    HDL: "",
+    HbA1c: "",
+    IdealBodyWeight: 64.3302,
+    KidneyCondition: 99,
+    LDL: "",
+    LipidCondition: ["정상"],
+    LiverCondition: ["정상"],
+    PIBWCondition: "정상",
+    PP2: "",
+    Phosphorous: "",
+    Potassium: "",
+    SBP: "",
+    Sodium: "",
+    TG: "",
+    Tchol: "",
+    activityindex: "30",
+    age: "54",
+    diabetesCondition: "정상",
+    glomerular: "",
+    glucatedAlbumin: "",
+    gout: "정상",
+    height: "171",
+    isDialysis: "y",
+    name: "김필립",
+    sex: "male",
+    totalBilirubin: "",
+    uricAcid: "",
+    weight: "70",
+  };
   /**
    * DMDiet
    ** [Hash table =>> 1200->1]
@@ -448,7 +524,9 @@ document.addEventListener("DOMContentLoaded", function () {
       [17.0, 14.0, 6.0, 6.0, 2.0, 2.0, 0.0],
     ],
   ];
-
+  /**
+   * 권장 섭취량
+   */
   let DietNutrient = {
     Energy: 0,
     Protein: 0,
@@ -456,11 +534,19 @@ document.addEventListener("DOMContentLoaded", function () {
     Potassium: 0,
     Phosphorous: 0,
   };
+  /**
+   * 추정진단명 리스트
+   */
   let putativeDiagnosis = [];
 
-  //----영양소 계산 시작----//
-  // 투석을 하는 경우
+  /* 교육자료 hide--------------------------- */
+  $(".DiabetesConsultPage").hide();
+  $(".CKDConsultPage").hide();
+
+  /* 영양소 계산 시작---------------------------------*/
+  /* 투석을 하는 경우---------------------------------*/
   if (catchPatientInfo.KidneyCondition == 99) {
+    $(".CKDConsultPage").show();
     DietNutrient.Energy =
       catchPatientInfo.weight * catchPatientInfo.BMIactivity;
     DietNutrient.Protein = catchPatientInfo.weight * 1.2;
@@ -471,9 +557,9 @@ document.addEventListener("DOMContentLoaded", function () {
       DietNutrient.Phosphorous = catchPatientInfo.weight * 12;
     } else DietNutrient.Phosphorous = catchPatientInfo.weight * 15;
     putativeDiagnosis.push("혈액투석");
-  }
-  // 투석하지 않는 만성콩팥병인 경우 GFR_gr > 2
-  else if (catchPatientInfo.KidneyCondition > 2) {
+  } else if (catchPatientInfo.KidneyCondition > 2) {
+    /* 투석하지 않는 만성콩팥병인 경우 GFR_gr > 2  --------------------------------------*/
+    $(".CKDConsultPage").show();
     DietNutrient.Energy =
       catchPatientInfo.weight * catchPatientInfo.activityindex;
     DietNutrient.Protein = proteinIntake(
@@ -490,7 +576,7 @@ document.addEventListener("DOMContentLoaded", function () {
     } else DietNutrient.Phosphorous = catchPatientInfo.weight * 15;
     putativeDiagnosis.push("만성콩팥병");
   }
-  // 콩팥기능이 정상인 경우
+  /* 콩팥기능이 정상인 경우--------------------------------------------------------------*/
   else if (catchPatientInfo.KidneyCondition <= 2) {
     if (catchPatientInfo.PIBWCondition == "고도비만") {
       if (catchPatientInfo.LiverCondition != "정상") {
@@ -525,11 +611,13 @@ document.addEventListener("DOMContentLoaded", function () {
       1.2,
       1.0
     );
+    if (catchPatientInfo.diabetesCondition != "정상")
+      $(".DiabetesConsultPage").show();
     if (catchPatientInfo.PIBWCondition != "정상")
       putativeDiagnosis.push(catchPatientInfo.PIBWCondition);
   }
 
-  //----계산한 영양소 출력하기----//
+  /* 계산한 영양소 출력하기-------------------------*/
   $("#recommendDiet2").hide();
   $(".weightModify").hide();
   $("#Targht6mWeight").hide();
@@ -571,9 +659,15 @@ document.addEventListener("DOMContentLoaded", function () {
   else if (catchPatientInfo.KidneyCondition <= 2)
     $("#nowWeight").append(catchPatientInfo.PIBWCondition);
 
-  //----권장 영양소 섭취량 출력----//
+  /* 권장 영양소 섭취량 출력 --------------------------------------------*/
   // console.log(DietNutrient.Protein);
+  /**
+   * 콩팥환자 단백질 섭취량 hash tag
+   */
   const hashCKDProteinIndex = Math.round(DietNutrient.Protein / 10) - 2;
+  /**
+   * 권장 섭취 열량 100단위
+   */
   const goalEnergy = Math.round(DietNutrient.Energy / 100) * 100;
 
   $("#calorie").append(goalEnergy + "kcal");
@@ -586,7 +680,10 @@ document.addEventListener("DOMContentLoaded", function () {
     $("#phosphorous").append(DietNutrient.Phosphorous + "mg");
   }
 
-  //----권장 식품교환단위 계산----//
+  /* 권장 식품교환단위 계산-------------------------------------------------*/
+  /**
+   * 식품군별 권장섭취 단위수
+   */
   let recommendExUnit = [, ,];
   if (catchPatientInfo.KidneyCondition <= 2) {
     if (catchPatientInfo.age > 19 || catchPatientInfo.age == 0) {
@@ -635,6 +732,20 @@ document.addEventListener("DOMContentLoaded", function () {
     recommendExUnit = outputExUnit(recommendExUnit);
   }
   console.log(recommendExUnit);
+  for (let i = 1; i < 4; i++) {
+    $("#DMmealPlan1_" + i).append(
+      grainREUexchangeRice(recommendExUnit[1 + i][0])
+    );
+    $("#CKDmealPlan1_" + i).append(
+      grainREUexchangeRice(recommendExUnit[1 + i][0])
+    );
+  }
+  $("#DMmealPlan3_1").append(recommendExUnit[1][2]);
+  $("#DMmealPlan5_1").append(recommendExUnit[1][5]);
+  $("#DMmealPlan5_2").append(recommendExUnit[1][4]);
+  $("#CKDmealPlan2_1").append(recommendExUnit[1][1]);
+  $("#CKDmealPlan5_1").append(recommendExUnit[1][5]);
+  $("#CKDmealPlan5_2").append(recommendExUnit[1][4]);
 
   //----추정진단명 찾아보기----//
   $("#PDGuide").append(catchPatientInfo.name + "님의 추정 진단:");
@@ -680,15 +791,31 @@ document.addEventListener("DOMContentLoaded", function () {
     false
   );
 
-  localStorage.removeItem("patient-info");
+  // localStorage.removeItem("patient-info");
 });
+
+/**
+ * 곡류군 교환단위를 밥공기로 바꿔주는 함수
+ * @param {number} grain 곡류군 단위수
+ * @returns {string} 밥공기로 얼마나 되는지
+ */
+function grainREUexchangeRice(grain) {
+  var bowl = 0;
+  if (grain % 3 == 0) {
+    bowl = parseInt(grain / 3);
+  } else {
+    bowl = String(grain) + "/3";
+  }
+  return bowl + " 공기";
+}
+
 /**
  * 식단 생성 함수
  * @param {array} REU 식품군 권장섭취 단위수
  * @param {boolean} DMRFswitch 콩팥병 있으면 true, 없으면 false
  */
 function DietGenerator(REU, DMRFswitch) {
-   /**
+  /**
    * 당뇨 Example Menu
    ** [한식 = 0, 양식 = 1, 일품 = 2, 간식 = 3]
    ** [아침 = 0, 점심 = 1, 저녁 = 2]
@@ -696,7 +823,7 @@ function DietGenerator(REU, DMRFswitch) {
    ** [메뉴 5,6개 탄수화물 = 0, 단백질= 1 or 2]
    ** {음식명 = menu, 사진위치 = photo, 단위수 = exchange, 분량 = weight, 눈대중분량 = serve, 분류 = type}
    */
-   const DMEXD = [
+  const DMEXD = [
     [
       [
         ["당뇨는 단백질 0단위 없음"],
@@ -1545,7 +1672,7 @@ function DietGenerator(REU, DMRFswitch) {
       },
     ],
   ];
-/**
+  /**
    * 당뇨 & 콩팥병 Example Menu
    ** [한식 = 0, 양식 = 1, 일품 = 2, 간식 = 3]
    ** [아침 = 0, 점심 = 1, 저녁 = 2]
@@ -2350,8 +2477,8 @@ function DietGenerator(REU, DMRFswitch) {
             type: "vegetable",
           },
           {
-            menu: "저염김치",
-            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
+            menu: "저염피클",
+            photo: "foodpicture/vegetable/Ex1_pickle_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
@@ -2394,8 +2521,8 @@ function DietGenerator(REU, DMRFswitch) {
             type: "vegetable",
           },
           {
-            menu: "저염김치",
-            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
+            menu: "저염피클",
+            photo: "foodpicture/vegetable/Ex1_pickle_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
@@ -2439,8 +2566,8 @@ function DietGenerator(REU, DMRFswitch) {
             type: "vegetable",
           },
           {
-            menu: "저염김치",
-            photo: "foodpicture/vegetable/Ex1_kimchi_50g.png",
+            menu: "저염피클",
+            photo: "foodpicture/vegetable/Ex1_pickle_50g.png",
             exchange: 1,
             weight: 50,
             type: "vegetable",
@@ -2741,9 +2868,6 @@ function DietGenerator(REU, DMRFswitch) {
     $("#dietEx" + i + "Name").empty();
     $("#dietEx" + i + "Weight").empty();
     $("#dietEx" + i + "Picture").empty();
-    // addRowtd("#dietEx" + i + "Name", "메뉴");
-    // addRowtd("#dietEx" + i + "Weight", "중량(g)");
-    // addRowtd("#dietEx" + i + "Picture", " ");
   }
   let mealSelection = [];
   mealSelection.push($("input[name=breakfast]:checked").val());
@@ -2774,11 +2898,16 @@ function DietGenerator(REU, DMRFswitch) {
     document.getElementById("breakfastSelection").className = "center";
     document.getElementById("lunchSelection").className = "center";
     document.getElementById("dinnerSelection").className = "center";
-    let location = document.querySelector(".page2").offsetTop;
+    let location = document.querySelector(
+      ".diagnosisResultPage .page3"
+    ).offsetTop;
     window.scrollTo({
-      top: location + window.innerHeight * 1.3,
+      top: location /*+ window.innerHeight * 1.3*/,
       behavior: "smooth",
     });
+    /**
+     * 추천 예시 식단
+     */
     let exampleDiet = [];
     // console.log(exampleDiet);
     if (DMRFswitch == true) {
@@ -2975,7 +3104,7 @@ function divide3part(num) {
  * HTML에 글자 추가 하는 함수
  * @param {string} location 출력할 위치
  * @param {string} content 출력할 내용
- * @param {string} className 출력할 때 cass이름을 달고 싶으면 추가
+ * @param {string} className 출력할 때 class 이름을 달고 싶으면 추가
  */
 function addRowtd(location, content, className) {
   let rowdata = document.createElement("td");
@@ -2985,7 +3114,14 @@ function addRowtd(location, content, className) {
   rowdata.innerHTML = content;
   $(location).append(rowdata);
 }
-
+/**
+ * 단백질 권장 섭취량 계산 함수
+ * @param {string} dm 당뇨 여부
+ * @param {number} w 체중
+ * @param {number} p1 당뇨 단백질 계수
+ * @param {number} p2 일반 단백질 계수
+ * @returns {number} 단백질 권장 섭취량
+ */
 function proteinIntake(dm, w, p1, p2) {
   if (dm == "당뇨") {
     return w * p1;
