@@ -15,8 +15,8 @@
 </head>
 
 <body>
-  <div class="paper page1">
-    <div class="content">
+  <div class="paper diagnosisResultPage">
+    <div class="content page1">
       <h1>식사처방전</h1>
       <h2 id="guideParagraph"> </h2>
       <div class="main">
@@ -131,11 +131,206 @@
       <footer>
         &copy; Copyright 2022. Donghyun Kim All rights reserved.
       </footer>
-
     </div>
   </div>
-  <div class="paper page2">
-    <div class="content">
+  <div class="paper DiabetesConsultPage">
+    <div class="content page1">
+      <h1>당뇨병의 식사관리</h1>
+      <h2 id="guideParagraph"> </h2>
+      <div class="appropriateMealTime">
+        <img id="clock24h" src="otherGraphics\clock24h.png">
+        <table id="MealTimeTable">
+          <caption>적정 식사시간 (4~6시간 간격)</caption>
+          <tr>
+            <td>아침: </td>
+            <td>
+              <div class="mealTime"></div>
+            </td>
+          </tr>
+          <tr>
+            <td>점심: </td>
+            <td>
+              <div class="mealTime"></div>
+            </td>
+          </tr>
+          <tr>
+            <td>저녁:</td>
+            <td>
+              <div class="mealTime"></div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <p>
+        식사 때 일정한 양의 탄수화물을 섭취하고, 다양한 식품으로 필요한 영양소를 섭취합니다.<br>
+        달콤한 맛(단순당)을 주의합니다. <br>
+        (예: 설탕, 커피믹스, 매실엑기스, 꿀, 초콜릿, 아이스크림 등)
+      </p>
+      <h3>저혈당 시 식사관리</h3>
+      <p>
+        저혈당 시(혈당 70mg/dL 이하)에는 혈당을 빨리 올릴수 있는 단순당질을 즉시 섭취합니다.<br>
+        <img id="Sugery15" src="otherGraphics\Sugery15g.png"><br><br>
+        외식을 하기 위해 식사를 거르지 않습니다. <br>
+        술은 혈당조절이 잘 되는 경우에만 1~2잔 정도 가능합니다.<br>
+        음주 후 아침에 저혈당이 나타날 수 있으므로 주의 해야합니다.
+      </p>
+      <footer>
+        &copy; Copyright 2022. Donghyun Kim All rights reserved.
+      </footer>
+    </div>
+  </div>
+  <div class="paper DiabetesConsultPage">
+    <div class="content page2">
+      <ol class="mealPlan">
+        <li>밥</li>
+        <p>양 조절이 필요합니다. 귀하의 밥 섭취량은 아침 <b id="DMmealPlan1_1"> </b>, 점심 <b id="DMmealPlan1_2"> </b>, 저녁 <b
+            id="DMmealPlan1_3"> </b> 입니다.<br>
+          밥1/3공기(70g)는 100kcal로 1 교환단위라고 하며, 다음의 식품과 바꿔 드실 수 있습니다.</p>
+        <img id="grain1serve" src="otherGraphics\grain1serve.png">
+        <li>단백질반찬</li>
+        <p>고지방 육류 또는 고지방 생선의 섭취는 줄이고, 매끼 단백질 반찬을 <b>1~2가지</b> 곁들여 드십시오.<br>
+          단백질 식품의 1 교환단위는 다음과 같습니다.
+        </p>
+        <img id="protein1serve" src="otherGraphics\protein1serve.png">
+        <li>채소반찬</li>
+        <p>하루에 적어도 <b id="DMmealPlan3_1"> </b> <b>단위</b> 이상 충분히 챙겨드십시오.<br>
+          섬유소가 많은 음식은 식후 당의 흡수를 지연시켜 혈당조절에 도움을 주며 공복감을 덜어줍니다.
+        </p>
+        <img id="vege1serve" src="otherGraphics\vege1serve.png">
+      </ol>
+      <footer>
+        &copy; Copyright 2022. Donghyun Kim All rights reserved.
+      </footer>
+    </div>
+  </div>
+
+  <div class="paper DiabetesConsultPage">
+    <div class="content page3">
+      <ol class="mealPlan">
+        <li>조리방법</li>
+        <p>반찬은 달지 않게 만드는 것이 중요하므로 설탕, 물엿, 꿀, 매실엑기스 등의 사용을 줄이세요.<br>
+          버터, 마요네즈, 마가린의 사용을 줄이십시오.
+        </p>
+        <li>간식</li>
+        <p>식사 사이에 1회 섭취량에 맞게 드십시오.<br>
+          귀하의 하루 적정 간식 섭취량은 과일 <b id="DMmealPlan5_1"> </b><b>회</b>, 우유 <b id="DMmealPlan5_2"> </b><b>컵</b>, 견과류
+          <b>1줌</b>입니다.<br>
+          과일의 1교환단위는 다음과 같습니다.
+        </p>
+        <img id="DMfruit" src="otherGraphics\DMfruit.png">
+        <li>운동과 식사관리</li>
+        <p>혈당이 250~300mg/dl 이상 또는 100mg/dl 이하인 경우 과도한 운동은 하지 않는 것이 바람직합니다.<br>
+          운동의 종류와 시간에 따라 간식을 추가 보충합니다.
+        </p>
+        <img id="DMexercise" src="otherGraphics\DMexercise.png">
+      </ol>
+      <footer>
+        &copy; Copyright 2022. Donghyun Kim All rights reserved.
+      </footer>
+    </div>
+  </div>
+  <div class="paper CKDConsultPage">
+    <div class="content page1">
+      <h1>신장 환자의 식사관리</h1>
+      <h3>신장기능이 나빠지면</h3>
+      <p>신장기능이 나빠지면 혈액 내에 노폐물이 쌓이고, 수분과 전해질 균형이 깨져 <br>
+        소변량의 감소, 고혈압 등의 증상이 나타나게 됩니다.<br>
+        또한 빈혈, 영양결핍, 심폐질환, 위장질환, 골이영양증, 호르몬 장애 등의 복잡한 문제가 생길 수 있습니다.<br>
+        <br>
+        신장기능이 나빠진 경우 체중이 감소되지 않도록 열량을 충분히 섭취해야 하며 <br>
+        단백질, 나트륨, 칼륨, 인, 수분 등의 영양소의 섭취에 유의해야 합니다.
+      </p>
+      <h3>추천 조리 방법</h3>
+      <ul>
+        <li>한가지 반찬에 집중적으로 양념해봅니다.</li>
+        <li>신맛, 단맛 등 다른맛을 이용합니다. (설탕, 식초, 레몬, 마늘, 겨자 등)</li>
+        <li>칼륨, 인, 나트륨 제거를 위해 물에 담근 후 삶기 및 찜과 같은 조리법을 이용하여 섭취합니다.</li>
+        <li>소금, 간장에 절인 음식(장아찌, 젓갈)을 먹지 않습니다.</li>
+        <li>된장국, 찌개는 건더기만 먹거나 맑은 국으로 먹습니다.</li>
+      </ul>
+      <h3>칼륨, 인, 나트륨을 줄이는 조리방법</h3>
+      <p>쌀, 어육류, 채소를 조리할 크기로 재료를 썰어 물에 2시간 이상 담가 둡니다. <br>
+        2시간 후 물은 버리고 재료를 다시 헹군 후 조리합니다.</p>
+      <img id="CKDcookPicture" src="otherGraphics\CKDcook.png">
+      <footer>
+        &copy; Copyright 2022. Donghyun Kim All rights reserved.
+      </footer>
+    </div>
+  </div>
+  <div class="paper CKDConsultPage">
+    <div class="content page2">
+      <ol class="mealPlan">
+        <li>밥</li>
+        <p>귀하의 밥 섭취량은 아침 <b id="CKDmealPlan1_1"> </b>, 점심 <b id="CKDmealPlan1_2"> </b>, 저녁 <b id="CKDmealPlan1_3"> </b>
+          입니다.<br>
+          <b>&#8251;</b> 주의식품: 잡곡(율무, 보리 등), 고구마, 미숫가루, 옥수수 등
+        </p>
+        <img id="grain1serve" src="otherGraphics\CKDgrain1serve.png">
+        <li>단백질반찬</li>
+        <p>과량 섭취시 요독증이나 골 관련 질환을 야기할 수 있느나 부족할 경우 영양불량이 올 수 있습니다. <br>
+          매일 단백질 식품을 <b id="CKDmealPlan2_1"> </b> <b>접시</b> 정도씩 섭취하시길 바랍니다.<br>
+          <b>&curren;</b> 고지방 육류/생선 및 가공 식품의 섭취를 줄입니다. <br>
+          <b>&#8251;</b> 주의식품: 삼겹살, 곱창, 뱀장어, 꽁치 통조림, 소세지 등 <br>
+        </p>
+        <img id="protein1serve" src="otherGraphics\protein1serve.png">
+        <li>채소반찬</li>
+        <p>다음은 칼륨 100mg이 들어있는 채소의 양입니다. 채소는 매끼 1~2접시 섭취합니다. <br>
+          <b>&#8251;</b> 주의식품: 느타리, 양송이, 쑥, 늙은 호박 등 <br>
+        </p>
+        <img id="vege1serve" src="otherGraphics\CKDvege1serve.png">
+      </ol>
+      <footer>
+        &copy; Copyright 2022. Donghyun Kim All rights reserved.
+      </footer>
+    </div>
+  </div>
+  <div class="paper CKDConsultPage">
+    <div class="content page3">
+      <ol>
+        <li>간식</li>
+        <p>칼륨 100mg이 들어있는 과일의 양입니다. 식간에 권장량에 맞게 섭취합니다.<br>
+          귀하의 하루 적정 간식 섭취량은 과일 <b id="CKDmealPlan5_1"> </b><b>회</b>, 우유 <b id="CKDmealPlan5_2"> </b><b>컵</b> 입니다.<br>
+          <b>&curren;</b> 우유는 단백질, 인, 칼륨이 많기 때문에 적정량 섭취합니다.
+        </p>
+        <img id="CKDfruit" src="otherGraphics\CKDfruit.png">
+        <li>열량보충이 필요할 때</li>
+        <p>비의도적인 5% 이상의 체중 감소가 있는 경우 열량보충이 필요합니다.</p>
+        <img id="energySneck" src="otherGraphics\energySneck.png">
+        <li>단백질이 부족할 때</li>
+        <p>피로감, 빈혈, 갈라지는 손톱, 발톱, 탈모, 다리 붓기 등의 증상이 나타나게 될 경우 <br>
+          단백질 부족을 의심해 볼 수 있습니다.</p>
+        <img id="proteinSneck" src="otherGraphics\proteinSneck.png">
+      </ol>
+      <p id="redLine"> <b>&#8251;</b> 임상영양사와의 상담을 통해 간식의 필요여부를 정확히 판단할 수 있습니다.</p>
+      <footer>
+        &copy; Copyright 2022. Donghyun Kim All rights reserved.
+      </footer>
+    </div>
+  </div>
+  <div class="paper CKDConsultPage">
+    <div class="content page4">
+      <ol>
+        <li>주의가 필요한 간식</li>
+        <p>만성콩팥병 질환 3기를 진단 받으셨다면 신장기능 저하 및 합병증 예방을 위해 <br>
+          아래와 같은 간식 섭취를 주의합니다.</p>
+      </ol>
+      <img id="warningSneck" src="otherGraphics\warningSneck.png">
+      <ul>
+        <li>수분 섭취</li>
+        <p>일반인의 권장 수분 섭취량은 <b>1.5~2L</b>입니다.<br>
+          만성콩팥병 환자라고 해서 수분을 제한하지는 않지만, <br>
+          투석 중 체중증가가 심한 경우 혹은 부종이 있을 경우 제한합니다. <br>
+          <b>&curren; 1일 수분 섭취량 = 전날 소변량 + 500ml</b>
+        </p>
+      </ul>
+      <footer>
+        &copy; Copyright 2022. Donghyun Kim All rights reserved.
+      </footer>
+    </div>
+  </div>
+
+  <div class="paper diagnosisResultPage">
+    <div class="content page2">
       <h1>식사처방전</h1>
       <div class="mealSelect">
         <div class="rowMeal itembox">
@@ -213,8 +408,8 @@
       </footer>
     </div>
   </div>
-  <div class="paper">
-    <div class="content">
+  <div class="paper diagnosisResultPage">
+    <div class="content page3">
       <div>
         <h1>식사처방전</h1>
         <h2 id="guideParagraph3"> </h2>
@@ -242,8 +437,8 @@
       </footer>
     </div>
   </div>
-  <div class="paper">
-    <div class="content">
+  <div class="paper diagnosisResultPage">
+    <div class="content page4">
       <h1>식사처방전</h1>
       <h2 id="guideParagraph4"> </h2>
       <table id="dietEx4" class="dietExample">
