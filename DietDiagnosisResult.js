@@ -816,7 +816,7 @@ function DietGenerator(REU, DMRFswitch) {
           },
           {
             menu: "장조림",
-            photo: "foodpicture/rawpork40g.png",
+            photo: "foodpicture/Ex1_beef_marinate_40g.png",
             exchange: 1,
             weight: 20,
             serve: "1덩이",
