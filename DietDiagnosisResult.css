@@ -1,15 +1,88 @@
 @import url('style.css');
+
+/* A4용지 형태 만들기 */
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 5px 20px;
+  text-align: left;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #ddd;
+}
+
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.paper {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 20mm;
+  /* set contents area */
+  margin: 10mm auto;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+  font-family: 'Poor Story', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 0;
+  border: 1px black solid;
+  height: 257mm;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+
+  html,
+  body {
+    width: 210mm;
+    height: 297mm;
+    background: #fff;
+  }
+
+  .paper {
+    margin: 0;
+    border: initial;
+    border-radius: initial;
+    width: initial;
+    min-height: initial;
+    box-shadow: initial;
+    background: initial;
+    page-break-after: always;
+  }
+}
+/* ----------------------------------------------------- */
+
 footer{
   background-color: rgba( 255, 255, 255, 0 )
 }
-ul,
-li {
+.diagnosisResultPage ul,
+.diagnosisResultPage li {
   list-style: none;
   margin-bottom: 0px;
 }
 
 /* section styles */
-#normalBodyWeightRange{
+.diagnosisResultPage #normalBodyWeightRange{
   display: block;
   text-align: center;
   width: 70%;
@@ -23,7 +96,7 @@ li {
 .progress-bar{
   font-size: 1.1rem;
 }
-.page1 {
+.diagnosisResultPage .page1 {
   font-size: 1.1rem;
 }
 .resultInfoBox {
@@ -31,18 +104,18 @@ li {
   grid-template-columns: 1fr 2fr;
 }
 
-#guideParagraph {
+.diagnosisResultPage #guideParagraph {
   text-align: center;
   flex-direction: column;
   align-items: center;
 }
 
-table {
+.diagnosisResultPage table {
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-table caption {
+.diagnosisResultPage table caption {
   font-weight: bolder;
   caption-side: top;
   text-align: center;
@@ -55,15 +128,15 @@ table caption {
 
 /* --------------------------------------------------------- */
 
-.center {
+.diagnosisResultPage .center {
   display: flex;
   align-items: center;
   padding-left: 0px;
 }
 
-#breakfastSelection,
-#lunchSelection,
-#dinnerSelection {
+.diagnosisResultPage #breakfastSelection,
+.diagnosisResultPage #lunchSelection,
+.diagnosisResultPage #dinnerSelection {
   font-size: 1.1rem;
 }
 
@@ -71,7 +144,7 @@ table caption {
   padding: 5px;
 }
 
-.itembox {
+.diagnosisResultPage .itembox {
   display: grid;
   grid-template-columns: 1fr 4fr;
   margin-bottom: 5px;
@@ -129,7 +202,7 @@ input[type=radio]:checked {
   margin-right: auto;
 }
 
-.page2 footer {
+.diagnosisResultPage .page2 footer {
   margin-top: 0px;
 }
 
@@ -224,74 +297,184 @@ input[type=radio]:checked {
   margin-top: 10px;
 }
 
-/* ----------------------------------------------------- */
-
-.main {
-  display: flex;
-  flex-direction: column;
-  width: 550px;
+/* DiabetesConsultPage 페이지 공통-----------------------*/
+.DiabetesConsultPage p{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   margin-left: auto;
   margin-right: auto;
-  padding: 5px 20px;
   text-align: left;
 }
-
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #ddd;
+/* DiabetesConsultPage 페이지1----------------*/
+.DiabetesConsultPage .page1 table caption{
+  color: black;
+  font-weight: bold;
+  caption-side: top;
 }
-
-* {
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
+.DiabetesConsultPage .page1 #clock24h{
+  width: 250px;
+  height: 250px;
 }
-
-.paper {
-  width: 210mm;
-  min-height: 297mm;
-  padding: 20mm;
-  /* set contents area */
-  margin: 10mm auto;
-  border-radius: 5px;
-  background: #fff;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+.DiabetesConsultPage .page1 #Sugery15{
+  width: 500px;
+  height: 150px;
 }
-
-.content {
-  font-family: 'Poor Story', cursive;
+.DiabetesConsultPage .page1 .appropriateMealTime{
   display: flex;
-  flex-direction: column;
-  align-items: left;
-  padding: 0;
-  border: 1px black solid;
-  height: 257mm;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 50px;
+}
+.DiabetesConsultPage .page1 .mealTime{
+  width: 150px;
+  height: 1rem;
+}
+.DiabetesConsultPage .page1 h3{
+  margin-top: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+/* DiabetesConsultPage 페이지2----------------*/
+.DiabetesConsultPage .page2 .mealPlan li{
+  margin-top: 1rem;
+  font-weight: bold;
+}
+.DiabetesConsultPage .page2 #grain1serve{
+  width: 520px;
+  height: 264px;
+  display: block; 
+  margin: 0px auto; 
+}
+.DiabetesConsultPage .page2 #protein1serve{
+  width: 520px;
+  height: 137px;
+  display: block; 
+  margin: 0px auto; 
+}
+.DiabetesConsultPage .page2 #vege1serve{
+  width: 520px;
+  height: 141px;
+  display: block; 
+  margin: 0px auto; 
+}
+/* DiabetesConsultPage 페이지3----------------*/
+.DiabetesConsultPage .page3 #DMfruit{
+  width: 520px;
+  height: 143px;
+  display: block; 
+  margin: 0px auto; 
+}
+.DiabetesConsultPage .page3 #DMexercise{
+  width: 500px;
+  height: 261px;
+  display: block; 
+  margin: 0px auto; 
+}
+.DiabetesConsultPage .page3 ol li{
+  padding-inline-start: 1ch;
+  list-style-type:"\269D";
+  margin-top: 1rem;
+  font-weight: bold;
 }
 
-@page {
-  size: A4;
-  margin: 0;
+/* CKDConsultPage 페이지 공통----------------*/
+.CKDConsultPage p{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 20px;
+  text-align: left;
 }
+/* CKDConsultPage 페이지1----------------*/
+.CKDConsultPage .page1 h3{
+  margin-top: 1rem;
+  font-weight: bold;
+  text-align: left;
+  margin-left: 10px;
+}
+.CKDConsultPage .page1 ul{
+  margin-top: 16px;
+}
+.CKDConsultPage .page1 #CKDcookPicture{
+  width: 500px;
+  height: 274px;
+  display: block; 
+  margin: 0px auto; 
+}
+/* CKDConsultPage 페이지2----------------*/
+.CKDConsultPage .page2 .mealPlan li{
+  margin-top: 1rem;
+  font-weight: bold;
+}
+.CKDConsultPage .page2 #grain1serve{
+  width: 500px;
+  height: 134px;
+  display: block; 
+  margin: 0px auto; 
+}
+.CKDConsultPage .page2 #protein1serve{
+  width: 500px;
+  height: 132px;
+  display: block; 
+  margin: 0px auto; 
+}
+.CKDConsultPage .page2 #vege1serve{
+  width: 500px;
+  height: 240px;
+  display: block; 
+  margin: 0px auto; 
+}
+.CKDConsultPage .page2 h2{
+  margin-bottom: 0px;
+}
+/* CKDConsultPage 페이지3----------------*/
+.CKDConsultPage .page3 ol{
+  list-style-type :none;
+}
+.CKDConsultPage .page3 li{
+  padding-inline-start: 1ch;
+  list-style-type:"\269D";
+  margin-top: 1rem;
+  font-weight: bold;
+}
+.CKDConsultPage .page3 #CKDfruit{
+  width: 500px;
+  height: 263px;
+  display: block; 
+  margin: 0px auto;
+}
+.CKDConsultPage .page3 #energySneck{
+  width: 500px;
+  height: 105px;
+  display: block; 
+  margin: 0px auto;
+}
+.CKDConsultPage .page3 #proteinSneck{
+  width: 500px;
+  height: 106px;
+  display: block; 
+  margin: 0px auto;
+}
+.CKDConsultPage .page3 #redLine{
+  color: red;
+  text-align: center;
 
-@media print {
-
-  html,
-  body {
-    width: 210mm;
-    height: 297mm;
-    background: #fff;
-  }
-
-  .paper {
-    margin: 0;
-    border: initial;
-    border-radius: initial;
-    width: initial;
-    min-height: initial;
-    box-shadow: initial;
-    background: initial;
-    page-break-after: always;
-  }
+}
+/* CKDConsultPage 페이지4----------------*/
+.CKDConsultPage .page4 ul li{
+  padding-inline-start: 1ch;
+  list-style-type:"\269D";
+  margin-top: 2rem;
+  font-weight: bold;
+}
+.CKDConsultPage .page4 ol li{
+  padding-inline-start: 1ch;
+  list-style-type:"\2620";
+  margin-top: 2rem;
+  font-weight: bold;
+}
+.CKDConsultPage .page4 #warningSneck{
+  width: 550px;
+  height: 412px;
+  display: block; 
+  margin: 0px auto;
 }
