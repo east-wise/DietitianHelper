@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const catchPatientInfo = JSON.parse(localStorage.getItem("patient-info"));
 
-  // console.log(catchPatientInfo);
-
   /**
    * DMDiet
    ** [Hash table =>> 1200->1]
