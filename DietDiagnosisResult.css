@@ -128,23 +128,23 @@ footer{
 
 /* --------------------------------------------------------- */
 
-.diagnosisResultPage .center {
+.diagnosisResultPage .page2 .center {
   display: flex;
   align-items: center;
   padding-left: 0px;
 }
 
-.diagnosisResultPage #breakfastSelection,
-.diagnosisResultPage #lunchSelection,
-.diagnosisResultPage #dinnerSelection {
+.diagnosisResultPage .page2 #breakfastSelection,
+.diagnosisResultPage .page2 #lunchSelection,
+.diagnosisResultPage .page2 #dinnerSelection {
   font-size: 1.1rem;
 }
 
-.rowMeal {
+.diagnosisResultPage .page2 .rowMeal {
   padding: 5px;
 }
 
-.diagnosisResultPage .itembox {
+.diagnosisResultPage .page2 .itembox {
   display: grid;
   grid-template-columns: 1fr 4fr;
   margin-bottom: 5px;
@@ -152,49 +152,49 @@ footer{
   margin-left: 50px;
 }
 
-input[type=radio] {
+.diagnosisResultPage .page2 input[type=radio] {
   width: 18px;
   height: 18px;
   position: relative;
   top: -25px;
 }
 
-input[type=radio]:checked {
+.diagnosisResultPage .page2 input[type=radio]:checked {
   width: 18px;
   height: 18px;
   position: relative;
   top: -25px;
 }
 
-.mealSelect {
+.diagnosisResultPage .page2 .mealSelect {
   padding: 0px;
 }
 
-.DietGeneratorNarration {
+.diagnosisResultPage .page2 .DietGeneratorNarration {
   padding: 10px;
   text-align: center;
   font-size: 1.25rem;
 }
 
-#DietGeneratorButton {
+.diagnosisResultPage .page2 #DietGeneratorButton {
   width: 50%;
   margin-right: auto;
   margin-left: auto;
 }
 
-.mealPhoto {
+.diagnosisResultPage .page2 .mealPhoto {
   width: 80px;
   height: 50px;
   margin-right: 20px;
 }
 
-.text_under {
+.diagnosisResultPage .page2 .text_under {
   position: relative;
   font-weight: bolder;
   font-size: 1.5rem;
 }
 
-#foodcycle {
+.diagnosisResultPage .page2 #foodcycle {
   margin-top: auto;
   height: 450px;
   width: 600px;
@@ -208,37 +208,41 @@ input[type=radio]:checked {
 
 /* --------------------------------------------------------- */
 
-.dietExample {
+
+.diagnosisResultPage .page3 h2{
+  margin: 0px;
+}
+.diagnosisResultPage .dietExample {
   color: white;
   font-size: 1.1rem;
   /* text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000; */
 }
 
-.highPotassium {
+.diagnosisResultPage .highPotassium {
   color: purple;
 }
 
-.grain {
-  color: #94920f;
+.diagnosisResultPage .grain {
+  color: rgb(163, 76, 76);
 }
 
-.meat {
+.diagnosisResultPage .meat {
   color: crimson;
 }
 
-.vegetable {
+.diagnosisResultPage .vegetable {
   color: green;
 }
 
-.milk {
+.diagnosisResultPage .milk {
   color: black;
 }
 
-.fruit {
+.diagnosisResultPage .fruit {
   color: rgb(255, 102, 0);
 }
 
-.liquid {
+.diagnosisResultPage .liquid {
   color: rgb(39, 1, 255);
 }
 
@@ -264,19 +268,79 @@ input[type=radio]:checked {
   color: black;
   text-shadow: none;
 } */
-.dietExample caption {
+
+.diagnosisResultPage .page3 .dietExample .mealTitle {
   color: black;
+  font-weight: bold;
   text-shadow: none;
+  margin: 0px;
+  font-size: 1.3rem;
+}
+.diagnosisResultPage .page3 .tray{
+  position: relative;
+}
+.diagnosisResultPage .page3 .dish1 {
+  position: absolute;
+  top: 120px;
+  left: 50px;
+}
+.diagnosisResultPage .page3 .dish2 {
+  position: absolute;
+  top: 127px;
+  left: 125px;
+}
+.diagnosisResultPage .page3 .dish3 {
+  position: absolute;
+  top: 57px;
+  left: 55px;
+}
+.diagnosisResultPage .page3 .dish4 {
+  position: absolute;
+  top: 57px;
+  left: 113px;
+}
+.diagnosisResultPage .page3 .dish5{
+  position: absolute;
+  top: 20px;
+  left: 197px;
 }
 
-.foodPhoto {
-  width: 80px;
+.diagnosisResultPage .page3 .dish6 {
+  position: absolute;
+  top: 85px;
+  left: 195px;
+}
+
+.diagnosisResultPage .page3 .emptyplate {
+  height: 217px;
+  width: 300px;
+}
+.diagnosisResultPage .page3 .foodPhoto {
+  width: 55px;
+  height: 55px;
+}
+.diagnosisResultPage .page3 .bigDish{
+  height: 65px;
+  width: 65px;
+}
+.diagnosisResultPage .page4 .foodSneck{
   height: 80px;
+  width: 80px;
+}
+
+.diagnosisResultPage .page3 {
+  position: relative;
+}
+
+.diagnosisResultPage .page3 footer{
+  position: absolute;
+  top: 970px;
+  left: 130px
 }
 
 /* ----------------------------------------------------- */
 
-.NCP {
+.diagnosisResultPage .page4 .NCP {
   display: flex;
   flex-direction: column;
   margin-top: 50px;
@@ -285,12 +349,12 @@ input[type=radio]:checked {
   text-align: center;
 }
 
-.NCP label {
+.diagnosisResultPage .page4 .NCP label {
   font-size: 1.3rem;
   font-weight: bold;
 }
 
-.NCPdiagnosis {
+.diagnosisResultPage .page4 .NCPdiagnosis {
   border-width: 1px;
   text-align: center;
   /* box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, .2); */
