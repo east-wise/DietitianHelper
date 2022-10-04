@@ -657,11 +657,18 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   console.log(recommendExUnit);
   for (let i = 1; i < 4; i++) {
+    let jump=String(parseInt(i)+3);
     $("#DMmealPlan1_" + i).append(
       grainREUexchangeRice(recommendExUnit[1 + i][0])
     );
+    $("#DMmealPlan1_" + jump).append(
+      recommendExUnit[1 + i][0]+" 장"
+    );
     $("#CKDmealPlan1_" + i).append(
       grainREUexchangeRice(recommendExUnit[1 + i][0])
+    );
+    $("#CKDmealPlan1_" + jump).append(
+      recommendExUnit[1 + i][0]+" 장"
     );
   }
   $("#DMmealPlan3_1").append(recommendExUnit[1][2]);
