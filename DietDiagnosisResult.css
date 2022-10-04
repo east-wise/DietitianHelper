@@ -465,6 +465,9 @@ footer{
   margin: 0px auto; 
 }
 /* CKDConsultPage 페이지2----------------*/
+.CKDConsultPage .page2 p{
+  margin-top: 10px;
+}
 .CKDConsultPage .page2 .mealPlan li{
   margin-top: 1rem;
   font-weight: bold;
