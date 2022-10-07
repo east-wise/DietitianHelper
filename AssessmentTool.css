@@ -9,37 +9,43 @@
     padding: 5px 5px;
     text-align: left;
   }
+
   .basicInfo .basicInfoBox {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 1fr;
     grid-gap: 8px;
     margin-bottom: 10px;
-    padding:0px;
+    padding: 0px;
   }
-  button{
+
+  button {
     width: 80%;
   }
+
   .basicInfo .inputBox {
     width: 20%;
     height: 15px;
     padding: 1px;
   }
-  .basicInfo input{
+
+  .basicInfo input {
     text-align: left;
     font-size: 1.1rem;
   }
 }
+
 @media screen and (min-width:300px) and (max-width:768px) {
   .basicInfo {
     display: flex;
     flex-direction: column;
     width: 380px;
-    margin-left: auto ;
-    margin-right: auto ;
+    margin-left: auto;
+    margin-right: auto;
     padding: 15px 20px;
     text-align: left;
   }
+
   .basicInfo .basicInfoBox {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -47,100 +53,126 @@
     grid-gap: 8px;
     margin-bottom: 10px;
   }
-  button{
+
+  button {
     width: 80%;
   }
+
   .basicInfo .inputBox {
     width: 30%;
     height: 15px;
     padding: 1px;
   }
-  .basicInfo input{
+
+  .basicInfo input {
     text-align: left;
     font-size: 1.4rem;
   }
 }
+
 @media (min-width: 576px) {
-  button{
+  button {
     width: 50%;
   }
-  .mainQuestion{
+
+  .mainQuestion {
     width: 80vw;
   }
 }
 
 @media (min-width: 768px) {
-  button{
+  button {
     width: 40%;
   }
-  .mainQuestion{
+
+  .mainQuestion {
     width: 80vw;
   }
+
   .basicInfo {
     display: flex;
     flex-direction: column;
     width: 700px;
-    margin-left: auto ;
-    margin-right: auto ;
+    margin-left: auto;
+    margin-right: auto;
     padding: 15px 20px;
     text-align: left;
   }
+
   .basicInfo .basicInfoBox {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr 2fr;
     margin-bottom: 10px;
   }
+
   .basicInfo .inputBox {
     width: 70%;
     height: 15px;
     padding: 10px;
   }
-  .basicInfo input{
+
+  .basicInfo input {
     text-align: center;
     font-size: 1.4rem;
   }
 }
 
 @media (min-width: 992px) {
-  .placequestion{
+  .placequestion {
     padding-left: 150px;
     padding-right: 150px;
   }
-  button{
+
+  button {
     width: 30%;
   }
-  .mainQuestion{
+
+  .mainQuestion {
     width: 70vw;
   }
 }
+
 @media (min-width: 1200px) {
-  .mainQuestion{
+  .mainQuestion {
     width: 60vw;
   }
 }
+
 @media (min-width: 1580px) {
-  .mainQuestion{
+  .mainQuestion {
     width: 50vw;
   }
 }
+
 @media (min-width: 1860px) {
-  .mainQuestion{
+  .mainQuestion {
     width: 40vw;
   }
 }
+
 @media (min-width: 2500px) {
-  .mainQuestion{
+  .mainQuestion {
     width: 30vw;
   }
 }
 
-.qh, .instruction {
+#instruction {
+  margin-bottom: 1.5rem;
+}
+
+.qh,
+#emphasis {
   line-height: 2.5rem;
   font-weight: bold;
 }
+
 .basicInfo ul,
 .basicInfo li {
   list-style: none;
+}
+
+.qusetion {
+  margin-top: 1rem;
 }
 
 /* section styles */
@@ -156,6 +188,7 @@
   align-items: center;
   padding-left: 20px;
 }
+
 .radio {
   display: flex;
   justify-content: space-around;
@@ -167,23 +200,25 @@
   height: 15px;
   padding: 10px;
 }
-.basicInfo input{
+
+.basicInfo input {
   text-align: center;
   font-size: 1.4rem;
 }
-.mainQuestion{
+
+.mainQuestion {
   display: flex;
   flex-direction: column;
-  margin-left: auto ;
-  margin-right: auto ;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.questionComment{
+.questionComment {
   text-align: center;
   font-size: 1.1rem;
 }
 
-.mainQuestion .NQquestion .selectionBox{
+.mainQuestion .NQquestion .selectionBox {
   display: flex;
   flex-wrap: wrap;
 }
@@ -214,8 +249,8 @@ input[type=radio]:checked {
 
 button {
   height: 60px;
-  margin-left: auto ;
-  margin-right: auto ;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 5px 10px;
