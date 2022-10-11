@@ -501,13 +501,13 @@ function LiverDiseaseDig(sex, age, HxFLD, AST, ALT, ALP, GGT, TBili) {
         else if (AST >= ALT) judge.push("만성간손상");
         if (GGT >= 42) {
           judge.push("음주");
-          if (age >= 20 && ALP > 104) judge.push("간염");
+          if (age >= 20 && ALP > 104) judge.push("간염 의심");
         }
-        judge.push("지방간");
+        judge.push("지방간 의심");
       } else if (ALP >= 312 && age >= 20 && GGT > 42 && TBili >= 1.2)
-        judge.push("쓸개즙 분비장애");
+        judge.push("쓸개즙 분비장애 의심");
       else if (ALP > 208 && ALP < 312 && age >= 20 && GGT < 42)
-        judge.push("임신, 뼈질환");
+        judge.push("임신, 뼈질환 의심");
       else judge.push("정상");
     } else if (sex == "male") {
       if (AST > 37 || ALT > 41) {
@@ -515,13 +515,13 @@ function LiverDiseaseDig(sex, age, HxFLD, AST, ALT, ALP, GGT, TBili) {
         else if (AST >= ALT) judge.push("만성간손상");
         if (GGT >= 71) {
           judge.push("음주");
-          if (age >= 20 && ALP > 129) judge.push("간염");
+          if (age >= 20 && ALP > 129) judge.push("간염 의심");
         }
-        judge.push("지방간");
+        judge.push("지방간 의심");
       } else if (ALP >= 390 && age >= 20 && GGT > 71 && TBili >= 1.2)
-        judge.push("쓸개즙 분비장애");
+        judge.push("쓸개즙 분비장애 의심");
       else if (ALP > 260 && ALP < 390 && age >= 20 && GGT < 71)
-        judge.push("뼈질환");
+        judge.push("뼈질환 의심");
       else judge.push("정상");
     }
   }
@@ -530,13 +530,13 @@ function LiverDiseaseDig(sex, age, HxFLD, AST, ALT, ALP, GGT, TBili) {
 
 /**
  * 통풍 진단 함수
- * @param {string} Hxgout
+ * @param {string} HxGout
  * @param {number} uricAcid
  * @returns {string} 통풍 판정
  */
-function diagGout(Hxgout, uricAcid) {
+function diagGout(HxGout, uricAcid) {
   let judge = "정상";
-  if (Hxgout == "y") judge = "통풍 의심";
+  if (HxGout == "y") judge = "통풍";
   else if (uricAcid > 7) judge = "통풍 의심";
   return judge;
 }
