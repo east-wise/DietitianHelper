@@ -40,7 +40,9 @@ h2 {
   grid-area: resume;
   text-align: center;
 }
-
+footer{
+  grid-area: footer;
+}
 #resetPage {
   margin-right: 50px;
 }
@@ -130,13 +132,14 @@ input[type=radio]:checked {
   .container {
     height: 100%;
     grid-template-columns: 30% 30% 40%;
-    grid-template-rows: 50px 50px 340px 700px;
+    grid-template-rows: 50px 50px 340px 700px 40px;
     grid-gap: 20px;
     grid-template-areas:
       "header header header"
       "header2 header2 header2"
       "main1 main2R main2N"
       "side resume main2N"
+      "footer footer footer"
   }
 
 }
