@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연속혈당패턴관리 영양소견서</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Black+Han+Sans&family=Cute+Font&family=Do+Hyeon&family=Dokdo&family=East+Sea+Dokdo&family=Gaegu&family=Gamja+Flower&family=Gothic+A1&family=Gugi&family=Hi+Melody&family=Jua&family=Kirang+Haerang&family=Nanum+Brush+Script&family=Nanum+Gothic&family=Nanum+Gothic+Coding&family=Nanum+Myeongjo&family=Nanum+Pen+Script&family=Noto+Sans+KR&family=Noto+Serif+KR&family=Poor+Story&family=Single+Day&family=Song+Myung&family=Stylish&family=Sunflower:wght@300&family=Yeon+Sung&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="..\bootstrap-5.2.0-dist\css\bootstrap.min.css">
+  <link rel="stylesheet" href="CGMresult.css">
+</head>
+
+<body>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script src="CGMresult.js"></script>
+  <div class="paper CGPM">
+    <div class="content page1">
+      <h2>연속혈당패턴관리 영양소견</h2>
+      <table class="NutritionDiagnosis">
+        <!-- <caption>나의 혈당 패턴 및 영양진단</caption> -->
+        <tr class="NutritionDiagnosis1">
+          <td class="mainND">
+            <input type="checkbox" />
+            저혈당
+          </td>
+          <td class="CGMNDgroup">
+            <input type="text" list="row1list" class="CGMNDcode" />
+            <input type="text" list="row1list" class="CGMNDcode" />
+            <input type="text" list="row1list" class="CGMNDcode" />
+            <datalist id="row1list">
+              <option value="불규칙한 당질 섭취">
+              <option value="불규칙한 식사">
+              <option value="부적절한 당질 종류의 섭취">
+              <option value="당질 섭취 부족">
+              <option value="에너지 섭취 부족">
+              <option value="이전 식사 시 탄수화물/단순당질 식품 위주 섭취">
+              <option value="이전 식사 시 어육류군 섭취 부족">
+              <option value="저녁식사 시 어육류군 섭취 부족">
+              <option value="늦은 밤 간식 섭취 없이 운동">
+              <option value="과음">
+              <option value="운동량/활동량이 많음">
+            </datalist>
+          </td>
+        </tr>
+        <tr class="NutritionDiagnosis2">
+          <td class="mainND">
+            <input type="checkbox" />
+            식전 고혈당
+          </td>
+          <td class="CGMNDgroup">
+            <input type="text" list="row2list" class="CGMNDcode" />
+            <input type="text" list="row2list" class="CGMNDcode" />
+            <input type="text" list="row2list" class="CGMNDcode" />
+            <datalist id="row2list">
+              <option value="불규칙한 당질 섭취">
+              <option value="이전 식사 시 고단백, 고지방 식사">
+              <option value="저녁식사 시 고단백, 고지방 식사">
+              <option value="식전 1~2시간 이내 간식 섭취">
+            </datalist>
+          </td>
+        </tr>
+        <tr class="NutritionDiagnosis3">
+          <td class="mainND">
+            <input type="checkbox" />
+            식후 고혈당
+          </td>
+          <td class="CGMNDgroup">
+            <input type="text" list="row3list" class="CGMNDcode" />
+            <input type="text" list="row3list" class="CGMNDcode" />
+            <input type="text" list="row3list" class="CGMNDcode" />
+            <datalist id="row3list">
+              <option value="당질 섭취 과다">
+              <option value="단순당질 섭취 과다">
+              <option value="에너지 섭취 과다">
+              <option value="식이섬유 섭취 부족">
+              <option value="불균형한 식사">
+              <option value="불규칙한 식사">
+              <option value="빠른 식사 속도">
+            </datalist>
+          </td>
+        </tr>
+        <tr class="NutritionDiagnosis4">
+          <td class="mainND">
+            <input type="checkbox" />
+            기타 고혈당
+          </td>
+          <td class="CGMNDgroup">
+            <input type="text" list="row4list" class="CGMNDcode" />
+            <input type="text" list="row4list" class="CGMNDcode" />
+            <input type="text" list="row4list" class="CGMNDcode" />
+            <datalist id="row4list">
+              <option value="저녁식사 시 어육류군 섭취 과다">
+              <option value="기타(스트레스, 수면, 약 복용 등)">
+              <option value="새벽 혈당 상승: 새벽현상">
+              <option value="저혈당 대처 후 고혈당">
+            </datalist>
+          </td>
+        </tr>
+        <tr class="NutritionDiagnosis5">
+          <td class="mainND">
+            <input type="checkbox" />
+            정상혈당
+          </td>
+          <td class="CGMNDgroup">
+            <input type="text" list="row5list" class="CGMNDcode" />
+            <input type="text" list="row5list" class="CGMNDcode" />
+            <input type="text" list="row5list" class="CGMNDcode" />
+            <datalist id="row5list">
+              <option value="균형식사">
+              <option value="규칙적인 당질 섭취">
+              <option value="적절한 당질 섭취">
+            </datalist>
+          </td>
+        </tr>
+      </table>
+      <div>
+        <p>&spades; 혈당 패턴 예시</p>
+        <img id="BSpatternEx" src="bloodSugerPatternExample.png">
+      </div>
+      <footer>
+        <img class="PaikLogo" src="..\otherGraphics\seoulPaikNutritionDepertment.png">
+      </footer>
+    </div>
+  </div>
+</body>
+
+</html>
