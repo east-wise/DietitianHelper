@@ -133,9 +133,10 @@ footer{
   text-align: center;
 }
 
-#recommendDiet td,
-#recommendDiet2 td {
+.diagnosisResultPage .page1 #recommendDiet td,
+.diagnosisResultPage .page1 #recommendDiet2 td {
   font-size: 1.3rem;
+  background:linear-gradient(to top, transparent 0% 30%, yellow 30% 70%, transparent 70% 100%);
 }
 
 /* --------------------------------------------------------- */
